@@ -6,6 +6,7 @@
   <title>Ayush Katiya | Robotics & AI Portfolio</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
   <style>
     :root {
       --main-gradient: linear-gradient(90deg, #0a174e, #007bff);
@@ -17,7 +18,7 @@
       --primary-color: #007bff;
     }
     html {scroll-behavior:smooth;}
-    body {background:var(--light-bg); font-family:'Segoe UI',Arial;}
+    body {background:var(--light-bg); font-family:'Segoe UI',Arial;transition:background .4s, color .4s;}
     .hero {
       background: var(--main-gradient);
       color:#fff;
@@ -25,11 +26,28 @@
       text-align:center;
       box-shadow: var(--shadow);
       position:relative;
+      overflow:hidden;
     }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top:-10%; left:-20%; width:140%; height:120%;
+      background: repeating-radial-gradient(circle farthest-corner at 60% 40%, #007bff44 0 2px, transparent 2px 90px);
+      animation: moveBg 6s linear infinite alternate;
+      opacity:.24;
+      z-index:0;
+    }
+    @keyframes moveBg {
+      from {transform: scale(1.1) rotate(0deg);}
+      to {transform: scale(1.15) rotate(8deg);}
+    }
+    .hero > * {position:relative; z-index:2;}
     .profile-img {
       width:132px;height:132px;object-fit:cover; border-radius:50%; border:6px solid #fff; box-shadow:0 3px 15px #007bff44; background:#fff;
       margin-bottom:14px;
+      transition:transform .34s;
     }
+    .profile-img:hover {transform:scale(1.06) rotate(-2deg);}
     .wave {
       margin-top:20px;
       height: 40px;
@@ -42,11 +60,12 @@
     }
     .nav-link {font-weight:500;transition:color 0.2s;}
     .nav-link:hover,.nav-link.active {color:var(--accent)!important;}
+    .theme-toggle { background:rgba(255,255,255,0.08); border:none;}
     main {margin-top:0;}
     .section {padding:60px 0 45px 0;}
     .section.bg-light {background:#f0f4ff;}
-    .section-title {font-size:2.2rem;font-weight:700;text-decoration:underline #b0c4ff 2.5px;}
-    .lead {font-size:1.22rem;}
+    .section-title {font-size:2.1rem;font-weight:700;text-decoration:underline #b0c4ff 2px;}
+    .lead {font-size:1.21rem;}
     .btn-main {
       background:var(--accent);border:none;color:#fff;
       font-weight:600;box-shadow:0 2px 16px #22be6288;
@@ -84,11 +103,20 @@
       border-left:4px solid var(--primary-color);
       padding:10px 18px;background:#fcfdff;margin-bottom:10px;
     }
+    .project-card {border-radius:8px;box-shadow:var(--shadow);}
+    .project-card:hover {border:2px solid var(--accent);}
     footer {background:var(--header); color: #ddebf9;}
+    .theme-dark {
+      background:#161823 !important;color:#eaf2fe !important;
+    }
+    .theme-dark .section.bg-light, .theme-dark .hero, .theme-dark .cert-card,
+    .theme-dark .pub, .theme-dark .project-card {background:#22253b !important; color: #e0e7ff !important;}
+    .theme-dark nav.navbar, .theme-dark footer {background: #121327 !important;}
+    .theme-dark .skillbar-bar {background:#2c3348;}
     @media(max-width: 993px){.section{padding:38px 0 24px 0;}}
     @media(max-width:768px){
       .hero {padding:38px 0 18px;}
-      .section-title{font-size:1.42rem;}
+      .section-title{font-size:1.32rem;}
       .timeline-content {margin-left:36px;}
       .timeline:before {left:7px;}
     }
@@ -108,21 +136,31 @@
         <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
         <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
         <li class="nav-item"><a href="#certifications" class="nav-link">Certifications</a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
         <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
         <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="nav-item d-lg-flex align-items-center">
+          <button id="theme-toggle" class="btn theme-toggle btn-sm ms-lg-3" title="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
-<section class="hero">
+
+<section class="hero" data-aos="fade-zoom-in">
   <img src="assets/ayushphoto.png" class="profile-img" alt="Profile photo"/>
-  <h1 class="display-5 fw-bold mb-2">Ayush Katiya</h1>
-  <div class="lead mb-2">Graduate Student @ Arizona State University<br />Robotics &amp; Autonomous Systems (AI) | Data Science | ML</div>
+  <h1 class="display-5 fw-bold mb-2" id="typed-title">Ayush Katiya</h1>
+  <div class="lead mb-2">
+    <span id="typed"></span>
+    <noscript>Graduate Student @ Arizona State University<br />Robotics & Autonomous Systems (AI) | Data Science | ML</noscript>
+  </div>
   <div class="mb-2">
     <a href="mailto:ayushkatiya@gmail.com" class="btn btn-light btn-sm me-2"><i class="fas fa-envelope"></i> Email</a>
     <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin"></i> LinkedIn</a>
     <!-- Example: Download Resume -->
-    <!-- <a href="asset/Resume_AyushKatiya.pdf" class="btn btn-main btn-sm ms-2" target="_blank"><i class="fas fa-download"></i> Resume</a> -->
+    <!-- <a href="assets/Resume_AyushKatiya.pdf" class="btn btn-main btn-sm ms-2" target="_blank"><i class="fas fa-download"></i> Resume</a> -->
   </div>
   <div class="social-icons">
     <a href="https://github.com/ayushkatiya" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -130,8 +168,9 @@
   </div>
   <div class="wave"></div>
 </section>
+
 <main>
-  <section id="about" class="section">
+  <section id="about" class="section" data-aos="fade-up">
     <div class="container">
       <h2 class="section-title">About Me</h2>
       <p>
@@ -142,7 +181,7 @@
       </p>
     </div>
   </section>
-  <section id="skills" class="section bg-light">
+  <section id="skills" class="section bg-light" data-aos="fade-left">
     <div class="container">
       <h2 class="section-title">Skills</h2>
       <div class="row g-4">
@@ -154,7 +193,6 @@
             <li>Autonomous Navigation, Computer Vision</li>
             <li>Cloud: AWS</li>
           </ul>
-          <!-- Animated Skill Bars -->
           <div class="skillbar"><span class="skillbar-title text-primary">Python</span>
             <div class="skillbar-bar"><div class="skillbar-fill" data-width="95%"></div></div>
           </div>
@@ -182,7 +220,7 @@
       </div>
     </div>
   </section>
-  <section id="experience" class="section">
+  <section id="experience" class="section" data-aos="fade-right">
     <div class="container">
       <h2 class="section-title">Experience</h2>
       <div class="timeline">
@@ -229,7 +267,7 @@
       </div>
     </div>
   </section>
-  <section id="education" class="section bg-light">
+  <section id="education" class="section bg-light" data-aos="fade-left">
     <div class="container">
       <h2 class="section-title">Education</h2>
       <div class="timeline">
@@ -254,7 +292,7 @@
       </div>
     </div>
   </section>
-  <section id="certifications" class="section">
+  <section id="certifications" class="section" data-aos="fade-up">
     <div class="container">
       <h2 class="section-title">Certifications</h2>
       <div class="row g-4">
@@ -286,7 +324,26 @@
       </div>
     </div>
   </section>
-  <section id="publications" class="section bg-light">
+
+  <!-- Optional: Projects Section -->
+  <section id="projects" class="section bg-light" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card project-card p-3">
+            <div class="card-body">
+              <h5 class="card-title mb-1"><i class="fas fa-robot me-2"></i>Dobot Arm Controller</h5>
+              <p class="card-text small">Developed Python-based controller for Dobot robotic arm using pydobot &amp; ROS, enabling precise programming and automation for research projects.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Add more project cards here! -->
+      </div>
+    </div>
+  </section>
+
+  <section id="publications" class="section" data-aos="fade-left">
     <div class="container">
       <h2 class="section-title">Publications</h2>
         <div class="pub">
@@ -296,7 +353,7 @@
         </div>
     </div>
   </section>
-  <section id="contact" class="section">
+  <section id="contact" class="section bg-light" data-aos="fade-right">
     <div class="container">
       <h2 class="section-title">Contact</h2>
       <ul class="fa-ul ms-2">
@@ -315,9 +372,28 @@
 <footer class="text-center py-3 mt-3">
   &copy; 2025 Ayush Katiya. All rights reserved.
 </footer>
+<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-  // Smooth nav & active section highlighting
+  // Typed.js typing animation
+  var typed = new Typed('#typed', {
+    strings: [
+      "Graduate Student @ Arizona State University",
+      "Robotics &amp; Autonomous Systems (AI)",
+      "Machine Learning Engineer",
+      "Data Science Enthusiast"
+    ],
+    typeSpeed: 38,
+    backSpeed: 24,
+    loop: true,
+    smartBackspace: true,
+    backDelay: 1600,
+    showCursor: false
+  });
+
+  // Navbar smooth scroll & active highlight
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function(e) {
       if (this.hash && document.querySelector(this.hash)) {
@@ -346,7 +422,12 @@
     // on page load for above-fold
     if(skillSection.getBoundingClientRect().top < window.innerHeight-32){animateSkills();}
   });
+  // Dark mode toggle
+  document.getElementById('theme-toggle').onclick = function() {
+    document.body.classList.toggle('theme-dark');
+  };
+  // Animate on scroll
+  AOS.init({duration: 900, once: true, offset: 80});
 </script>
 </body>
 </html>
-
