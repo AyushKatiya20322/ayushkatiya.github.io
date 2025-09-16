@@ -1,34 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ayush Katiya | Robotics & AI Portfolio</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <style>
-    body { background: #f9fafb; font-family: 'Segoe UI', Arial; }
-    .header-banner { background: linear-gradient(90deg, #0a174e 0%, #007bff 100%); color: #fff; padding: 48px 0 32px;}
-    .profile-img { width: 128px; height: 128px; object-fit: cover; border-radius: 50%; border: 5px solid #fff; background: #eee;}
-    .section { padding: 54px 0;}
-    footer { background: #0a174e; color: #fff;}
-    .nav-link { font-weight: 500;}
-    h2 {margin-bottom:1rem;}
-    .section-title { text-decoration: underline #b0c4ff 3px;}
-    ul {margin-bottom: 0;}
-    @media(max-width: 767px){ .section{padding:26px 0;}}
+    :root {
+      --main-gradient: linear-gradient(90deg, #0a174e, #007bff);
+      --accent: #23ce6b;
+      --header: #0a174e;
+      --nav-bg: #212529ee;
+      --light-bg: #f7f9fc;
+      --shadow: 0 2px 8px rgba(60,60,90,.05);
+      --primary-color: #007bff;
+    }
+    html {scroll-behavior:smooth;}
+    body {background:var(--light-bg); font-family:'Segoe UI',Arial;}
+    .hero {
+      background: var(--main-gradient);
+      color:#fff;
+      padding:60px 0 36px 0;
+      text-align:center;
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+    .profile-img {
+      width:132px;height:132px;object-fit:cover; border-radius:50%; border:6px solid #fff; box-shadow:0 3px 15px #007bff44; background:#fff;
+      margin-bottom:14px;
+    }
+    .wave {
+      margin-top:20px;
+      height: 40px;
+      width: 100%;
+      background: url("data:image/svg+xml,%3Csvg width='100%' height='40' viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23f7f9fc' fill-opacity='1' d='M0,192L1440,320L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+      background-size:cover; background-repeat:no-repeat;
+    }
+    nav.navbar {
+      background: var(--nav-bg) !important; backdrop-filter: blur(6px);
+    }
+    .nav-link {font-weight:500;transition:color 0.2s;}
+    .nav-link:hover,.nav-link.active {color:var(--accent)!important;}
+    main {margin-top:0;}
+    .section {padding:60px 0 45px 0;}
+    .section.bg-light {background:#f0f4ff;}
+    .section-title {font-size:2.2rem;font-weight:700;text-decoration:underline #b0c4ff 2.5px;}
+    .lead {font-size:1.22rem;}
+    .btn-main {
+      background:var(--accent);border:none;color:#fff;
+      font-weight:600;box-shadow:0 2px 16px #22be6288;
+      transition:.22s all;
+    }
+    .btn-main:hover {background:#188148;}
+    .social-icons a {
+      display:inline-block;color:#fff;font-size:1.45rem;margin:0 .5rem 0 0;transition:.2s;
+    }
+    .social-icons a:hover {color:var(--accent);}
+    /* Timeline */
+    .timeline {position:relative;margin-left:1rem;}
+    .timeline:before {
+      content:"";position:absolute;left:12px;top:0;width:4px;height:100%;background:var(--primary-color);opacity:.15;}
+    .timeline-item {position:relative;margin-bottom:38px;}
+    .timeline-item:before {
+      content:"";position:absolute;left:1px;top:10px;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--primary-color);}
+    .timeline-content {margin-left:45px;}
+    .timeline-title {font-weight:bold;}
+    /* Skill Bars */
+    .skillbar {position:relative; margin-bottom:.9em;}
+    .skillbar-title {font-weight:500;}
+    .skillbar-bar {
+      height:10px;background:#e5e9f3;border-radius:6px;
+      margin-top:6px;position:relative;overflow:hidden;
+    }
+    .skillbar-fill {background:var(--accent);height:100%;border-radius:6px 0 0 6px; width:0; transition:width 1.9s;}
+    .cert-card {
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transition:transform .14s;
+    }
+    .cert-card:hover {transform:translateY(-6px) scale(1.025);}
+    .pub {
+      border-left:4px solid var(--primary-color);
+      padding:10px 18px;background:#fcfdff;margin-bottom:10px;
+    }
+    footer {background:var(--header); color: #ddebf9;}
+    @media(max-width: 993px){.section{padding:38px 0 24px 0;}}
+    @media(max-width:768px){
+      .hero {padding:38px 0 18px;}
+      .section-title{font-size:1.42rem;}
+      .timeline-content {margin-left:36px;}
+      .timeline:before {left:7px;}
+    }
   </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand" href="#">Ayush Katiya</a>
+    <a class="navbar-brand" href="#"><i class="fas fa-robot me-2"></i>Ayush Katiya</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link active">About</a></li>
         <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
         <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
         <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
@@ -39,41 +114,56 @@
     </div>
   </div>
 </nav>
-
-<header class="header-banner text-center">
-  <img src="asset/ayushphoto.png" alt="Profile Image" class="profile-img mb-3">
-  <h1 class="display-5 fw-bold">Ayush Katiya</h1>
-  <div class="lead">Graduate Student @ Arizona State University<br>Robotics & Autonomous Systems (AI) | Data Science | ML | Robotics</div>
-  <div class="mt-2">
-    <a href="mailto:ayushkatiya@gmail.com" class="btn btn-light btn-sm me-2">Email</a>
-    <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" class="btn btn-outline-light btn-sm">LinkedIn</a>
+<section class="hero">
+  <img src="asset/ayushphoto.png" class="profile-img" alt="Profile photo"/>
+  <h1 class="display-5 fw-bold mb-2">Ayush Katiya</h1>
+  <div class="lead mb-2">Graduate Student @ Arizona State University<br />Robotics &amp; Autonomous Systems (AI) | Data Science | ML</div>
+  <div class="mb-2">
+    <a href="mailto:ayushkatiya@gmail.com" class="btn btn-light btn-sm me-2"><i class="fas fa-envelope"></i> Email</a>
+    <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <!-- Example: Download Resume -->
+    <!-- <a href="asset/Resume_AyushKatiya.pdf" class="btn btn-main btn-sm ms-2" target="_blank"><i class="fas fa-download"></i> Resume</a> -->
   </div>
-</header>
-
+  <div class="social-icons">
+    <a href="https://github.com/ayushkatiya" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="wave"></div>
+</section>
 <main>
   <section id="about" class="section">
     <div class="container">
       <h2 class="section-title">About Me</h2>
       <p>
-        Passionate AI and Machine Learning professional transitioning into the field of Robotics and Autonomous Systems. My journey bridges data science, ML algorithms, and software engineering to create real-world robotic applications.
-        <br>Currently pursuing my Master's at ASU, I focus on autonomous navigation, computer vision, and AI-driven robotics systems—actively contributing to innovative solutions in cross-functional teams.<br>
+        <i class="fas fa-robot text-primary"></i>
+        Passionate AI and Machine Learning professional transitioning into the field of Robotics and Autonomous Systems. My journey bridges data science, ML algorithms, and software engineering to create real-world robotic applications.<br>
+        Currently pursuing my Master's at <b>ASU</b>, focusing on autonomous navigation, computer vision, and AI-driven robotics—actively contributing to innovative solutions in cross-functional teams.<br>
         <strong>Languages:</strong> Hindi (Native/Bilingual), English (Full Professional), German (Elementary)
       </p>
     </div>
   </section>
-
   <section id="skills" class="section bg-light">
     <div class="container">
       <h2 class="section-title">Skills</h2>
-      <div class="row">
+      <div class="row g-4">
         <div class="col-md-6">
-          <ul>
+          <ul class="mb-3">
             <li>Robotics, Robot Programming, Collaborative Robotics</li>
             <li>Python, FastAPI</li>
-            <li>Machine Learning & Data Science</li>
+            <li>Machine Learning &amp; Data Science</li>
             <li>Autonomous Navigation, Computer Vision</li>
             <li>Cloud: AWS</li>
           </ul>
+          <!-- Animated Skill Bars -->
+          <div class="skillbar"><span class="skillbar-title text-primary">Python</span>
+            <div class="skillbar-bar"><div class="skillbar-fill" data-width="95%"></div></div>
+          </div>
+          <div class="skillbar"><span class="skillbar-title text-success">Machine Learning</span>
+            <div class="skillbar-bar"><div class="skillbar-fill" data-width="92%"></div></div>
+          </div>
+          <div class="skillbar"><span class="skillbar-title text-info">Robotics</span>
+            <div class="skillbar-bar"><div class="skillbar-fill" data-width="89%"></div></div>
+          </div>
         </div>
         <div class="col-md-6">
           <ul>
@@ -82,111 +172,181 @@
             <li>AI/IoT Project Leadership</li>
             <li>Graphic Design: Adobe Photoshop, InDesign, Illustrator</li>
           </ul>
+          <div class="skillbar"><span class="skillbar-title text-warning">Data Visualization</span>
+            <div class="skillbar-bar"><div class="skillbar-fill" data-width="87%"></div></div>
+          </div>
+          <div class="skillbar"><span class="skillbar-title text-secondary">FastAPI</span>
+            <div class="skillbar-bar"><div class="skillbar-fill" data-width="80%"></div></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
   <section id="experience" class="section">
     <div class="container">
       <h2 class="section-title">Experience</h2>
-      <div class="mb-4">
-        <h5>Business Analyst Intern, Finlatics <span class="text-muted">(Apr 2025 - Jul 2025)</span></h5>
-        <ul>
-          <li>Used Excel, Power BI, and stats to analyze complex data</li>
-          <li>Deployed ML models for real-time insights</li>
-          <li>Created dashboards for business decisions</li>
-          <li>Collaborated in cross-functional teams, MECE frameworks</li>
-        </ul>
-      </div>
-      <div class="mb-4">
-        <h5>Data Science Intern, Finlatics <span class="text-muted">(Jun 2024 - Aug 2024)</span></h5>
-        <ul>
-          <li>Statistical and ML techniques on large datasets</li>
-          <li>Developed, deployed ML models</li>
-          <li>Created visualizations to communicate findings</li>
-        </ul>
-      </div>
-      <div class="mb-4">
-        <h5>Graphic Designer, Freelancer.com <span class="text-muted">(Aug 2020 - Nov 2022)</span></h5>
-        <ul>
-          <li>Designed visuals via Adobe Suite</li>
-          <li>Collaborated with teams to meet business needs</li>
-        </ul>
-      </div>
-      <div>
-        <h5>Data Science Intern, ArtifIntel <span class="text-muted">(Feb 2022 - Mar 2022)</span></h5>
-        <ul>
-          <li>Cleaned and prepared large data sets</li>
-          <li>Applied ML algorithms for real-world insights</li>
-          <li>Supported innovative data-driven project solutions</li>
-        </ul>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-title">Business Analyst Intern, Finlatics <span class="text-muted">(Apr 2025 - Jul 2025)</span></span>
+            <ul>
+              <li>Analyzed complex data with Excel, Power BI, and statistics</li>
+              <li>Deployed ML models for real-time insights</li>
+              <li>Created dashboards driving business decisions</li>
+              <li>Collaborated in cross-functional teams, using MECE frameworks</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-title">Data Science Intern, Finlatics <span class="text-muted">(Jun 2024 - Aug 2024)</span></span>
+            <ul>
+              <li>Applied statistical &amp; ML techniques to large datasets</li>
+              <li>Built and deployed ML models</li>
+              <li>Created effective data visualizations</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-title">Graphic Designer, Freelancer.com <span class="text-muted">(Aug 2020 - Nov 2022)</span></span>
+            <ul>
+              <li>Designed visuals using Adobe suite</li>
+              <li>Collaborated with business teams</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-title">Data Science Intern, ArtifIntel <span class="text-muted">(Feb 2022 - Mar 2022)</span></span>
+            <ul>
+              <li>Cleaned and prepared large datasets</li>
+              <li>Applied ML algorithms to extract insights</li>
+              <li>Supported innovative data-driven projects</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
   <section id="education" class="section bg-light">
     <div class="container">
       <h2 class="section-title">Education</h2>
-      <ul>
-        <li><strong>Arizona State University</strong>, M.S. in Robotics & AI, 2025–2027</li>
-        <li><strong>Acropolis Institute of Technology & Research</strong>, BTech in Computer Science, 2020–2024</li>
-        <li><strong>SICA School</strong>, PCM, 2009–2020</li>
-      </ul>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-title">Arizona State University</span><br>
+            <span class="text-muted">M.S. in Robotics &amp; AI (2025–2027)</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-title">Acropolis Institute of Technology &amp; Research</span><br>
+            <span class="text-muted">BTech in Computer Science (2020–2024)</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <span class="timeline-title">SICA School</span><br>
+            <span class="text-muted">Physics, Chemistry, Maths (2009–2020)</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-
   <section id="certifications" class="section">
     <div class="container">
       <h2 class="section-title">Certifications</h2>
-      <ul>
-        <li>MATLAB Certified</li>
-        <li>Simulink</li>
-        <li>AWS Certified Cloud Practitioner</li>
-        <li>Palo Alto Networks Cybersecurity Academy</li>
-        <li>TCS Ion Career Edge - Young Professional</li>
-      </ul>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card cert-card p-3">
+            <div><i class="fas fa-certificate text-warning me-2"></i>MATLAB Certified</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card cert-card p-3">
+            <div><i class="fa-solid fa-certificate text-secondary me-2"></i>Simulink</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card cert-card p-3">
+            <div><i class="fab fa-aws text-warning me-2"></i>AWS Certified Cloud Practitioner</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card cert-card p-3">
+            <div><i class="fa-solid fa-shield-halved text-info me-2"></i>Palo Alto Cybersecurity Academy</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card cert-card p-3">
+            <div><i class="fa-solid fa-graduation-cap text-success me-2"></i>TCS Ion Career Edge - Young Professional</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-
   <section id="publications" class="section bg-light">
     <div class="container">
       <h2 class="section-title">Publications</h2>
-      <ul>
-        <li>
-          <b>Enhancing Food Type Recognition:</b> A Comprehensive Study on Sequential Convolutional Neural Networks for Image Classification Accuracy<br>
+        <div class="pub">
+          <b>Enhancing Food Type Recognition:</b>
+            A Comprehensive Study on Sequential Convolutional Neural Networks for Image Classification Accuracy<br>
           <i>Ayush Katiya</i>
-        </li>
-      </ul>
+        </div>
     </div>
   </section>
-
   <section id="contact" class="section">
     <div class="container">
       <h2 class="section-title">Contact</h2>
-      <ul>
-        <li><b>Email:</b> <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></li>
-        <li><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank">ayushkatiya</a></li>
-        <li><b>Phone:</b> +1 623-845-2525</li>
-        <li><b>Address:</b> 1215 E Lemon St, Apt 224, Tempe, AZ</li>
+      <ul class="fa-ul ms-2">
+        <li><span class="fa-li"><i class="fas fa-envelope text-danger"></i></span>
+            <b>Email:</b> <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></li>
+        <li><span class="fa-li"><i class="fab fa-linkedin text-primary"></i></span>
+            <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank">ayushkatiya</a></li>
+        <li><span class="fa-li"><i class="fas fa-phone text-success"></i></span>
+            <b>Phone:</b> +1 623-845-2525</li>
+        <li><span class="fa-li"><i class="fas fa-location-dot text-warning"></i></span>
+            <b>Address:</b> 1215 E Lemon St, Apt 224, Tempe, AZ</li>
       </ul>
     </div>
   </section>
 </main>
-
-<footer class="text-center py-3">
+<footer class="text-center py-3 mt-3">
   &copy; 2025 Ayush Katiya. All rights reserved.
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  // Smooth nav & active section highlighting
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function(e) {
       if (this.hash && document.querySelector(this.hash)) {
         e.preventDefault();
         document.querySelector(this.hash).scrollIntoView({behavior:"smooth"});
+        document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+        this.classList.add('active');
       }
     });
+  });
+  // Animate skill bars when in view
+  document.addEventListener('DOMContentLoaded', function() {
+    function animateSkills(){
+      document.querySelectorAll('.skillbar-fill').forEach(bar=>{
+        bar.style.width = bar.getAttribute('data-width');
+      })
+    }
+    let skillSection = document.querySelector('#skills');
+    let animated = false;
+    window.addEventListener('scroll', function() {
+      if (!animated && skillSection.getBoundingClientRect().top < window.innerHeight-32) {
+        animateSkills();
+        animated = true;
+      }
+    });
+    // on page load for above-fold
+    if(skillSection.getBoundingClientRect().top < window.innerHeight-32){animateSkills();}
   });
 </script>
 </body>
 </html>
+
