@@ -1,0 +1,24 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f8f9fa;
+}
+
+header {
+    background: linear-gradient(90deg, #007bff 0%, #0a174e 100%) !important;
+}
+
+.nav-link {
+    font-size: 1.1em;
+}
+
+h2 {
+    margin-bottom: 1em;
+    font-weight: 600;
+}
+section ul {
+    margin-bottom: 0;
+}
+
+section ul li {
+    margin-bottom: 0.4em;
+}
