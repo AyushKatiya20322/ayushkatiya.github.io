@@ -2,432 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ayush Katiya | Robotics & AI Portfolio</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"/>
-  <style>
-    :root {
-      --main-gradient: linear-gradient(90deg, #0a174e, #007bff);
-      --accent: #23ce6b;
-      --header: #0a174e;
-      --nav-bg: #212529ee;
-      --light-bg: #f7f9fc;
-      --shadow: 0 2px 8px rgba(60,60,90,.05);
-      --primary-color: #007bff;
-    }
-    html {scroll-behavior:smooth;}
-    body {background:var(--light-bg); font-family:'Segoe UI',Arial;transition:background .4s, color .4s;}
-    .hero {
-      background: var(--main-gradient);
-      color:#fff;
-      padding:60px 0 36px 0;
-      text-align:center;
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top:-10%; left:-20%; width:140%; height:120%;
-      background: repeating-radial-gradient(circle farthest-corner at 60% 40%, #007bff44 0 2px, transparent 2px 90px);
-      animation: moveBg 6s linear infinite alternate;
-      opacity:.24;
-      z-index:0;
-    }
-    @keyframes moveBg {
-      from {transform: scale(1.1) rotate(0deg);}
-      to {transform: scale(1.15) rotate(8deg);}
-    }
-    .hero > * {position:relative; z-index:2;}
-    .profile-img {
-      width:132px;height:132px;object-fit:cover; border-radius:50%; border:6px solid #fff; box-shadow:0 3px 15px #007bff44; background:#fff;
-      margin-bottom:14px;
-      transition:transform .34s;
-    }
-    .profile-img:hover {transform:scale(1.06) rotate(-2deg);}
-    .wave {
-      margin-top:20px;
-      height: 40px;
-      width: 100%;
-      background: url("data:image/svg+xml,%3Csvg width='100%' height='40' viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23f7f9fc' fill-opacity='1' d='M0,192L1440,320L1440,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-      background-size:cover; background-repeat:no-repeat;
-    }
-    nav.navbar {
-      background: var(--nav-bg) !important; backdrop-filter: blur(6px);
-    }
-    .nav-link {font-weight:500;transition:color 0.2s;}
-    .nav-link:hover,.nav-link.active {color:var(--accent)!important;}
-    .theme-toggle { background:rgba(255,255,255,0.08); border:none;}
-    main {margin-top:0;}
-    .section {padding:60px 0 45px 0;}
-    .section.bg-light {background:#f0f4ff;}
-    .section-title {font-size:2.1rem;font-weight:700;text-decoration:underline #b0c4ff 2px;}
-    .lead {font-size:1.21rem;}
-    .btn-main {
-      background:var(--accent);border:none;color:#fff;
-      font-weight:600;box-shadow:0 2px 16px #22be6288;
-      transition:.22s all;
-    }
-    .btn-main:hover {background:#188148;}
-    .social-icons a {
-      display:inline-block;color:#fff;font-size:1.45rem;margin:0 .5rem 0 0;transition:.2s;
-    }
-    .social-icons a:hover {color:var(--accent);}
-    /* Timeline */
-    .timeline {position:relative;margin-left:1rem;}
-    .timeline:before {
-      content:"";position:absolute;left:12px;top:0;width:4px;height:100%;background:var(--primary-color);opacity:.15;}
-    .timeline-item {position:relative;margin-bottom:38px;}
-    .timeline-item:before {
-      content:"";position:absolute;left:1px;top:10px;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--primary-color);}
-    .timeline-content {margin-left:45px;}
-    .timeline-title {font-weight:bold;}
-    /* Skill Bars */
-    .skillbar {position:relative; margin-bottom:.9em;}
-    .skillbar-title {font-weight:500;}
-    .skillbar-bar {
-      height:10px;background:#e5e9f3;border-radius:6px;
-      margin-top:6px;position:relative;overflow:hidden;
-    }
-    .skillbar-fill {background:var(--accent);height:100%;border-radius:6px 0 0 6px; width:0; transition:width 1.9s;}
-    .cert-card {
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      transition:transform .14s;
-    }
-    .cert-card:hover {transform:translateY(-6px) scale(1.025);}
-    .pub {
-      border-left:4px solid var(--primary-color);
-      padding:10px 18px;background:#fcfdff;margin-bottom:10px;
-    }
-    .project-card {border-radius:8px;box-shadow:var(--shadow);}
-    .project-card:hover {border:2px solid var(--accent);}
-    footer {background:var(--header); color: #ddebf9;}
-    .theme-dark {
-      background:#161823 !important;color:#eaf2fe !important;
-    }
-    .theme-dark .section.bg-light, .theme-dark .hero, .theme-dark .cert-card,
-    .theme-dark .pub, .theme-dark .project-card {background:#22253b !important; color: #e0e7ff !important;}
-    .theme-dark nav.navbar, .theme-dark footer {background: #121327 !important;}
-    .theme-dark .skillbar-bar {background:#2c3348;}
-    @media(max-width: 993px){.section{padding:38px 0 24px 0;}}
-    @media(max-width:768px){
-      .hero {padding:38px 0 18px;}
-      .section-title{font-size:1.32rem;}
-      .timeline-content {margin-left:36px;}
-      .timeline:before {left:7px;}
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayush Katiya | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-  <div class="container">
-    <a class="navbar-brand" href="#"><i class="fas fa-robot me-2"></i>Ayush Katiya</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a href="#about" class="nav-link active">About</a></li>
-        <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-        <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
-        <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
-        <li class="nav-item"><a href="#certifications" class="nav-link">Certifications</a></li>
-        <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-        <li class="nav-item"><a href="#publications" class="nav-link">Publications</a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-        <li class="nav-item d-lg-flex align-items-center">
-          <button id="theme-toggle" class="btn theme-toggle btn-sm ms-lg-3" title="Toggle dark mode">
-            <i class="fas fa-moon"></i>
-          </button>
-        </li>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <h2 class="logo">Ayush</h2>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#hobbies">Hobbies</a></li>
+        <li><a href="resume.pdf" target="_blank">Resume</a></li>
       </ul>
+      <button class="hamburger" id="hamburger">☰</button>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<section class="hero" data-aos="fade-zoom-in">
-  <img src="assets/ayushphoto.png" class="profile-img" alt="Profile photo"/>
-  <h1 class="display-5 fw-bold mb-2" id="typed-title">Ayush Katiya</h1>
-  <div class="lead mb-2">
-    <span id="typed"></span>
-    <noscript>Graduate Student @ Arizona State University<br />Robotics & Autonomous Systems (AI) | Data Science | ML</noscript>
-  </div>
-  <div class="mb-2">
-    <a href="mailto:ayushkatiya@gmail.com" class="btn btn-light btn-sm me-2"><i class="fas fa-envelope"></i> Email</a>
-    <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin"></i> LinkedIn</a>
-    <!-- Example: Download Resume -->
-    <!-- <a href="assets/Resume_AyushKatiya.pdf" class="btn btn-main btn-sm ms-2" target="_blank"><i class="fas fa-download"></i> Resume</a> -->
-  </div>
-  <div class="social-icons">
-    <a href="https://github.com/ayushkatiya20322" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <div class="wave"></div>
-</section>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Ayush Katiya</h1>
+      <p>Graduate Student @ ASU | Robotics & AI | Machine Learning • UAVs • RPA</p>
+      <div class="buttons">
+        <a href="resume.pdf" target="_blank">📄 Resume</a>
+        <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank">🔗 LinkedIn</a>
+        <a href="https://github.com/AyushKatiya20322" target="_blank">💻 GitHub</a>
+        <a href="mailto:ayushkatiya@gmail.com">✉️ Contact</a>
+      </div>
+    </div>
+  </header>
 
-<main>
-  <section id="about" class="section" data-aos="fade-up">
-    <div class="container">
-      <h2 class="section-title">About Me</h2>
-      <p>
-        <i class="fas fa-robot text-primary"></i>
-        Passionate AI and Machine Learning professional transitioning into the field of Robotics and Autonomous Systems. My journey bridges data science, ML algorithms, and software engineering to create real-world robotic applications.<br>
-        Currently pursuing my Master's at <b>ASU</b>, focusing on autonomous navigation, computer vision, and AI-driven robotics—actively contributing to innovative solutions in cross-functional teams.<br>
-        <strong>Languages:</strong> Hindi (Native/Bilingual), English (Full Professional), German (Elementary)
-      </p>
+  <!-- Summary -->
+  <section id="summary" class="container">
+    <h2>Summary</h2>
+    <p>
+      Passionate AI & Robotics enthusiast with experience in Machine Learning, RPA, and Software Engineering. 
+      Currently pursuing an MS in Robotics & Autonomous Systems (AI specialization) at Arizona State University. 
+      Skilled in Python, FastAPI, React.js, Deep Learning, and Cloud Platforms. 
+      Dedicated to building intelligent robotic systems for real-world challenges.
+    </p>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="container">
+    <h2>Experience</h2>
+    <div class="grid">
+      <div class="job"><h3>Business Analyst Intern – Finlatics</h3><p>Apr 2025 – Jul 2025 | Data-driven insights, dashboards, ML models.</p></div>
+      <div class="job"><h3>Data Science Intern – Finlatics</h3><p>Jun 2024 – Aug 2024 | Built ML models, BI dashboards, predictive analytics.</p></div>
+      <div class="job"><h3>Data Science Intern – ArtifIntel</h3><p>Feb 2022 – Mar 2022 | Cleaned & analyzed large datasets, applied ML algorithms.</p></div>
+      <div class="job"><h3>Graphic Designer – Freelancer</h3><p>Aug 2020 – Nov 2022 | Designed branding & marketing assets for 30+ projects.</p></div>
     </div>
   </section>
-  <section id="skills" class="section bg-light" data-aos="fade-left">
-    <div class="container">
-      <h2 class="section-title">Skills</h2>
-      <div class="row g-4">
-        <div class="col-md-6">
-          <ul class="mb-3">
-            <li>Robotics, Robot Programming, Collaborative Robotics</li>
-            <li>Python, FastAPI</li>
-            <li>Machine Learning &amp; Data Science</li>
-            <li>Autonomous Navigation, Computer Vision</li>
-            <li>Cloud: AWS</li>
-          </ul>
-          <div class="skillbar"><span class="skillbar-title text-primary">Python</span>
-            <div class="skillbar-bar"><div class="skillbar-fill" data-width="95%"></div></div>
-          </div>
-          <div class="skillbar"><span class="skillbar-title text-success">Machine Learning</span>
-            <div class="skillbar-bar"><div class="skillbar-fill" data-width="92%"></div></div>
-          </div>
-          <div class="skillbar"><span class="skillbar-title text-info">Robotics</span>
-            <div class="skillbar-bar"><div class="skillbar-fill" data-width="89%"></div></div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <ul>
-            <li>Statistical Analysis, Power BI, Excel Dashboards</li>
-            <li>Cross-functional Teamwork</li>
-            <li>AI/IoT Project Leadership</li>
-            <li>Graphic Design: Adobe Photoshop, InDesign, Illustrator</li>
-          </ul>
-          <div class="skillbar"><span class="skillbar-title text-warning">Data Visualization</span>
-            <div class="skillbar-bar"><div class="skillbar-fill" data-width="87%"></div></div>
-          </div>
-          <div class="skillbar"><span class="skillbar-title text-secondary">FastAPI</span>
-            <div class="skillbar-bar"><div class="skillbar-fill" data-width="80%"></div></div>
-          </div>
-        </div>
+
+  <!-- Projects -->
+  <section id="projects" class="container">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="project">
+        <h3>🖼 Image Caption Generator</h3>
+        <p>Generates captions for images using CNN + RNN.<br>
+        <strong>Skills:</strong> Machine Learning, Deep Learning</p>
+        <a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank">🔗 GitHub</a>
       </div>
-    </div>
-  </section>
-  <section id="experience" class="section" data-aos="fade-right">
-    <div class="container">
-      <h2 class="section-title">Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-title">Business Analyst Intern, Finlatics <span class="text-muted">(Apr 2025 - Jul 2025)</span></span>
-            <ul>
-              <li>Analyzed complex data with Excel, Power BI, and statistics</li>
-              <li>Deployed ML models for real-time insights</li>
-              <li>Created dashboards driving business decisions</li>
-              <li>Collaborated in cross-functional teams, using MECE frameworks</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-title">Data Science Intern, Finlatics <span class="text-muted">(Jun 2024 - Aug 2024)</span></span>
-            <ul>
-              <li>Applied statistical &amp; ML techniques to large datasets</li>
-              <li>Built and deployed ML models</li>
-              <li>Created effective data visualizations</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-title">Graphic Designer, Freelancer.com <span class="text-muted">(Aug 2020 - Nov 2022)</span></span>
-            <ul>
-              <li>Designed visuals using Adobe suite</li>
-              <li>Collaborated with business teams</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-title">Data Science Intern, ArtifIntel <span class="text-muted">(Feb 2022 - Mar 2022)</span></span>
-            <ul>
-              <li>Cleaned and prepared large datasets</li>
-              <li>Applied ML algorithms to extract insights</li>
-              <li>Supported innovative data-driven projects</li>
-            </ul>
-          </div>
-        </div>
+
+      <div class="project">
+        <h3>🛒 Technology Portfolio (E-Commerce)</h3>
+        <p>E-commerce site built with React.js, ML model integration, RPA automation.<br>
+        <strong>Stack:</strong> React.js, Firebase, FastAPI, RPA</p>
+        <a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank">🔗 GitHub</a>
       </div>
-    </div>
-  </section>
-  <section id="education" class="section bg-light" data-aos="fade-left">
-    <div class="container">
-      <h2 class="section-title">Education</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-title">Arizona State University</span><br>
-            <span class="text-muted">M.S. in Robotics &amp; AI (2025–2027)</span>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-title">Acropolis Institute of Technology &amp; Research</span><br>
-            <span class="text-muted">BTech in Computer Science (2020–2024)</span>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-content">
-            <span class="timeline-title">SICA School</span><br>
-            <span class="text-muted">Physics, Chemistry, Maths (2009–2020)</span>
-          </div>
-        </div>
+
+      <div class="project">
+        <h3>🌱 Plant Disease Prediction</h3>
+        <p>ML + CNN-based plant disease classification system.<br>
+        <strong>Stack:</strong> FastAPI, React.js, CNN</p>
+        <a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank">🔗 GitHub</a>
       </div>
-    </div>
-  </section>
-  <section id="certifications" class="section" data-aos="fade-up">
-    <div class="container">
-      <h2 class="section-title">Certifications</h2>
-      <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card cert-card p-3">
-            <div><i class="fas fa-certificate text-warning me-2"></i>MATLAB Certified</div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card cert-card p-3">
-            <div><i class="fa-solid fa-certificate text-secondary me-2"></i>Simulink</div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card cert-card p-3">
-            <div><i class="fab fa-aws text-warning me-2"></i>AWS Certified Cloud Practitioner</div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card cert-card p-3">
-            <div><i class="fa-solid fa-shield-halved text-info me-2"></i>Palo Alto Cybersecurity Academy</div>
-          </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card cert-card p-3">
-            <div><i class="fa-solid fa-graduation-cap text-success me-2"></i>TCS Ion Career Edge - Young Professional</div>
-          </div>
-        </div>
+
+      <div class="project">
+        <h3>📊 Text Data Processing (RNN)</h3>
+        <p>Text sentiment analysis using RNN.<br>
+        <strong>Skills:</strong> Deep Learning, NLP</p>
+        <a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" target="_blank">🔗 GitHub</a>
+      </div>
+
+      <div class="project">
+        <h3>🤖 Customer Relationship Management</h3>
+        <p>RPA + AI Fabric-based model for e-commerce reviews & sentiment analysis.<br>
+        <strong>Skills:</strong> RPA, Data Cleaning, MS Products</p>
+        <a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" target="_blank">🔗 GitHub</a>
+      </div>
+
+      <div class="project">
+        <h3>📝 Botathon Prototype</h3>
+        <p>Excel data automation bot (Runner-up in competition).<br>
+        <strong>Skills:</strong> RPA, ML</p>
+        <a href="https://github.com/AyushKatiya20322/BotathonPrototype" target="_blank">🔗 GitHub</a>
+      </div>
+
+      <div class="project">
+        <h3>✈️ Traveller’s Guide</h3>
+        <p>RPA-based flight information extractor and automation tool.<br>
+        <strong>Stack:</strong> RPA, React.js</p>
+        <a href="https://github.com/AyushKatiya20322/TravellersGuide" target="_blank">🔗 GitHub</a>
       </div>
     </div>
   </section>
 
-  <!-- Optional: Projects Section -->
-  <section id="projects" class="section bg-light" data-aos="fade-up">
-    <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card project-card p-3">
-            <div class="card-body">
-              <h5 class="card-title mb-1"><i class="fas fa-robot me-2"></i>Dobot Arm Controller</h5>
-              <p class="card-text small">Developed Python-based controller for Dobot robotic arm using pydobot &amp; ROS, enabling precise programming and automation for research projects.</p>
-            </div>
-          </div>
-        </div>
-        <!-- Add more project cards here! -->
-      </div>
-    </div>
+  <!-- Education -->
+  <section id="education" class="container">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>Arizona State University</strong> – MS Robotics & AI (2025–2027)</li>
+      <li><strong>AITR, Indore</strong> – B.Tech in AI & Data Science (2020–2024) | CGPA: 8.07</li>
+      <li><strong>SICA Senior Secondary School</strong> – Higher Secondary (2018–2020)</li>
+    </ul>
   </section>
 
-  <section id="publications" class="section" data-aos="fade-left">
-    <div class="container">
-      <h2 class="section-title">Publications</h2>
-        <div class="pub">
-          <b>Enhancing Food Type Recognition:</b>
-            A Comprehensive Study on Sequential Convolutional Neural Networks for Image Classification Accuracy<br>
-          <i>Ayush Katiya</i>
-        </div>
-    </div>
+  <!-- Skills -->
+  <section id="skills" class="container">
+    <h2>Technical Skills</h2>
+    <ul class="skills-list">
+      <li>Python, C++, Java, JavaScript</li>
+      <li>React.js, FastAPI, TensorFlow, PyTorch</li>
+      <li>ML/DL, CNN, RNN, NLP</li>
+      <li>ROS, Robotics Simulation (Gazebo)</li>
+      <li>Firebase, MongoDB, SQL</li>
+      <li>Power BI, Git, Docker</li>
+      <li>Adobe Photoshop, Illustrator</li>
+    </ul>
   </section>
-  <section id="contact" class="section bg-light" data-aos="fade-right">
-    <div class="container">
-      <h2 class="section-title">Contact</h2>
-      <ul class="fa-ul ms-2">
-        <li><span class="fa-li"><i class="fas fa-envelope text-danger"></i></span>
-            <b>Email:</b> <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></li>
-        <li><span class="fa-li"><i class="fab fa-linkedin text-primary"></i></span>
-            <b>LinkedIn:</b> <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank">ayushkatiya</a></li>
-        <li><span class="fa-li"><i class="fas fa-phone text-success"></i></span>
-            <b>Phone:</b> +1 623-845-2525</li>
-        <li><span class="fa-li"><i class="fas fa-location-dot text-warning"></i></span>
-            <b>Address:</b> 1215 E Lemon St, Apt 224, Tempe, AZ</li>
-      </ul>
-    </div>
-  </section>
-</main>
-<footer class="text-center py-3 mt-3">
-  &copy; 2025 Ayush Katiya. All rights reserved.
-</footer>
-<!-- SCRIPTS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-  // Typed.js typing animation
-  var typed = new Typed('#typed', {
-    strings: [
-      "Graduate Student @ Arizona State University",
-      "Robotics &amp; Autonomous Systems (AI)",
-      "Machine Learning Engineer",
-      "Data Science Enthusiast"
-    ],
-    typeSpeed: 38,
-    backSpeed: 24,
-    loop: true,
-    smartBackspace: true,
-    backDelay: 1600,
-    showCursor: false
-  });
 
-  // Navbar smooth scroll & active highlight
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-      if (this.hash && document.querySelector(this.hash)) {
-        e.preventDefault();
-        document.querySelector(this.hash).scrollIntoView({behavior:"smooth"});
-        document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-        this.classList.add('active');
-      }
-    });
-  });
-  // Animate skill bars when in view
-  document.addEventListener('DOMContentLoaded', function() {
-    function animateSkills(){
-      document.querySelectorAll('.skillbar-fill').forEach(bar=>{
-        bar.style.width = bar.getAttribute('data-width');
-      })
-    }
-    let skillSection = document.querySelector('#skills');
-    let animated = false;
-    window.addEventListener('scroll', function() {
-      if (!animated && skillSection.getBoundingClientRect().top < window.innerHeight-32) {
-        animateSkills();
-        animated = true;
-      }
-    });
-    // on page load for above-fold
-    if(skillSection.getBoundingClientRect().top < window.innerHeight-32){animateSkills();}
-  });
-  // Dark mode toggle
-  document.getElementById('theme-toggle').onclick = function() {
-    document.body.classList.toggle('theme-dark');
-  };
-  // Animate on scroll
-  AOS.init({duration: 900, once: true, offset: 80});
-</script>
+  <!-- Certifications -->
+  <section id="certifications" class="container">
+    <h2>Certifications</h2>
+    <ul>
+      <li>MATLAB Certified</li>
+      <li>AWS Certified Cloud Practitioner</li>
+      <li>Palo Alto Networks Cybersecurity Academy</li>
+      <li>TCS iON Career Edge – Young Professional</li>
+      <li>Microsoft AI Classroom Series</li>
+      <li>Blockchain Builder – MPSSDEGB FIIT</li>
+    </ul>
+  </section>
+
+  <!-- Hobbies -->
+  <section id="hobbies" class="container">
+    <h2>Hobbies</h2>
+    <p>🎸 Guitar | 📖 Reading | 🧘 Meditation | 🏋️ Fitness | 🍳 Cooking</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Ayush Katiya | <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></p>
+  </footer>
 </body>
 </html>
+
