@@ -5,23 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayush Katiya | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <style>
-    /* ---------- Base Styles ---------- */
+    /* ---------- Global Styles ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body { font-family: "Poppins", sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
     :root { --primary: #ffcc00; --dark: #0d1b2a; --light: #f8f9fa; --bg: #f8f9fa; --text: #222; }
-    body.dark { --bg: #0d1b2a; --text: #f8f9fa; --primary: #ffcc00; }
+    body.dark { --bg: #0d1b2a; --text: #f8f9fa; }
 
-    h1, h2, h3 { margin-bottom: 0.5rem; }
+    h1,h2,h3 { margin-bottom: 0.5rem; }
     .container { width: 90%; max-width: 1100px; margin: auto; padding: 2rem 0; }
 
     /* ---------- Navbar ---------- */
-    .navbar {
-      position: fixed; width: 100%; top: 0; left: 0;
-      background: transparent; padding: 1rem 0; z-index: 1000;
-      transition: background 0.3s;
-    }
+    .navbar { position: fixed; width: 100%; top: 0; left: 0; background: transparent; padding: 1rem 0; z-index: 1000; transition: background 0.3s; }
     .navbar.scrolled { background: var(--dark); }
     .nav-container { display: flex; justify-content: space-between; align-items: center; width: 90%; margin: auto; }
     .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); }
@@ -29,40 +24,26 @@
     .nav-links li { margin: 0 1rem; }
     .nav-links a { color: var(--text); text-decoration: none; font-weight: 500; }
     .nav-links a:hover, .nav-links a.active { color: var(--primary); }
-    .theme-toggle { cursor: pointer; font-size: 1.2rem; color: var(--primary); }
-    .hamburger { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--primary); }
+    .theme-toggle { cursor: pointer; font-size: 1.2rem; color: var(--primary); margin-left: 1rem; }
+    .hamburger { display: none; font-size: 1.8rem; color: var(--primary); background: none; border: none; cursor: pointer; }
 
     /* ---------- Hero Section ---------- */
-    header {
-      height: 100vh; display: flex; justify-content: center; align-items: center; flex-direction: column;
-      text-align: center; background: linear-gradient(135deg, #0d1b2a, #1b263b);
-      color: #fff; padding: 2rem;
-    }
-    header img { width: 140px; height: 140px; border-radius: 50%; border: 4px solid var(--primary); margin-bottom: 1rem; }
+    header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg,#0d1b2a,#1b263b); color: #fff; padding: 2rem; }
+    header img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--primary); margin-bottom: 1rem; }
     header h1 { font-size: 2.8rem; }
-    .typing { color: var(--primary); font-size: 1.2rem; margin: 1rem 0; height: 30px; }
-    .buttons a {
-      margin: 0.5rem; padding: 0.7rem 1.5rem; border-radius: 30px;
-      background: var(--primary); color: var(--dark); font-weight: bold; text-decoration: none;
-      transition: 0.3s;
-    }
+    .typing { color: var(--primary); font-size: 1.3rem; margin: 1rem 0; height: 30px; }
+    .buttons a { margin: 0.5rem; padding: 0.7rem 1.5rem; border-radius: 30px; background: var(--primary); color: var(--dark); font-weight: bold; text-decoration: none; transition: 0.3s; }
     .buttons a:hover { transform: scale(1.05); background: #f4a300; }
 
     /* ---------- Sections ---------- */
     section { padding: 4rem 0; opacity: 0; transform: translateY(40px); transition: all 0.6s; }
     section.visible { opacity: 1; transform: translateY(0); }
     section h2 { text-align: center; margin-bottom: 2rem; position: relative; }
-    section h2::after {
-      content: ""; display: block; width: 60px; height: 3px; background: var(--primary);
-      margin: 0.5rem auto 0;
-    }
+    section h2::after { content: ""; display: block; width: 60px; height: 3px; background: var(--primary); margin: 0.5rem auto 0; }
 
     /* ---------- Projects ---------- */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .card {
-      background: var(--light); padding: 1rem; border-radius: 8px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.3s;
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
+    .card { background: var(--light); padding: 1rem; border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
     body.dark .card { background: #1b263b; }
     .card:hover { transform: translateY(-8px); }
     .card img { width: 100%; border-radius: 6px; margin-bottom: 1rem; }
@@ -70,11 +51,7 @@
 
     /* ---------- Skills ---------- */
     .skills-list { display: flex; flex-wrap: wrap; justify-content: center; }
-    .skills-list span {
-      margin: 0.5rem; padding: 0.6rem 1rem; border-radius: 20px;
-      background: var(--dark); color: #fff; font-size: 0.9rem;
-      transition: transform 0.3s;
-    }
+    .skills-list span { margin: 0.5rem; padding: 0.6rem 1rem; border-radius: 20px; background: var(--dark); color: #fff; font-size: 0.9rem; transition: transform 0.3s; }
     body.dark .skills-list span { background: #f8f9fa; color: #0d1b2a; }
     .skills-list span:hover { transform: scale(1.1); }
 
@@ -93,7 +70,7 @@
     footer a { color: var(--primary); text-decoration: none; }
 
     /* ---------- Responsive ---------- */
-    @media(max-width: 768px){
+    @media(max-width:768px){
       .nav-links { display: none; flex-direction: column; background: var(--dark); position: absolute; top: 60px; right: 20px; padding: 1rem; border-radius: 5px; }
       .nav-links.active { display: flex; }
       .hamburger { display: block; }
@@ -120,7 +97,7 @@
 
   <!-- Hero -->
   <header>
-    <img src="https://via.placeholder.com/140" alt="Profile Picture">
+    <img src="assets/profile.jpg" alt="Profile Picture">
     <h1>Ayush Katiya</h1>
     <div class="typing" id="typing"></div>
     <div class="buttons">
@@ -155,9 +132,9 @@
   <section id="projects" class="container">
     <h2>Projects</h2>
     <div class="grid">
-      <div class="card"><img src="https://picsum.photos/400/200" alt=""><h3>Image Caption Generator</h3><p>CNN + RNN based captioning model.</p><a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank">🔗 GitHub</a></div>
-      <div class="card"><img src="https://picsum.photos/400/201" alt=""><h3>E-Commerce Portfolio</h3><p>React.js + ML + RPA full-stack project.</p><a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank">🔗 GitHub</a></div>
-      <div class="card"><img src="https://picsum.photos/400/202" alt=""><h3>Plant Disease Prediction</h3><p>CNN model with FastAPI deployment.</p><a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank">🔗 GitHub</a></div>
+      <div class="card"><img src="assets/project1.png" alt=""><h3>Image Caption Generator</h3><p>CNN + RNN based captioning model.</p><a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank">🔗 GitHub</a></div>
+      <div class="card"><img src="assets/project2.png" alt=""><h3>E-Commerce Portfolio</h3><p>React.js + ML + RPA full-stack project.</p><a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank">🔗 GitHub</a></div>
+      <div class="card"><img src="assets/project3.png" alt=""><h3>Plant Disease Prediction</h3><p>CNN model with FastAPI deployment.</p><a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank">🔗 GitHub</a></div>
     </div>
   </section>
 
@@ -172,7 +149,7 @@
   <!-- Contact -->
   <section id="contact" class="container contact">
     <h2>Contact</h2>
-    <p>Let’s connect! Reach out to me via:</p>
+    <p>Let’s connect! Reach out via:</p>
     <a href="mailto:ayushkatiya@gmail.com"><i class="fas fa-envelope"></i></a>
     <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank"><i class="fab fa-linkedin"></i></a>
     <a href="https://github.com/AyushKatiya20322" target="_blank"><i class="fab fa-github"></i></a>
@@ -183,18 +160,16 @@
     <p>© 2025 Ayush Katiya | Designed with ❤️</p>
   </footer>
 
-  <!-- JS -->
+  <!-- ---------- JavaScript ---------- -->
   <script>
     // Navbar scroll effect
     window.addEventListener("scroll", () => {
       document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50);
     });
-
     // Hamburger menu
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("nav-links");
     hamburger.addEventListener("click", () => navLinks.classList.toggle("active"));
-
     // Section reveal
     const sections = document.querySelectorAll("section");
     const reveal = () => {
@@ -205,26 +180,15 @@
     };
     window.addEventListener("scroll", reveal);
     window.addEventListener("load", reveal);
-
     // Typing effect
-    const roles = ["AI Researcher", "Robotics Engineer", "ML Enthusiast"];
-    let i = 0, j = 0, current = roles[0];
-    const typing = document.getElementById("typing");
-    function type() {
-      typing.textContent = current.slice(0, j++);
-      if (j <= current.length) setTimeout(type, 100);
-      else setTimeout(erase, 2000);
-    }
-    function erase() {
-      typing.textContent = current.slice(0, j--);
-      if (j >= 0) setTimeout(erase, 50);
-      else { i = (i+1) % roles.length; current = roles[i]; setTimeout(type, 500); }
-    }
+    const roles = ["AI Researcher","Robotics Engineer","ML Enthusiast"];
+    let i=0,j=0,current=roles[0];
+    const typing=document.getElementById("typing");
+    function type(){typing.textContent=current.slice(0,j++);if(j<=current.length)setTimeout(type,100);else setTimeout(erase,2000);}
+    function erase(){typing.textContent=current.slice(0,j--);if(j>=0)setTimeout(erase,50);else{i=(i+1)%roles.length;current=roles[i];setTimeout(type,500);}}
     type();
-
     // Theme toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    themeToggle.addEventListener("click", () => document.body.classList.toggle("dark"));
+    document.getElementById("theme-toggle").addEventListener("click",()=>document.body.classList.toggle("dark"));
   </script>
 </body>
 </html>
