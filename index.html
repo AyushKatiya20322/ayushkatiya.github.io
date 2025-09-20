@@ -1,251 +1,551 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Ayush Katiya — Portfolio</title>
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ayush Katiya — Robotics & AI Portfolio</title>
+  <meta name="description" content="Ayush Katiya — MS Robotics & Autonomous Systems (AI) @ ASU. Projects: Image Captioning, Plant Disease Prediction, E-commerce portfolio, RPA bots, and more."/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    /* -------- Global -------- */
-    :root {
+    /* ========= VARIABLES & RESET ========= */
+    :root{
       --primary: #ffcc00;
-      --dark: #0d1b2a;
-      --muted: #6b7280;
-      --bg: #f7fafc;
+      --bg: #f7f9fb;
       --card: #ffffff;
+      --muted: #4b5563;
+      --text: #0b1220;
+      --glass: rgba(255,255,255,0.55);
       --radius: 14px;
+      --accent-grad: linear-gradient(135deg,#0d1b2a,#142433);
+      --nav-height: 72px;
     }
-    body.dark {
-      --bg: #0d1620;
-      --card: #141a23;
-      --muted: #a3b4c3;
+    body.dark{
+      --bg: #0c1419;
+      --card: #0f1720;
+      --muted: #9fb0c6;
+      --text: #e6eef8;
+      --glass: rgba(8,12,16,0.45);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
-      transition: background .3s, color .3s;
-    }
-    a { color: var(--primary); text-decoration: none; }
-    img { max-width: 100%; display: block; }
 
-    /* -------- Navbar -------- */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(10px);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: .6rem 1.5rem;
-      z-index: 1000;
-      transition: background .3s;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; transition: background .25s, color .25s;
+      scroll-behavior: smooth;
     }
-    body.dark nav { background: rgba(20,26,35,0.7); }
-    nav .brand { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
-    nav ul { display: flex; gap: 1.2rem; list-style: none; }
-    nav ul li a { font-weight: 600; color: inherit; }
-    nav ul li a.active { color: var(--primary); }
-    .theme-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--muted); }
+    a{color:var(--primary)}
+    img{display:block;max-width:100%}
+    .container{max-width:1100px;margin:0 auto;padding:1rem 1.1rem}
 
-    /* -------- Hero -------- */
-    header.hero {
-      min-height: 95vh;
-      background: linear-gradient(to bottom right, #0d1b2a, #1b263b);
-      color: white;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      text-align: center; padding: 2rem 1rem;
+    /* ========= NAVBAR ========= */
+    header.navbar{
+      position:fixed; left:0; right:0; top:0; height:var(--nav-height); display:flex; align-items:center;
+      z-index:1200; padding:0 1rem; transition:backdrop-filter .25s, background .25s, box-shadow .25s;
+      background:linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.25));
+      backdrop-filter: blur(6px);
     }
-    header.hero img {
-      width: 160px; height: 160px;
-      border-radius: 50%; border: 4px solid var(--primary);
-      margin-bottom: 1rem;
+    body.dark header.navbar{ background: linear-gradient(to bottom, rgba(10,12,15,0.6), rgba(10,12,15,0.25)); }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto}
+    .brand{font-weight:800;color:var(--primary);font-size:1.05rem;letter-spacing:.2px}
+    nav ul{list-style:none;display:flex;gap:.75rem;align-items:center;margin:0;padding:0}
+    nav a.nav-link{color:var(--text);text-decoration:none;padding:.5rem .6rem;border-radius:8px;font-weight:600}
+    nav a.nav-link:hover, nav a.nav-link.active{color:var(--primary); background:transparent}
+    .controls{display:flex;gap:.5rem;align-items:center}
+    .theme-btn,.menu-btn{background:none;border:0;cursor:pointer;color:var(--muted);font-size:1.05rem;padding:.4rem;border-radius:8px}
+    .menu-btn{display:none}
+
+    /* mobile menu */
+    .mobile-menu{display:none;position:absolute;top:calc(var(--nav-height) + 8px);right:12px;background:var(--card);border-radius:10px;padding:.6rem;box-shadow:0 10px 35px rgba(2,6,23,0.12)}
+    .mobile-menu a{display:block;padding:.5rem .8rem;color:var(--text);text-decoration:none;border-radius:8px}
+    .mobile-menu a:hover{color:var(--primary)}
+
+    /* ========= HERO ========= */
+    .hero{
+      min-height:calc(100vh - var(--nav-height)); display:flex;align-items:center;justify-content:center;
+      background: linear-gradient(180deg, rgba(13,27,42,0.95) 0%, rgba(20,34,48,0.95) 100%), url('https://picsum.photos/1600/900?blur=2') center/cover no-repeat;
+      color:white;padding:calc(var(--nav-height) + 48px) 1rem 4rem;text-align:center;
     }
-    header.hero h1 { font-size: 2.4rem; margin-bottom: .5rem; }
-    header.hero .typing { font-weight: 600; color: var(--primary); margin-bottom: 1rem; height: 28px; }
-    header.hero p { max-width: 650px; margin-bottom: 1.2rem; opacity: .9; }
-    .cta { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
-    .btn {
-      background: var(--primary); color: var(--dark);
-      padding: .6rem 1rem; border-radius: 999px;
-      font-weight: 600; box-shadow: 0 6px 16px rgba(0,0,0,.15);
+    .hero-inner{max-width:920px;margin:0 auto}
+    .profile {
+      width:148px;height:148px;border-radius:50%;object-fit:cover;border:4px solid var(--primary); margin:0 auto 18px; background:#222;
     }
-    .btn.alt { background: transparent; color: white; border: 1px solid rgba(255,255,255,.3); }
+    .hero h1{font-size:2.6rem;margin-bottom:8px;line-height:1.05}
+    .tagline{color:var(--primary);font-weight:700;margin-bottom:14px;height:28px}
+    .hero p.lead{max-width:760px;margin:0 auto 20px;opacity:.95}
+    .hero .cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 
-    /* -------- Sections -------- */
-    section { padding: 4rem 1.5rem; max-width: 1100px; margin: 0 auto; }
-    .section-title { text-align: center; margin-bottom: 2rem; }
-    .section-title h2 { font-size: 1.6rem; margin-bottom: .3rem; }
-    .section-title .underline { width: 70px; height: 3px; background: var(--primary); margin: 0 auto; border-radius: 6px; }
+    /* glass panel main layout */
+    main{margin-top:18px}
+    .panel{background:linear-gradient(180deg,rgba(255,255,255,0.6), rgba(255,255,255,0.35)); border-radius:16px;padding:1.2rem;box-shadow: 0 8px 30px rgba(8,12,20,0.08)}
+    body.dark .panel{background:linear-gradient(180deg, rgba(4,8,12,0.5), rgba(6,10,14,0.45));}
 
-    /* -------- Timeline -------- */
-    .timeline { border-left: 3px solid var(--primary); padding-left: 1.2rem; }
-    .timeline-item { margin-bottom: 1.6rem; }
-    .timeline-item h3 { font-size: 1.1rem; margin-bottom: .3rem; }
-    .timeline-item small { color: var(--muted); display: block; margin-bottom: .4rem; }
+    /* ========= SECTIONS ========= */
+    section{padding:48px 0;opacity:0;transform:translateY(28px);transition:all .6s cubic-bezier(.2,.95,.2,1)}
+    section.visible{opacity:1;transform:none}
+    .section-title{text-align:center;margin-bottom:28px}
+    .section-title h2{font-size:1.5rem;margin-bottom:6px}
+    .underline{height:3px;width:64px;background:var(--primary);border-radius:6px;margin:0 auto}
 
-    /* -------- Projects -------- */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.2rem; }
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 1rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,.08);
-      display: flex; flex-direction: column;
-      transition: transform .2s;
-    }
-    .card:hover { transform: translateY(-6px); }
-    .card img { border-radius: 8px; margin-bottom: .8rem; height: 150px; object-fit: cover; }
-    .card h3 { margin-bottom: .4rem; font-size: 1.05rem; }
-    .card p { flex: 1; font-size: .95rem; color: var(--muted); margin-bottom: .6rem; }
-    .card a { font-weight: 600; }
+    /* ========= TWO COLUMN / SIDEBAR ========= */
+    .two-col{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+    @media (max-width:980px){.two-col{grid-template-columns:1fr}}
 
-    /* -------- Skills -------- */
-    .skills { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; }
-    .skill {
-      background: var(--dark); color: white;
-      padding: .4rem .8rem; border-radius: 999px; font-size: .9rem; font-weight: 600;
-    }
-    body.dark .skill { background: var(--primary); color: var(--dark); }
+    .info-card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.06)}
+    body.dark .info-card{background:var(--card)}
+    .info-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+    .info-label{min-width:110px;font-weight:700;color:var(--muted)}
 
-    /* -------- Footer -------- */
-    footer { text-align: center; padding: 2rem 1rem; color: var(--muted); font-size: .9rem; }
+    /* timeline */
+    .timeline{border-left:3px solid var(--primary);padding-left:16px}
+    .timeline-item{margin-bottom:18px}
+    .timeline-item h3{font-size:1.05rem;margin-bottom:6px}
+    .timeline-item small{display:block;color:var(--muted);margin-bottom:6px}
+    .timeline-item p{color:var(--muted);font-size:.95rem}
 
-    @media (max-width: 600px) {
-      header.hero h1 { font-size: 1.8rem; }
+    /* grid cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 8px 30px rgba(2,6,23,0.06);display:flex;flex-direction:column}
+    .card .thumb{height:150px;width:100%;border-radius:8px;object-fit:cover;margin-bottom:12px}
+    .card h3{margin-bottom:6px}
+    .card p{flex:1;color:var(--muted);margin-bottom:8px}
+    .card .meta{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.9rem}
+
+    /* skills */
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{background:var(--dark);color:white;padding:.45rem .75rem;border-radius:999px;font-weight:700}
+    body.dark .skill{background:var(--primary);color:var(--dark)}
+
+    /* contact & socials */
+    .socials{display:flex;gap:8px;justify-content:center;margin-top:8px}
+    .socials a{display:inline-flex;width:46px;height:46px;border-radius:10px;align-items:center;justify-content:center;background:var(--card);box-shadow:0 6px 18px rgba(0,0,0,0.06);color:var(--muted)}
+    .socials a:hover{transform:translateY(-6px)}
+
+    /* floating back-to-top */
+    .back-top{position:fixed;right:18px;bottom:18px;background:var(--primary);border-radius:10px;padding:10px;color:#07101a;box-shadow:0 8px 20px rgba(0,0,0,0.15);display:none;z-index:1400}
+    .back-top.show{display:inline-flex}
+
+    @media (max-width:720px){
+      nav ul{display:none}
+      .menu-btn{display:inline-block}
+      .mobile-menu{display:none}
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="brand">Ayush Katiya</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#certifications">Certifications</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="resume.pdf" target="_blank">Resume</a></li>
-    </ul>
-    <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
-  </nav>
+  <!-- NAVBAR -->
+  <header class="navbar" role="banner">
+    <div class="nav-inner container" role="navigation" aria-label="Main navigation">
+      <div class="brand">Ayush Katiya</div>
 
-  <!-- Hero -->
-  <header class="hero">
-    <img src="assets/profile.jpg" alt="Profile" onerror="this.src='https://via.placeholder.com/150'">
-    <h1>Ayush Katiya</h1>
-    <div class="typing" id="typing"></div>
-    <p>Graduate Student at Arizona State University in Robotics & Autonomous Systems (AI). Passionate about machine learning, deep learning, computer vision, UAVs, and automation technologies.</p>
-    <div class="cta">
-      <a class="btn" href="resume.pdf" target="_blank"><i class="fa-regular fa-file"></i> Resume</a>
-      <a class="btn alt" href="https://www.linkedin.com/in/ayushkatiya" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      <a class="btn alt" href="https://github.com/AyushKatiya20322" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#experience">Experience</a></li>
+        <li><a class="nav-link" href="#projects">Projects</a></li>
+        <li><a class="nav-link" href="#education">Education</a></li>
+        <li><a class="nav-link" href="#skills">Skills</a></li>
+        <li><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+        <li><a class="nav-link" href="resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+
+      <div class="controls">
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+
+    <!-- mobile menu (cloned links shown on small screens) -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="menu">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+      <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about">
-    <div class="section-title"><h2>About</h2><div class="underline"></div></div>
-    <p>I am an AI & Robotics professional with experience in ML research, full-stack deployment, and robotic automation. My work spans CNN/RNN, FastAPI, React, Firebase, and UiPath RPA. Published researcher in CNN image classification.</p>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience">
-    <div class="section-title"><h2>Experience</h2><div class="underline"></div></div>
-    <div class="timeline">
-      <div class="timeline-item"><h3>Business Analyst Intern — Finlatics</h3><small>Apr 2025 – Jul 2025</small><p>Analyzed datasets, built ML models and dashboards for actionable insights.</p></div>
-      <div class="timeline-item"><h3>Data Science Intern — Finlatics</h3><small>Jun 2024 – Aug 2024</small><p>Developed predictive models, BI dashboards, and automated analytics pipelines.</p></div>
-      <div class="timeline-item"><h3>Data Science Intern — ArtifIntel</h3><small>Feb 2022 – Mar 2022</small><p>Processed datasets, applied ML algorithms, and improved model performance.</p></div>
-      <div class="timeline-item"><h3>Freelance Graphic Designer</h3><small>Aug 2020 – Nov 2022</small><p>Delivered 30+ design projects across industries using Adobe Photoshop & Illustrator.</p></div>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-inner">
+      <img class="profile" src="assets/profile.jpg" alt="Ayush Katiya portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/150'">
+      <h1 id="hero-heading">Ayush Katiya</h1>
+      <div class="tagline" id="typing">AI Researcher • Robotics Engineer • ML Enthusiast</div>
+      <p class="lead">Graduate Student — Robotics & Autonomous Systems (AI) at Arizona State University. I build ML-powered perception systems, robotic automation (RPA), and deploy full-stack solutions (FastAPI + React) for research & production.</p>
+      <div class="cta">
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file"></i>&nbsp;Download Resume</a>
+        <a class="btn alt" href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i>&nbsp;LinkedIn</a>
+        <a class="btn alt" href="https://github.com/AyushKatiya20322" target="_blank" rel="noopener"><i class="fab fa-github"></i>&nbsp;GitHub</a>
+      </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects">
-    <div class="section-title"><h2>Projects</h2><div class="underline"></div></div>
-    <div class="grid">
-      <div class="card"><img src="assets/project1.png" onerror="this.src='https://picsum.photos/300/150?1'"><h3>Image Caption Generator</h3><p>Captioning system using CNN + RNN.</p><a href="https://github.com/AyushKatiya20322/Image-Caption-Generator">GitHub</a></div>
-      <div class="card"><img src="assets/project2.png" onerror="this.src='https://picsum.photos/300/150?2'"><h3>E-Commerce Platform</h3><p>React, Firebase, FastAPI & RPA integrated system.</p><a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024">GitHub</a></div>
-      <div class="card"><img src="assets/project3.png" onerror="this.src='https://picsum.photos/300/150?3'"><h3>Plant Disease Prediction</h3><p>CNN-based classifier deployed via FastAPI + React.</p><a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project">GitHub</a></div>
-      <div class="card"><img src="assets/project4.png" onerror="this.src='https://picsum.photos/300/150?4'"><h3>Text Data Processing RNN</h3><p>Sentiment analysis using RNN.</p><a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN">GitHub</a></div>
-      <div class="card"><img src="assets/project5.png" onerror="this.src='https://picsum.photos/300/150?5'"><h3>CRM (RPA)</h3><p>UiPath bot for scraping and sentiment analysis.</p><a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement">GitHub</a></div>
-      <div class="card"><img src="assets/project6.png" onerror="this.src='https://picsum.photos/300/150?6'"><h3>Botathon Prototype</h3><p>Runner-up Excel automation bot.</p><a href="https://github.com/AyushKatiya20322/BotathonPrototype">GitHub</a></div>
-      <div class="card"><img src="assets/project7.png" onerror="this.src='https://picsum.photos/300/150?7'"><h3>Traveller’s Guide</h3><p>Flight data scraper with RPA.</p><a href="https://github.com/AyushKatiya20322/TravellersGuide">GitHub</a></div>
+  <main class="container" role="main">
+
+    <!-- ABOUT + INFO SIDEBAR -->
+    <section id="about" class="panel" aria-labelledby="about-title">
+      <div class="two-col">
+        <div>
+          <div class="section-title"><h2 id="about-title">About</h2><div class="underline"></div></div>
+          <p>I am an AI & Robotics professional transitioning into advanced Robotics & Autonomous Systems (MS @ ASU). My strengths lie in deep learning (CNN/RNN), computer vision, UAV navigation, RPA, and deploying ML models using FastAPI and React. I enjoy turning research into practical pipelines and collaborating across teams to deliver impact.</p>
+
+          <div style="margin-top:14px">
+            <strong>Publication</strong>
+            <p class="small" style="color:var(--muted)">Enhancing Food Type Recognition: A Comprehensive Study on Sequential Convolutional Neural Networks for Image Classification Accuracy.</p>
+          </div>
+        </div>
+
+        <aside class="info-card" aria-label="Quick info">
+          <div class="info-row"><div class="info-label">Contact</div>
+            <div>
+              <div>1215 E Lemon St APT 224</div>
+              <div class="small muted">Phone: +1 623-845-2525</div>
+              <div><a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></div>
+            </div>
+          </div>
+
+          <div class="info-row"><div class="info-label">Top Skills</div><div><span class="chip">Robotics</span> <span class="chip">Robot Programming</span></div></div>
+
+          <div class="info-row"><div class="info-label">Languages</div><div><div class="small muted">Hindi (Native), English (Full Professional), German (Elementary)</div></div></div>
+
+          <div class="info-row"><div class="info-label">Links</div><div><a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener">LinkedIn</a> • <a href="https://github.com/AyushKatiya20322" target="_blank" rel="noopener">GitHub</a></div></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="panel" aria-labelledby="exp-title">
+      <div class="section-title"><h2 id="exp-title">Experience</h2><div class="underline"></div></div>
+
+      <div class="timeline" aria-live="polite">
+        <article class="timeline-item">
+          <h3>Business Analyst Intern — Finlatics</h3>
+          <small>April 2025 – July 2025 (4 months)</small>
+          <p>Analyzed complex datasets using Excel & Power BI; built and deployed ML models to provide real-time insights; created interactive dashboards used by product & business teams; collaborated cross-functionally to convert analytics into action.</p>
+        </article>
+
+        <article class="timeline-item">
+          <h3>Data Science Intern — Finlatics</h3>
+          <small>June 2024 – August 2024 (3 months)</small>
+          <p>Implemented predictive models and data visualizations; helped productionize analytics pipelines and improve data quality for downstream ML systems.</p>
+        </article>
+
+        <article class="timeline-item">
+          <h3>Data Science Intern — ArtifIntel</h3>
+          <small>February 2022 – March 2022 (2 months)</small>
+          <p>Processed and cleaned large-scale datasets; supported R&D machine learning models and contributed code for preprocessing & model validation.</p>
+        </article>
+
+        <article class="timeline-item">
+          <h3>Graphic Designer & Multimedia Creator — Freelancer</h3>
+          <small>August 2020 – November 2022</small>
+          <p>Produced branding, marketing materials and multimedia content for 30+ clients using Adobe Photoshop, Illustrator & InDesign, improving client engagement and visual presence.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="panel" aria-labelledby="projects-title">
+      <div class="section-title"><h2 id="projects-title">Projects</h2><div class="underline"></div></div>
+
+      <div class="grid" aria-live="polite">
+        <!-- Image Caption Generator -->
+        <article class="card" aria-labelledby="p1">
+          <img class="thumb" src="assets/project1.png" alt="Image Caption Generator preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=1'">
+          <h3 id="p1">Image Caption Generator (CNN + RNN)</h3>
+          <p>Generates captions describing input images using a CNN to extract features and an RNN (LSTM) decoder to produce natural language captions. Evaluated with BLEU/CIDEr and packaged for inference.</p>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+
+        <!-- E-commerce portfolio -->
+        <article class="card" aria-labelledby="p2">
+          <img class="thumb" src="assets/project2.png" alt="E-Commerce project preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=2'">
+          <h3 id="p2">Technology_portfolio_Major_Project_2023-2024 (E-Commerce)</h3>
+          <p>Full-stack e-commerce site built with React.js, FastAPI backend, Firebase database, ML-based product recommendations, and RPA automation to streamline workflows.</p>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+
+        <!-- Plant Disease Prediction -->
+        <article class="card" aria-labelledby="p3">
+          <img class="thumb" src="assets/project3.png" alt="Plant Disease Prediction preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=3'">
+          <h3 id="p3">Plant Disease Prediction</h3>
+          <p>CNN model trained on Kaggle datasets to classify plant diseases. Deployed using FastAPI and integrated into a React frontend for real-time inference and farmer-friendly UI.</p>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+
+        <!-- Text RNN -->
+        <article class="card" aria-labelledby="p4">
+          <img class="thumb" src="assets/project4.png" alt="Text Data Processing preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=4'">
+          <h3 id="p4">Text-Data-Processing_DeepLearning_RNN</h3>
+          <p>An RNN-based pipeline for extracting information and performing sentiment analysis on text data. Includes preprocessing, sequence modeling, and evaluation on labeled corpora.</p>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+
+        <!-- CRM (RPA) -->
+        <article class="card" aria-labelledby="p5">
+          <img class="thumb" src="assets/project5.png" alt="CRM RPA preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=5'">
+          <h3 id="p5">Customer Relationship Management (RPA)</h3>
+          <p>UiPath pipeline that scrapes e-commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports to stakeholders.</p>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+
+        <!-- Botathon -->
+        <article class="card" aria-labelledby="p6">
+          <img class="thumb" src="assets/project6.png" alt="Botathon prototype preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=6'">
+          <h3 id="p6">Botathon Prototype (Runner-Up)</h3>
+          <p>Automation bot for Excel tasks that reads sheets, transforms data, applies logic and emails results. Awarded Runner-Up in a university Botathon competition.</p>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/BotathonPrototype" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+
+        <!-- Traveller's Guide -->
+        <article class="card" aria-labelledby="p7">
+          <img class="thumb" src="assets/project7.png" alt="Traveller's guide preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=7'">
+          <h3 id="p7">Traveller’s Guide</h3>
+          <p>RPA-based assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps users shortlist travel choices efficiently.</p>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/TravellersGuide" target="_blank" rel="noopener">View on GitHub</a></div>
+        </article>
+      </div>
     </div>
-  </section>
+    </section>
 
-  <!-- Education -->
-  <section id="education">
-    <div class="section-title"><h2>Education</h2><div class="underline"></div></div>
-    <div class="timeline">
-      <div class="timeline-item"><h3>Arizona State University</h3><small>MS Robotics & Autonomous Systems (AI), 2025–2027</small></div>
-      <div class="timeline-item"><h3>Acropolis Institute of Technology & Research</h3><small>B.Tech AI & Data Science, 2020–2024, CGPA 8.07</small></div>
-      <div class="timeline-item"><h3>SICA Senior Secondary School</h3><small>PCM, 2009–2020</small></div>
-    </div>
-  </section>
+    <!-- EDUCATION -->
+    <section id="education" class="panel" aria-labelledby="edu-title">
+      <div class="section-title"><h2 id="edu-title">Education</h2><div class="underline"></div></div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <h3>Arizona State University — MS Robotics & Autonomous Systems (AI)</h3>
+          <small>Aug 2025 – Jun 2027 (expected)</small>
+          <p class="muted small">Mechatronics, Robotics & Automation Engineering — research focus on autonomous navigation, perception, and AI.</p>
+        </article>
+        <article class="timeline-item">
+          <h3>Acropolis Institute of Technology & Research (AITR), Indore — B.Tech in AI & Data Science</h3>
+          <small>Aug 2020 – Jun 2024</small>
+          <p class="muted small">CGPA: 8.07 — coursework: ML, Computer Vision, Data Structures & Algorithms, Signals.</p>
+        </article>
+        <article class="timeline-item">
+          <h3>SICA Senior Secondary School — Higher Secondary (PCM)</h3>
+          <small>Mar 2009 – Jun 2020</small>
+        </article>
+      </div>
+    </section>
 
-  <!-- Skills -->
-  <section id="skills">
-    <div class="section-title"><h2>Skills</h2><div class="underline"></div></div>
-    <div class="skills">
-      <span class="skill">Python</span><span class="skill">C++</span><span class="skill">Java</span><span class="skill">JavaScript</span>
-      <span class="skill">React.js</span><span class="skill">FastAPI</span><span class="skill">TensorFlow</span><span class="skill">PyTorch</span>
-      <span class="skill">ROS</span><span class="skill">RPA</span><span class="skill">Firebase</span><span class="skill">SQL</span><span class="skill">Docker</span>
-    </div>
-  </section>
+    <!-- SKILLS -->
+    <section id="skills" class="panel" aria-labelledby="skills-title">
+      <div class="section-title"><h2 id="skills-title">Skills</h2><div class="underline"></div></div>
+      <div class="skills" aria-hidden="false">
+        <span class="skill">Python</span><span class="skill">C++</span><span class="skill">Java</span><span class="skill">JavaScript</span>
+        <span class="skill">React.js</span><span class="skill">FastAPI</span><span class="skill">TensorFlow</span><span class="skill">PyTorch</span>
+        <span class="skill">ROS</span><span class="skill">Gazebo</span><span class="skill">Firebase</span><span class="skill">MongoDB</span><span class="skill">SQL</span>
+        <span class="skill">Power BI</span><span class="skill">UiPath (RPA)</span><span class="skill">Docker</span><span class="skill">Adobe Photoshop</span>
+      </div>
+    </section>
 
-  <!-- Certifications -->
-  <section id="certifications">
-    <div class="section-title"><h2>Certifications</h2><div class="underline"></div></div>
-    <div class="grid">
-      <div class="card"><h3>MATLAB Certified</h3></div>
-      <div class="card"><h3>AWS Cloud Practitioner</h3></div>
-      <div class="card"><h3>Palo Alto Cybersecurity Academy</h3></div>
-      <div class="card"><h3>TCS iON Career Edge</h3></div>
-      <div class="card"><h3>Microsoft AI Classroom</h3></div>
-      <div class="card"><h3>Blockchain Builder</h3></div>
-    </div>
-  </section>
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="panel" aria-labelledby="cert-title">
+      <div class="section-title"><h2 id="cert-title">Certifications</h2><div class="underline"></div></div>
+      <div class="grid">
+        <div class="card"><h3>MathWorks — MATLAB Certified</h3><p class="muted small">Onramp & Advanced ML</p></div>
+        <div class="card"><h3>AWS — Cloud Practitioner</h3><p class="muted small">Cloud fundamentals</p></div>
+        <div class="card"><h3>Palo Alto — Cybersecurity Academy</h3><p class="muted small">Networking & security basics</p></div>
+        <div class="card"><h3>TCS iON — Career Edge</h3><p class="muted small">Professional readiness</p></div>
+        <div class="card"><h3>Microsoft — AI Classroom Series</h3><p class="muted small">AI fundamentals</p></div>
+        <div class="card"><h3>Blockchain Builder — MPSSDEGB FIIT</h3><p class="muted small">Blockchain basics</p></div>
+      </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <div class="section-title"><h2>Contact</h2><div class="underline"></div></div>
-    <p>Email: <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a> | Phone: +1 623-845-2525</p>
-    <div class="cta" style="margin-top:1rem;">
-      <a class="btn alt" href="https://www.linkedin.com/in/ayushkatiya" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a class="btn alt" href="https://github.com/AyushKatiya20322" target="_blank"><i class="fab fa-github"></i></a>
-      <a class="btn alt" href="mailto:ayushkatiya@gmail.com"><i class="fa-regular fa-envelope"></i></a>
-    </div>
-  </section>
+    <!-- CONTACT -->
+    <section id="contact" class="panel" aria-labelledby="contact-title">
+      <div class="section-title"><h2 id="contact-title">Contact</h2><div class="underline"></div></div>
 
-  <footer>© 2025 Ayush Katiya</footer>
+      <p class="muted">Open to internships, research collaborations & full-time roles. Preferred contact: <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></p>
 
-  <!-- JS -->
+      <!-- Contact Form: Formspree placeholder. Replace FORM_ENDPOINT with your Formspree endpoint or leave commented for mailto fallback -->
+      <div style="max-width:760px;margin:18px auto;">
+        <form id="contactForm" class="panel" aria-label="Contact form">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <input name="name" type="text" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid #ddd">
+            <input name="email" type="email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid #ddd">
+          </div>
+          <textarea name="message" rows="5" placeholder="Tell me about your project or opportunity..." required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-top:10px"></textarea>
+          <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:10px">
+            <button type="submit" class="btn">Send message</button>
+            <small id="formStatus" style="color:var(--muted)"></small>
+          </div>
+        </form>
+      </div>
+
+      <div class="socials" aria-label="Social links">
+        <a href="mailto:ayushkatiya@gmail.com" title="Email"><i class="fa-regular fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/AyushKatiya20322" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="padding:34px 0;text-align:center;color:var(--muted)">© 2025 Ayush Katiya • Built for GitHub Pages</footer>
+
+  <a class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+
+  <!-- =========== SCRIPTS =========== -->
   <script>
-    // Dark mode
-    const themeBtn = document.getElementById("theme-toggle");
-    const setTheme = (dark) => {
-      document.body.classList.toggle("dark", dark);
-      localStorage.setItem("theme", dark ? "dark" : "light");
-      themeBtn.innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    /***** CONFIG - set your Formspree endpoint here if you want serverless form submission *****/
+    const FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx' (leave empty to use mailto fallback)
+
+    // Utilities
+    const $ = s => document.querySelector(s);
+    const $$ = s => Array.from(document.querySelectorAll(s));
+
+    // Mobile menu toggle
+    const menuBtn = $('#menuBtn');
+    const mobileMenu = $('#mobileMenu');
+    menuBtn && menuBtn.addEventListener('click', () => {
+      const open = mobileMenu.getAttribute('aria-hidden') === 'false';
+      mobileMenu.style.display = open ? 'none' : 'block';
+      mobileMenu.setAttribute('aria-hidden', String(open));
+    });
+
+    // Theme toggle with persistence
+    const themeToggle = $('#themeToggle');
+    const applyTheme = (dark) => {
+      document.body.classList.toggle('dark', dark);
+      localStorage.setItem('site-theme', dark ? 'dark' : 'light');
+      themeToggle.innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
     };
-    setTheme(localStorage.getItem("theme") === "dark");
-    themeBtn.addEventListener("click", () => setTheme(!document.body.classList.contains("dark")));
+    const savedTheme = localStorage.getItem('site-theme');
+    applyTheme(savedTheme === 'dark');
+    themeToggle && themeToggle.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')) );
 
     // Typing effect
-    const roles = ["AI Researcher","Robotics Engineer","ML Enthusiast","UAV Navigation"];
-    let idx=0, char=0, el=document.getElementById("typing");
-    function type(){ el.textContent = roles[idx].slice(0,char++); if(char<=roles[idx].length) setTimeout(type,80); else setTimeout(erase,1200); }
-    function erase(){ el.textContent = roles[idx].slice(0,char--); if(char>=0) setTimeout(erase,40); else { idx=(idx+1)%roles.length; setTimeout(type,300); } }
-    type();
+    const typingEl = $('#typing');
+    const roles = ["AI Researcher", "Robotics Engineer", "ML Enthusiast", "UAV Navigation & CV"];
+    let ridx = 0, cidx = 0;
+    function typeLoop(){
+      const role = roles[ridx];
+      typingEl.textContent = role.slice(0, cidx);
+      cidx++;
+      if(cidx <= role.length) setTimeout(typeLoop, 70);
+      else setTimeout(eraseLoop, 1400);
+    }
+    function eraseLoop(){
+      const role = roles[ridx];
+      typingEl.textContent = role.slice(0, cidx);
+      cidx--;
+      if(cidx >= 0) setTimeout(eraseLoop, 30);
+      else { ridx = (ridx + 1) % roles.length; setTimeout(typeLoop, 300); }
+    }
+    typeLoop();
+
+    // IntersectionObserver for reveal-on-scroll + active nav link
+    const sections = Array.from(document.querySelectorAll('main section, .hero'));
+    const navLinks = Array.from(document.querySelectorAll('a.nav-link'));
+    const options = { root: null, rootMargin: '0px', threshold: 0.18 };
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const el = entry.target;
+        if(entry.isIntersecting){
+          el.classList.add('visible');
+        }
+      });
+    }, options);
+    sections.forEach(s => io.observe(s));
+
+    // Active nav highlighting
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const id = e.target.id;
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        }
+      });
+    }, { root:null, threshold: 0.35 });
+
+    document.querySelectorAll('main section[id]').forEach(s => sectionObserver.observe(s));
+
+    // Smooth scroll with offset for nav links (fix fixed header)
+    navLinks.forEach(a => {
+      a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if(!target) return;
+        const y = target.getBoundingClientRect().top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72) + 8;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        mobileMenu && (mobileMenu.style.display = 'none');
+      });
+    });
+
+    // Back to top button
+    const backTop = $('#backTop');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('show', window.scrollY > window.innerHeight);
+    });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Contact form handling: Formspree if endpoint set; otherwise mailto fallback
+    const contactForm = $('#contactForm');
+    const formStatus = $('#formStatus');
+    if(contactForm){
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formStatus.textContent = 'Sending...';
+        const formData = new FormData(contactForm);
+        const payload = Object.fromEntries(formData.entries());
+        try{
+          if(FORM_ENDPOINT && FORM_ENDPOINT.trim().length){
+            // submit to Formspree
+            const res = await fetch(FORM_ENDPOINT, {
+              method:'POST',
+              headers:{ 'Accept':'application/json' },
+              body: formData
+            });
+            if(res.ok){
+              formStatus.textContent = 'Message sent — thank you!';
+              contactForm.reset();
+            } else {
+              formStatus.textContent = 'Unable to send (Formspree). Try email below.';
+            }
+          } else {
+            // mailto fallback
+            const subject = encodeURIComponent(`Portfolio message from ${payload.name || 'Visitor'}`);
+            const body = encodeURIComponent(`Name: ${payload.name || ''}\nEmail: ${payload.email || ''}\n\nMessage:\n${payload.message || ''}`);
+            window.location.href = `mailto:ayushkatiya@gmail.com?subject=${subject}&body=${body}`;
+            formStatus.textContent = 'Opening your mail client...';
+          }
+        } catch(err){
+          console.error(err);
+          formStatus.textContent = 'Error sending message. Try again or email directly.';
+        } finally {
+          setTimeout(()=> formStatus.textContent = '', 5000);
+        }
+      });
+    }
+
+    // Accessibility: close mobile menu on outside click
+    document.addEventListener('click', (ev) => {
+      if(!mobileMenu || !menuBtn) return;
+      const withinMenu = ev.target.closest('#mobileMenu') || ev.target.closest('#menuBtn');
+      if(!withinMenu && mobileMenu.style.display === 'block') mobileMenu.style.display = 'none';
+    });
+
+    // Lazy-load improvement: swap placeholder thumb to actual images handled with <img loading="lazy"> above
+
+    // Friendly fallback: if JS disabled, sections remain visible via CSS? (We set visible via JS)
+    window.addEventListener('load', () => {
+      // Reveal any sections already in view
+      sections.forEach(s => {
+        const rect = s.getBoundingClientRect();
+        if(rect.top < window.innerHeight * 0.85) s.classList.add('visible');
+      });
+    });
   </script>
 </body>
 </html>
