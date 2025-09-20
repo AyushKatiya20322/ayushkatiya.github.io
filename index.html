@@ -7,7 +7,7 @@
   <meta name="description" content="Ayush Katiya — MS Robotics & Autonomous Systems (AI) @ ASU. Projects: Image Captioning, Plant Disease Prediction, E-commerce portfolio, RPA bots, and more."/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
     /* ========= VARIABLES & RESET ========= */
@@ -52,9 +52,30 @@
     body.dark header.navbar{ background: linear-gradient(to bottom, rgba(10,12,15,0.6), rgba(10,12,15,0.25)); }
     .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto}
     .brand{font-weight:800;color:var(--primary);font-size:1.05rem;letter-spacing:.2px}
-    nav ul{list-style:none;display:flex;gap:.75rem;align-items:center;margin:0;padding:0}
-    nav a.nav-link{color:var(--text);text-decoration:none;padding:.5rem .6rem;border-radius:8px;font-weight:600}
-    nav a.nav-link:hover, nav a.nav-link.active{color:var(--primary); background:transparent}
+
+    /* FIXED NAVBAR LINKS */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li { display: inline-block; }
+    .nav-links a.nav-link {
+      color: var(--text);
+      text-decoration: none;
+      padding: .5rem .6rem;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .nav-links a.nav-link:hover,
+    .nav-links a.nav-link.active {
+      color: var(--primary);
+      background: transparent;
+    }
+
     .controls{display:flex;gap:.5rem;align-items:center}
     .theme-btn,.menu-btn{background:none;border:0;cursor:pointer;color:var(--muted);font-size:1.05rem;padding:.4rem;border-radius:8px}
     .menu-btn{display:none}
@@ -130,7 +151,7 @@
     .back-top.show{display:inline-flex}
 
     @media (max-width:720px){
-      nav ul{display:none}
+      .nav-links{display:none}
       .menu-btn{display:inline-block}
       .mobile-menu{display:none}
     }
@@ -160,7 +181,7 @@
       </div>
     </div>
 
-    <!-- mobile menu (cloned links shown on small screens) -->
+    <!-- mobile menu -->
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="menu">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
