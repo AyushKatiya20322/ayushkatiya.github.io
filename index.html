@@ -5,53 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ayush Katiya | Portfolio</title>
 
-  <!-- CSS Embedded -->
+  <!-- CSS -->
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: "Segoe UI", sans-serif; background: #f8f9fa; color: #222; }
-    .container { width: 90%; max-width: 1100px; margin: auto; padding: 1.5rem 0; }
-    h1, h2, h3 { color: #0d1b2a; margin-bottom: 0.5rem; }
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: "Segoe UI", sans-serif; background: #f8f9fa; color: #222; line-height: 1.6; }
+    .container { width: 90%; max-width: 1100px; margin: auto; padding: 2rem 0; }
+    h1, h2, h3 { color: #0d1b2a; margin-bottom: 0.75rem; }
+    h2 { font-size: 1.8rem; }
 
     /* Navbar */
-    .navbar { background: #0d1b2a; color: #fff; padding: 0.8rem 0;
-      position: sticky; top: 0; z-index: 1000; }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { color: #ffcc00; font-weight: bold; }
+    .navbar {
+      background: #0d1b2a; color: #fff; padding: 0.8rem 0;
+      position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; width: 90%; max-width: 1100px; margin: auto; }
+    .logo { color: #ffcc00; font-weight: bold; font-size: 1.3rem; }
     .nav-links { list-style: none; display: flex; }
     .nav-links li { margin: 0 1rem; }
-    .nav-links a { text-decoration: none; color: #fff; font-weight: 500; }
-    .nav-links a:hover { color: #ffcc00; }
+    .nav-links a {
+      text-decoration: none; color: #fff; font-weight: 500;
+      transition: color 0.3s, border-bottom 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
     .hamburger { display: none; background: none; border: none; font-size: 1.8rem; color: #fff; cursor: pointer; }
 
     /* Header */
-    header { background: #0d1b2a; color: #fff; text-align: center; padding: 3rem 1rem; }
-    header h1 { font-size: 2.5rem; }
+    header {
+      background: linear-gradient(rgba(13,27,42,0.8), rgba(13,27,42,0.8)), url('https://picsum.photos/1600/800?blur') no-repeat center/cover;
+      color: #fff; text-align: center; padding: 5rem 1rem;
+    }
+    header h1 { font-size: 2.8rem; animation: fadeInDown 1s ease-in-out; }
+    header p { margin: 1rem 0; font-size: 1.2rem; animation: fadeInUp 1.2s ease-in-out; }
     header .buttons a {
       display: inline-block; margin: 0.5rem; padding: 0.7rem 1.5rem;
-      background: #ffcc00; color: #0d1b2a; border-radius: 5px; text-decoration: none;
+      background: #ffcc00; color: #0d1b2a; border-radius: 30px; text-decoration: none; font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
     }
-    header .buttons a:hover { background: #f4a300; }
+    header .buttons a:hover { background: #f4a300; transform: scale(1.05); }
 
     /* Sections */
-    section { margin-bottom: 2rem; }
+    section { margin-bottom: 3rem; opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    section.visible { opacity: 1; transform: translateY(0); }
     section h2 { border-bottom: 2px solid #ddd; padding-bottom: 0.5rem; margin-bottom: 1rem; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+
+    /* Grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
     .job, .project {
-      background: #fff; padding: 1rem; border-radius: 5px;
-      box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+      background: #fff; padding: 1rem; border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
+    .job:hover, .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .project a {
+      display: inline-block; margin-top: 0.5rem; color: #0d1b2a; text-decoration: none; font-weight: bold;
+    }
+    .project a:hover { color: #f4a300; }
 
     /* Skills */
     .skills-list { display: flex; flex-wrap: wrap; list-style: none; }
     .skills-list li {
       background: #fff; margin: 0.5rem; padding: 0.6rem 1rem;
-      border-radius: 5px; border: 1px solid #ddd;
+      border-radius: 20px; border: 1px solid #ddd;
       box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+      transition: background 0.3s, transform 0.3s;
     }
+    .skills-list li:hover { background: #ffcc00; transform: scale(1.05); }
 
     /* Footer */
-    footer { background: #0d1b2a; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
+    footer { background: #0d1b2a; color: #fff; text-align: center; padding: 1.5rem; margin-top: 2rem; }
     footer a { color: #ffcc00; text-decoration: none; }
+
+    /* Animations */
+    @keyframes fadeInDown { from {opacity: 0; transform: translateY(-30px);} to {opacity: 1; transform: translateY(0);} }
+    @keyframes fadeInUp { from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);} }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -61,7 +92,7 @@
       }
       .nav-links.active { display: flex; }
       .hamburger { display: block; }
-      header h1 { font-size: 1.8rem; }
+      header h1 { font-size: 2rem; }
       header p { font-size: 1rem; }
     }
   </style>
@@ -69,7 +100,7 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="container nav-container">
+    <div class="nav-container">
       <h2 class="logo">Ayush</h2>
       <ul class="nav-links" id="nav-links">
         <li><a href="#summary">Summary</a></li>
@@ -190,7 +221,34 @@
     hamburger.addEventListener("click", () => {
       navLinks.classList.toggle("active");
     });
+
+    // Fade-in sections on scroll
+    const sections = document.querySelectorAll("section");
+    const revealOnScroll = () => {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < trigger) sec.classList.add("visible");
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+
+    // Highlight active nav link
+    const navItems = document.querySelectorAll(".nav-links a");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const secTop = sec.offsetTop - 60;
+        if (pageYOffset >= secTop) current = sec.getAttribute("id");
+      });
+      navItems.forEach(a => {
+        a.classList.remove("active");
+        if (a.getAttribute("href") === "#" + current) {
+          a.classList.add("active");
+        }
+      });
+    });
   </script>
 </body>
 </html>
-
