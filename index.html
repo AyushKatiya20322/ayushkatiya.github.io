@@ -23,7 +23,7 @@
       --nav-height: 72px;
     }
     body.dark{
-      --bg: #0c1419;
+      --bg: #07101a;
       --card: #0f1720;
       --muted: #9fb0c6;
       --text: #e6eef8;
@@ -133,7 +133,7 @@
     .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 8px 30px rgba(2,6,23,0.06);display:flex;flex-direction:column}
     .card .thumb{height:150px;width:100%;border-radius:8px;object-fit:cover;margin-bottom:12px}
     .card h3{margin-bottom:6px}
-    .card p{flex:1;color:var(--muted);margin-bottom:8px}
+    .card p{flex:1;color:var(--muted);margin-bottom:8px; word-wrap: break-word; overflow-wrap: break-word;}
     .card .meta{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.9rem}
 
     /* skills */
@@ -150,7 +150,7 @@
     .back-top{position:fixed;right:18px;bottom:18px;background:var(--primary);border-radius:10px;padding:10px;color:#07101a;box-shadow:0 8px 20px rgba(0,0,0,0.15);display:none;z-index:1400}
     .back-top.show{display:inline-flex}
 
-    @media (max-width:720px){
+    @media (max-width:500px){
       .nav-links{display:none}
       .menu-btn{display:inline-block}
       .mobile-menu{display:none}
