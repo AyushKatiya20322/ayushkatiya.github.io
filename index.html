@@ -567,7 +567,7 @@ function typeLoop() {
   // slower typing speed (was 75 → now 130)
   if (ci <= r.length) setTimeout(typeLoop, prefersReduced ? 0 : 130);
   // longer pause before erasing (was 1100 → now 1600)
-  else setTimeout(eraseLoop, prefersReduced ? 250 : 1600);
+  else setTimeout(eraseLoop, prefersReduced ? 250 : 2600);
 }
 
 function eraseLoop() {
@@ -576,11 +576,11 @@ function eraseLoop() {
   typingEl.textContent = r.slice(0, ci);
   ci--;
   // slower erasing speed (was 28 → now 60)
-  if (ci >= 0) setTimeout(eraseLoop, prefersReduced ? 0 : 60);
+  if (ci >= 0) setTimeout(eraseLoop, prefersReduced ? 0 : 160);
   // slightly longer pause before next word (was 260 → now 400)
   else {
     ri = (ri + 1) % roles.length;
-    setTimeout(typeLoop, prefersReduced ? 0 : 400);
+    setTimeout(typeLoop, prefersReduced ? 0 : 1400);
   }
 }
 
