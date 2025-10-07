@@ -1,26 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!--
-    Star Wars–inspired portfolio theme for Ayush Katiya.
-    Fan-made: no affiliation with Lucasfilm/Disney. No copyrighted media used.
-    Built for GitHub Pages, October 2025.
-  -->
+  <!-- Star Wars–inspired portfolio theme for Ayush Katiya.
+       Fan-made: no affiliation with Lucasfilm/Disney. No copyrighted media used. -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ayush Katiya — Robotics & AI (Star‑Wars‑Inspired)</title>
-  <meta name="description" content="Ayush Katiya — MS Robotics & Autonomous Systems (AI) @ ASU. Projects in AI/CV, RPA, and full‑stack ML. Star‑Wars‑inspired interactive theme."/>
+  <meta name="description" content="Ayush Katiya — MS Robotics & Autonomous Systems (AI) @ ASU. AI/CV, RPA, full‑stack ML. Star‑Wars‑inspired interactive theme."/>
   <meta name="theme-color" content="#0b0f17">
-  <link rel="canonical" href="https://<your-github-username>.github.io/<your-repo>/" />
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Ayush Katiya — Robotics & AI">
-  <meta property="og:description" content="AI Researcher • Robotics Engineer • ML Enthusiast">
-  <meta property="og:image" content="assets/og-card.png">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Fonts & Icons (sci‑fi vibe) -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -30,12 +19,7 @@
        DESIGN TOKENS — GALACTIC
        ========================= */
     :root{
-      /* palette */
-      --space-0: #04070c;
       --space-1: #0b0f17;
-      --space-2: #0f1624;
-      --space-3: #111b2b;
-
       --saber-blue: #00e6ff;
       --saber-red:  #ff3b56;
       --saber-green:#52ff9a;
@@ -53,7 +37,6 @@
       --radius: 14px;
       --ring: 0 0 0 3px rgba(0,230,255,.35);
     }
-    /* Dark Side toggle */
     body.dark{
       --saber-blue: #cde7ff;
       --saber-red:  #ff2a2a;
@@ -74,27 +57,26 @@
       margin:0;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color:var(--text);
-      background: radial-gradient(1200px 800px at 20% 10%, #0e1423, transparent 60%),
-                  radial-gradient(1000px 700px at 80% 20%, #0a1220, transparent 60%),
-                  var(--space-1);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, #0e1423, transparent 60%),
+        radial-gradient(1000px 700px at 80% 20%, #0a1220, transparent 60%),
+        var(--space-1);
       overflow-x:hidden;
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
     a{ color: var(--saber-blue); text-decoration: none }
     a:hover{ text-decoration: underline }
     :focus-visible{ outline: none; box-shadow: var(--ring) }
-
     .container{ max-width:1100px; margin:0 auto; padding: 1rem 1.1rem }
     .muted{ color: var(--muted) }
-    .mono{ font-family: "Share Tech Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace }
+    .mono{ font-family: "Share Tech Mono", ui-monospace, Menlo, Consolas, monospace }
 
-    /* =========================
-       STARFIELD CANVAS (bg)
-       ========================= */
+    /* STARFIELD CANVAS */
     #stars, #stars2, #stars3 {
       position: fixed; inset: 0; z-index: -3; pointer-events: none;
+      width: 100vw; height: 100vh; /* ensures clientWidth/Height are non‑zero */
+      display: block;
     }
-    /* subtle nebula overlay */
     .nebula::before{
       content:""; position: fixed; inset:0; z-index:-2; pointer-events:none;
       background:
@@ -103,9 +85,7 @@
         radial-gradient(600px 600px at 50% 40%, rgba(111, 255, 233, .06), transparent 72%);
     }
 
-    /* =========================
-       NAVBAR — lightsaber
-       ========================= */
+    /* NAVBAR */
     header.navbar{
       position:fixed; inset:0 0 auto; height:var(--nav-height);
       display:flex; align-items:center; z-index:1000;
@@ -128,7 +108,6 @@
     }
     .nav-links a:hover .blade,
     .nav-links a.active .blade{ transform: scaleX(1) }
-
     .controls{ display:flex; align-items:center; gap:.4rem }
     .chip-btn{
       display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .6rem;
@@ -137,9 +116,7 @@
     .chip-btn:hover{ border-color:#ffffff4a }
     .menu-btn{ display:none }
 
-    /* =========================
-       HERO — hologram frame
-       ========================= */
+    /* HERO */
     .hero{
       min-height: calc(100vh - var(--nav-height));
       display:grid; place-items:center; text-align:center;
@@ -154,25 +131,18 @@
       overflow: hidden;
     }
     .holo-frame::before{
-      /* scanlines */
       content:""; position:absolute; inset:0; background-image: var(--scanline); background-size: 100% 3px; opacity:.25; pointer-events:none;
     }
     .holo-header{ font-family: Orbitron; letter-spacing:.5px; margin: 0 0 4px; font-size:2.6rem }
     .tagline{ color: var(--holo); font-weight:800; letter-spacing:.4px; margin-bottom: 10px; min-height: 28px }
     .lead{ color: var(--muted); max-width: 760px; margin: 0 auto 18px }
-
     .profile{
       width:148px; height:148px; border-radius:50%; object-fit:cover; margin: 0 auto 14px;
       border: 4px solid var(--saber-blue);
       box-shadow: 0 0 24px var(--saber-blue), 0 0 36px #00e6ff33;
-      position: relative;
-      background:#111;
+      position: relative; background:#111;
     }
-    .profile::after{
-      content:""; position:absolute; inset:-4px; border-radius:50%;
-      box-shadow: inset 0 0 24px #00e6ff55;
-    }
-
+    .profile::after{ content:""; position:absolute; inset:-4px; border-radius:50%; box-shadow: inset 0 0 24px #00e6ff55; }
     .cta{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top: 10px }
     .btn{
       appearance:none; border:0; cursor:pointer; font-weight:900; letter-spacing:.3px; text-decoration:none;
@@ -180,17 +150,15 @@
       display:inline-flex; gap:.5rem; align-items:center; box-shadow: 0 10px 32px #00e6ff2a, inset 0 0 14px #ffffff55; transition: transform .15s;
     }
     .btn:hover{ transform: translateY(-2px) }
-    .btn.alt{
-      background: transparent; color: var(--text);
-      border:1.5px solid #ffffff2a; box-shadow: 0 6px 16px #0006;
-    }
+    .btn.alt{ background: transparent; color: var(--text); border:1.5px solid #ffffff2a; box-shadow: 0 6px 16px #0006; }
 
-    /* =========================
-       PANELS / SECTIONS (hologlass)
-       ========================= */
+    /* PANELS / SECTIONS */
     main{ margin-top: 18px }
-    section{ padding:48px 0; opacity:0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease }
-    section.visible{ opacity:1; transform:none }
+    section{ padding:48px 0; }               /* <-- visible by default */
+    body.animate section{                    /* animations only if JS adds .animate */
+      opacity:0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease;
+    }
+    body.animate section.visible{ opacity:1; transform:none }
     .panel{
       background: var(--panel);
       border: 1px solid var(--panel-border);
@@ -198,25 +166,16 @@
       box-shadow: 0 0 24px #00e6ff12, inset 0 0 24px #00e6ff0a;
     }
     .section-title{ text-align:center; margin-bottom: 28px }
-    .section-title h2{
-      font-family: Orbitron; margin: 0 0 6px; letter-spacing:.5px;
-      text-shadow: 0 0 14px #00e6ff33
-    }
+    .section-title h2{ font-family: Orbitron; margin: 0 0 6px; letter-spacing:.5px; text-shadow: 0 0 14px #00e6ff33 }
     .underline{
       height:3px; width:180px; margin: 0 auto; border-radius: 999px;
       background: linear-gradient(90deg, var(--saber-red), #fff, var(--saber-blue));
       box-shadow: 0 0 10px #fff5, 0 0 18px var(--saber-blue);
     }
 
-    /* =========================
-       LAYOUTS
-       ========================= */
     .two-col{ display:grid; grid-template-columns: 1fr 320px; gap:20px; align-items:start }
     @media (max-width:1000px){ .two-col{ grid-template-columns: 1fr } }
-    .info-card{
-      background: #0a1220bb; border:1px solid #ffffff1a; border-radius: 12px;
-      padding:14px; box-shadow: 0 12px 30px #0008, inset 0 0 16px #ffffff06;
-    }
+    .info-card{ background: #0a1220bb; border:1px solid #ffffff1a; border-radius: 12px; padding:14px; box-shadow: 0 12px 30px #0008, inset 0 0 16px #ffffff06; }
     .info-row{ display:flex; gap:10px; align-items:flex-start; margin-bottom: 10px }
     .info-label{ min-width:110px; font-weight:800; color:var(--muted) }
 
@@ -227,26 +186,18 @@
 
     .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px }
 
-    /* =========================
-       HOLOGRAM CARDS (projects)
-       ========================= */
+    /* HOLOGRAM CARDS */
     .card{
       position:relative; overflow:hidden;
       background: #0c1322dd; border: 1px solid #6fffe922; border-radius: 12px; padding:12px;
       display:flex; flex-direction:column; min-width:0;
       transition: transform .25s, box-shadow .25s, border-color .25s;
     }
-    .card:hover{
-      transform: translateY(-4px) rotateX(.6deg) rotateY(-.6deg);
-      box-shadow: 0 14px 40px #00e6ff22, inset 0 0 20px #6fffe911;
-      border-color:#6fffe955;
-    }
+    .card:hover{ transform: translateY(-4px) rotateX(.6deg) rotateY(-.6deg); box-shadow: 0 14px 40px #00e6ff22, inset 0 0 20px #6fffe911; border-color:#6fffe955; }
     .card::after{
-      /* diagonal holo shimmer */
       content:""; position:absolute; inset:-60% -60% auto auto; width:140%; height:140%;
       background: radial-gradient(500px 120px at 10% 10%, #6fffe922, transparent 50%);
-      transform: rotate(25deg); pointer-events:none;
-      opacity: .25; mix-blend-mode: screen;
+      transform: rotate(25deg); pointer-events:none; opacity: .25; mix-blend-mode: screen;
     }
     .card .thumb{ height:150px; width:100%; border-radius:8px; object-fit:cover; margin-bottom:12px; background:#0e1728 }
     .card h3{ margin: 0 0 6px; font-weight:800 }
@@ -254,34 +205,24 @@
     .card .meta{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; color:var(--muted) }
     .meta a{ text-decoration:none }
 
-    /* Filters as Jedi holotags */
+    /* Filters */
     .filters{ display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin:-4px 0 18px }
-    .filter-btn{
-      border:1px solid #ffffff2a; background:#0b1220bb; color:var(--text); padding:.4rem .7rem; border-radius:999px; font-weight:800; cursor:pointer;
-    }
+    .filter-btn{ border:1px solid #ffffff2a; background:#0b1220bb; color:var(--text); padding:.4rem .7rem; border-radius:999px; font-weight:800; cursor:pointer; }
     .filter-btn.active{ background: linear-gradient(90deg, var(--saber-blue), var(--saber-green)); color:#061018; border-color:transparent }
 
-    /* Skills & fun counters */
+    /* Skills & counters */
     .skills{ display:flex; flex-wrap:wrap; gap:8px }
-    .skill{
-      background: #0a121f; color:#bfe5ff; padding:.45rem .75rem; border-radius:999px; font-weight:800; border:1px solid #ffffff14;
-    }
+    .skill{ background: #0a121f; color:#bfe5ff; padding:.45rem .75rem; border-radius:999px; font-weight:800; border:1px solid #ffffff14; }
     .skill:hover{ box-shadow: 0 0 16px #00e6ff22 }
-    .counter{
-      text-align:center; min-width:160px; border:1px solid #ffffff22; border-radius:12px; padding:10px; background:#0a121fcc;
-    }
+    .counter{ text-align:center; min-width:160px; border:1px solid #ffffff22; border-radius:12px; padding:10px; background:#0a121fcc; }
     .counter .num{ font-size:1.8rem; font-weight:900 }
 
-    /* =========================
-       LIGHTSABER PROGRESS (scroll)
-       ========================= */
+    /* Progress + back-to-top */
     .scroll-progress{
       position:fixed; top:0; left:0; height:3px; width:0; z-index:1200;
       background: linear-gradient(90deg, var(--saber-red), #fff, var(--saber-blue));
       box-shadow: 0 0 10px #fff8, 0 0 18px var(--saber-blue);
     }
-
-    /* Back to top */
     .back-top{
       position:fixed; right:18px; bottom:18px; background: linear-gradient(90deg, var(--saber-blue), var(--saber-green));
       border-radius:10px; padding:10px; color:#061018; box-shadow:0 8px 20px #00e6ff2a; display:none; z-index:1100; cursor:pointer;
@@ -289,102 +230,37 @@
     .back-top.show{ display:inline-flex }
 
     /* Mobile */
-    @media (max-width: 900px){
-      .menu-btn{ display:inline-flex }
-      .nav-links{ display:none }
-    }
-    @media (max-width:600px){
-      .grid { grid-template-columns: 1fr }
-      .card .thumb{ height:120px }
-      .holo-header{ font-size:2.25rem }
-    }
+    @media (max-width: 900px){ .menu-btn{ display:inline-flex } .nav-links{ display:none } }
+    @media (max-width:600px){ .grid { grid-template-columns: 1fr } .card .thumb{ height:120px } .holo-header{ font-size:2.25rem } }
 
-    /* REDUCED MOTION */
-    @media (prefers-reduced-motion: reduce){
-      *{ animation: none !important; transition: none !important }
-    }
-
-    /* =========================
-       OPENING CRAWL (optional)
-       ========================= */
-    #crawlOverlay{
-      position:fixed; inset:0; display:none; align-items:flex-end; justify-content:center; background: radial-gradient(80% 50% at 50% 40%, rgba(0,0,0,.6), rgba(0,0,0,.9)), #000;
-      z-index:2000; perspective: 400px;
-    }
+    /* Opening crawl */
+    #crawlOverlay{ position:fixed; inset:0; display:none; align-items:flex-end; justify-content:center; background: radial-gradient(80% 50% at 50% 40%, rgba(0,0,0,.6), rgba(0,0,0,.9)), #000; z-index:2000; perspective: 400px; }
     #crawlOverlay.active{ display:flex }
-    .crawl{
-      width: min(680px, 92vw);
-      font-family: "Share Tech Mono", monospace; color:var(--crawl-yellow);
-      text-align:justify; line-height:1.5; letter-spacing:.6px;
-      transform-origin: 50% 100%;
-      animation: crawl 40s linear forwards;
-    }
+    .crawl{ width: min(680px, 92vw); font-family: "Share Tech Mono", monospace; color:var(--crawl-yellow); text-align:justify; line-height:1.5; letter-spacing:.6px; transform-origin: 50% 100%; animation: crawl 40s linear forwards; }
     .crawl h1{ font-family: Orbitron; text-align:center; letter-spacing:1px }
-    @keyframes crawl{
-      0%   { transform: rotateX(22deg) translateZ(0) translateY(100%) }
-      100% { transform: rotateX(22deg) translateZ(-300px) translateY(-220%) }
-    }
-    .skip-btn{
-      position:absolute; top:12px; right:12px; z-index:1;
-      padding:.5rem .8rem; border-radius:10px; border:1px solid #ffffff33; background:#0b1220cc; color:#fff; font-weight:800; cursor:pointer;
-    }
+    @keyframes crawl{ 0%{ transform: rotateX(22deg) translateZ(0) translateY(100%) } 100%{ transform: rotateX(22deg) translateZ(-300px) translateY(-220%) } }
+    .skip-btn{ position:absolute; top:12px; right:12px; z-index:1; padding:.5rem .8rem; border-radius:10px; border:1px solid #ffffff33; background:#0b1220cc; color:#fff; font-weight:800; cursor:pointer; }
 
-    /* Hyperdrive overlay (brief streaks) */
-    #hyperdrive{
-      position:fixed; inset:0; pointer-events:none; z-index:1500; opacity:0;
-      background: repeating-linear-gradient(90deg, #fff0, #fff0 12px, #ffffff14 13px, #ffffff14 14px);
-      transform: scaleX(1);
-    }
-    #hyperdrive.active{
-      animation: jump .9s cubic-bezier(.2,.6,.2,1);
-    }
-    @keyframes jump{
-      0%{ opacity:0 }
-      10%{ opacity:1; transform: scaleX(1.4) }
-      50%{ opacity:1; transform: scaleX(1.6) }
-      100%{ opacity:0; transform: scaleX(1) }
-    }
+    #hyperdrive{ position:fixed; inset:0; pointer-events:none; z-index:1500; opacity:0; background: repeating-linear-gradient(90deg, #fff0, #fff0 12px, #ffffff14 13px, #ffffff14 14px); transform: scaleX(1); }
+    #hyperdrive.active{ animation: jump .9s cubic-bezier(.2,.6,.2,1); }
+    @keyframes jump{ 0%{ opacity:0 } 10%{ opacity:1; transform: scaleX(1.4) } 50%{ opacity:1; transform: scaleX(1.6) } 100%{ opacity:0; transform: scaleX(1) } }
 
     footer{ padding:34px 0; text-align:center; color:var(--muted) }
-  </style>
 
-  <!-- JSON-LD Person schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Ayush Katiya",
-    "email": "mailto:ayushkatiya@gmail.com",
-    "jobTitle": "AI Researcher / Robotics Engineer",
-    "url": "https://<your-github-username>.github.io/<your-repo>/",
-    "sameAs": [
-      "https://www.linkedin.com/in/ayushkatiya",
-      "https://github.com/AyushKatiya20322"
-    ],
-    "alumniOf": [
-      "Arizona State University",
-      "Acropolis Institute of Technology & Research (AITR), Indore"
-    ]
-  }
-  </script>
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){ *{ animation: none !important; transition: none !important } }
+  </style>
 </head>
 <body class="nebula">
-  <!-- Starfield layers -->
-  <canvas id="stars"></canvas>
-  <canvas id="stars2"></canvas>
-  <canvas id="stars3"></canvas>
-
-  <!-- Hyperdrive streaks -->
+  <!-- Starfield -->
+  <canvas id="stars"></canvas><canvas id="stars2"></canvas><canvas id="stars3"></canvas>
   <div id="hyperdrive" aria-hidden="true"></div>
-
-  <!-- Lightsaber progress -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- NAVBAR -->
   <header class="navbar" role="banner">
     <div class="nav-inner container" role="navigation" aria-label="Main navigation">
       <div class="brand">AYUSH <span class="mono">KATIYA</span></div>
-
       <ul class="nav-links" id="navLinks">
         <li><a class="nav-link" href="#about">About<span class="blade"></span></a></li>
         <li><a class="nav-link" href="#now">Now<span class="blade"></span></a></li>
@@ -395,17 +271,14 @@
         <li><a class="nav-link" href="#certifications">Certs<span class="blade"></span></a></li>
         <li><a class="nav-link" href="#contact">Contact<span class="blade"></span></a></li>
       </ul>
-
       <div class="controls">
-        <button class="chip-btn" id="playIntro" aria-label="Play opening crawl"><i class="fa-solid fa-film"></i><span class="hide-sm">Intro</span></button>
-        <button class="chip-btn" id="sfxToggle" aria-label="Toggle sound FX"><i class="fa-solid fa-volume-xmark"></i><span class="hide-sm">SFX</span></button>
-        <button class="chip-btn" id="themeToggle" aria-label="Toggle Light/Dark Side"><i class="fa-solid fa-jedi"></i><span class="hide-sm">Side</span></button>
+        <button class="chip-btn" id="playIntro" aria-label="Play opening crawl"><i class="fa-solid fa-film"></i> Intro</button>
+        <button class="chip-btn" id="sfxToggle" aria-label="Toggle sound FX"><i class="fa-solid fa-volume-xmark"></i> SFX</button>
+        <button class="chip-btn" id="themeToggle" aria-label="Toggle Light/Dark Side"><i class="fa-solid fa-jedi"></i> Side</button>
         <button class="chip-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
-
-    <!-- mobile menu -->
-    <nav class="mobileMenu panel" id="mobileMenu" aria-hidden="true" role="menu" style="display:none; position:absolute; top:calc(var(--nav-height) + 8px); right:12px; width:260px">
+    <nav class="panel" id="mobileMenu" aria-hidden="true" role="menu" style="display:none; position:absolute; top:calc(var(--nav-height) + 8px); right:12px; width:260px">
       <a class="nav-link" href="#about">About</a>
       <a class="nav-link" href="#now">Now (2025)</a>
       <a class="nav-link" href="#experience">Experience</a>
@@ -424,10 +297,7 @@
       <img class="profile" src="assets/profile.jpg" alt="Ayush Katiya portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/150'">
       <h1 class="holo-header" id="hero-heading">Ayush Katiya</h1>
       <div class="tagline" id="typing" aria-live="polite">AI Researcher • Robotics Engineer • ML Enthusiast</div>
-      <p class="lead">
-        Graduate Student — Robotics & Autonomous Systems (AI) at Arizona State University.
-        I build ML‑powered perception systems, robotic automation (RPA), and deploy full‑stack solutions (FastAPI + React) for research & production.
-      </p>
+      <p class="lead">Graduate Student — Robotics & Autonomous Systems (AI) at Arizona State University. I build ML‑powered perception systems, robotic automation (RPA), and deploy full‑stack solutions (FastAPI + React) for research & production.</p>
       <div class="cta">
         <a class="btn" href="resume.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file"></i> Download Resume</a>
         <a class="btn alt" href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
@@ -437,22 +307,17 @@
   </section>
 
   <main class="container" role="main">
-
     <!-- ABOUT -->
     <section id="about" class="panel" aria-labelledby="about-title">
       <div class="two-col">
         <div>
           <div class="section-title"><h2 id="about-title">About</h2><div class="underline"></div></div>
-          <p>I am an AI & Robotics professional transitioning into advanced Robotics & Autonomous Systems (MS @ ASU).
-            My strengths lie in deep learning (CNN/RNN), computer vision, UAV navigation, RPA, and deploying ML models using FastAPI and React.
-            I enjoy turning research into practical pipelines and collaborating across teams to deliver impact.</p>
-
+          <p>I am an AI & Robotics professional transitioning into advanced Robotics & Autonomous Systems (MS @ ASU). My strengths lie in deep learning (CNN/RNN), computer vision, UAV navigation, RPA, and deploying ML models using FastAPI and React. I enjoy turning research into practical pipelines and collaborating across teams to deliver impact.</p>
           <div style="margin-top:14px">
             <strong>Publication</strong>
             <p class="muted small">Enhancing Food Type Recognition: A Comprehensive Study on Sequential Convolutional Neural Networks for Image Classification Accuracy.</p>
           </div>
         </div>
-
         <aside class="info-card" aria-label="Quick info">
           <div class="info-row"><div class="info-label">Contact</div>
             <div>
@@ -461,35 +326,20 @@
               <div><a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a> <button class="chip-btn" id="copyEmail" title="Copy email"><i class="fa-solid fa-copy"></i></button></div>
             </div>
           </div>
-
           <div class="info-row"><div class="info-label">Top Skills</div><div><span class="skill">Robotics</span> <span class="skill">Robot Programming</span></div></div>
-
           <div class="info-row"><div class="info-label">Languages</div><div><div class="small muted">Hindi (Native), English (Full Professional), German (Elementary)</div></div></div>
-
           <div class="info-row"><div class="info-label">Links</div><div><a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="me noopener">LinkedIn</a> • <a href="https://github.com/AyushKatiya20322" target="_blank" rel="me noopener">GitHub</a></div></div>
         </aside>
       </div>
     </section>
 
-    <!-- NOW (2025) -->
+    <!-- NOW -->
     <section id="now" class="panel" aria-labelledby="now-title">
       <div class="section-title"><h2 id="now-title">Now — October 2025</h2><div class="underline"></div></div>
       <div class="grid" role="list">
-        <div class="card" role="listitem">
-          <img class="thumb" src="https://picsum.photos/600/350?random=11" alt="" loading="lazy">
-          <h3>Started MS @ ASU (Aug 2025)</h3>
-          <p>Trail‑mapping coursework across autonomous navigation and perception; building foundations for research in multi‑sensor fusion and ROS 2.</p>
-        </div>
-        <div class="card" role="listitem">
-          <img class="thumb" src="https://picsum.photos/600/350?random=12" alt="" loading="lazy">
-          <h3>Recently</h3>
-          <p>Wrapped up a Business Analyst Internship at Finlatics (Apr–Jul 2025): data storytelling with Power BI and ML‑driven insights powering product & business decisions.</p>
-        </div>
-        <div class="card" role="listitem">
-          <img class="thumb" src="https://picsum.photos/600/350?random=13" alt="" loading="lazy">
-          <h3>Open to</h3>
-          <p>Research assistantships & internships (Spring/Summer 2026). Interests: VLMs for robotics, SLAM, edge AI on Jetson, and autonomous UAVs.</p>
-        </div>
+        <div class="card" role="listitem"><img class="thumb" src="https://picsum.photos/600/350?random=11" alt="" loading="lazy"><h3>Started MS @ ASU (Aug 2025)</h3><p>Trail‑mapping coursework across autonomous navigation and perception; building foundations for research in multi‑sensor fusion and ROS 2.</p></div>
+        <div class="card" role="listitem"><img class="thumb" src="https://picsum.photos/600/350?random=12" alt="" loading="lazy"><h3>Recently</h3><p>Wrapped up a Business Analyst Internship at Finlatics (Apr–Jul 2025): data storytelling with Power BI and ML‑driven insights powering product & business decisions.</p></div>
+        <div class="card" role="listitem"><img class="thumb" src="https://picsum.photos/600/350?random=13" alt="" loading="lazy"><h3>Open to</h3><p>Research assistantships & internships (Spring/Summer 2026). Interests: VLMs for robotics, SLAM, edge AI on Jetson, and autonomous UAVs.</p></div>
       </div>
       <div style="text-align:center; margin-top:12px">
         <a class="btn alt" href="#contact"><i class="fa-regular fa-paper-plane"></i> Send a droid</a>
@@ -500,33 +350,16 @@
     <section id="experience" class="panel" aria-labelledby="exp-title">
       <div class="section-title"><h2 id="exp-title">Experience</h2><div class="underline"></div></div>
       <div class="timeline" aria-live="polite">
-        <article class="timeline-item">
-          <h3>Business Analyst Intern — Finlatics</h3>
-          <small>April 2025 – July 2025 (4 months)</small>
-          <p>Analyzed complex datasets using Excel & Power BI; built and deployed ML models to provide real‑time insights; created interactive dashboards used by product & business teams; collaborated cross‑functionally to convert analytics into action.</p>
-        </article>
-        <article class="timeline-item">
-          <h3>Data Science Intern — Finlatics</h3>
-          <small>June 2024 – August 2024 (3 months)</small>
-          <p>Implemented predictive models and data visualizations; helped productionize analytics pipelines and improve data quality for downstream ML systems.</p>
-        </article>
-        <article class="timeline-item">
-          <h3>Data Science Intern — ArtifIntel</h3>
-          <small>February 2022 – March 2022 (2 months)</small>
-          <p>Processed and cleaned large‑scale datasets; supported R&D machine learning models and contributed code for preprocessing & model validation.</p>
-        </article>
-        <article class="timeline-item">
-          <h3>Graphic Designer & Multimedia Creator — Freelancer</h3>
-          <small>August 2020 – November 2022</small>
-          <p>Produced branding, marketing materials and multimedia content for 30+ clients using Adobe Photoshop, Illustrator & InDesign, improving client engagement and visual presence.</p>
-        </article>
+        <article class="timeline-item"><h3>Business Analyst Intern — Finlatics</h3><small>April 2025 – July 2025 (4 months)</small><p>Analyzed complex datasets using Excel & Power BI; built and deployed ML models to provide real‑time insights; created interactive dashboards used by product & business teams; collaborated cross‑functionally to convert analytics into action.</p></article>
+        <article class="timeline-item"><h3>Data Science Intern — Finlatics</h3><small>June 2024 – August 2024 (3 months)</small><p>Implemented predictive models and data visualizations; helped productionize analytics pipelines and improve data quality for downstream ML systems.</p></article>
+        <article class="timeline-item"><h3>Data Science Intern — ArtifIntel</h3><small>February 2022 – March 2022 (2 months)</small><p>Processed and cleaned large‑scale datasets; supported R&D machine learning models and contributed code for preprocessing & model validation.</p></article>
+        <article class="timeline-item"><h3>Graphic Designer & Multimedia Creator — Freelancer</h3><small>August 2020 – November 2022</small><p>Produced branding, marketing materials and multimedia content for 30+ clients using Adobe Photoshop, Illustrator & InDesign, improving client engagement and visual presence.</p></article>
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section id="projects" class="panel" aria-labelledby="projects-title">
       <div class="section-title"><h2 id="projects-title">Projects</h2><div class="underline"></div></div>
-
       <div class="filters" role="tablist" aria-label="Project filters">
         <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true"><i class="fa-solid fa-jedi"></i> All</button>
         <button class="filter-btn" data-filter="ai" role="tab">AI/CV</button>
@@ -536,81 +369,53 @@
       </div>
 
       <div class="grid" aria-live="polite" id="projectGrid">
-        <!-- Image Caption Generator -->
         <article class="card" data-tags="ai,cv" data-title="Image Caption Generator (CNN + RNN)" data-img="assets/project1.png" data-github="https://github.com/AyushKatiya20322/Image-Caption-Generator" data-desc="Generates captions describing input images using a CNN encoder and LSTM decoder. Evaluated with BLEU/CIDEr and packaged for inference.">
           <img class="thumb" src="assets/project1.png" alt="Image Caption Generator preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=1'">
           <h3>Image Caption Generator (CNN + RNN)</h3>
           <p>Generates captions describing input images using a CNN to extract features and an RNN (LSTM) decoder to produce natural language captions. Evaluated with BLEU/CIDEr and packaged for inference.</p>
-          <div class="meta">
-            <a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-            <button class="btn alt quick-view">Quick View</button>
-          </div>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <!-- E-commerce portfolio -->
         <article class="card" data-tags="web,ai" data-title="Technology Portfolio (E‑Commerce)" data-img="assets/project2.png" data-github="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" data-desc="Full‑stack e‑commerce built with React.js, FastAPI backend, Firebase DB, ML‑based recommendations, and RPA automation to streamline workflows.">
           <img class="thumb" src="assets/project2.png" alt="E‑Commerce project preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=2'">
           <h3>Technology_portfolio_Major_Project_2023‑2024 (E‑Commerce)</h3>
           <p>Full‑stack e‑commerce site built with React.js, FastAPI backend, Firebase database, ML‑based product recommendations, and RPA automation to streamline workflows.</p>
-          <div class="meta">
-            <a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-            <button class="btn alt quick-view">Quick View</button>
-          </div>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <!-- Plant Disease Prediction -->
         <article class="card" data-tags="ai,cv" data-title="Plant Disease Prediction" data-img="assets/project3.png" data-github="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" data-desc="CNN trained on Kaggle datasets to classify plant diseases. Deployed via FastAPI and integrated into a React frontend for real‑time inference and farmer‑friendly UI.">
           <img class="thumb" src="assets/project3.png" alt="Plant Disease Prediction preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=3'">
           <h3>Plant Disease Prediction</h3>
           <p>CNN model trained on Kaggle datasets to classify plant diseases. Deployed using FastAPI and integrated into a React frontend for real‑time inference and farmer‑friendly UI.</p>
-          <div class="meta">
-            <a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-            <button class="btn alt quick-view">Quick View</button>
-          </div>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <!-- Text RNN -->
         <article class="card" data-tags="nlp,ai" data-title="Text‑Data‑Processing (RNN)" data-img="assets/project4.png" data-github="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" data-desc="RNN‑based pipeline for sequence modeling & sentiment analysis. Includes preprocessing, model training, and evaluation on labeled corpora.">
           <img class="thumb" src="assets/project4.png" alt="Text Data Processing preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=4'">
           <h3>Text‑Data‑Processing_DeepLearning_RNN</h3>
           <p>An RNN‑based pipeline for extracting information and performing sentiment analysis on text data. Includes preprocessing, sequence modeling, and evaluation on labeled corpora.</p>
-          <div class="meta">
-            <a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-            <button class="btn alt quick-view">Quick View</button>
-          </div>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <!-- CRM (RPA) -->
         <article class="card" data-tags="rpa,web" data-title="Customer Relationship Management (RPA)" data-img="assets/project5.png" data-github="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" data-desc="UiPath pipeline that scrapes e‑commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports.">
           <img class="thumb" src="assets/project5.png" alt="CRM RPA preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=5'">
           <h3>Customer Relationship Management (RPA)</h3>
           <p>UiPath pipeline that scrapes e‑commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports to stakeholders.</p>
-          <div class="meta">
-            <a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-            <button class="btn alt quick-view">Quick View</button>
-          </div>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <!-- Botathon -->
         <article class="card" data-tags="rpa" data-title="Botathon Prototype (Runner‑Up)" data-img="assets/project6.png" data-github="https://github.com/AyushKatiya20322/BotathonPrototype" data-desc="Automation bot for Excel tasks that reads sheets, transforms data, applies logic, and emails results. Awarded Runner‑Up in a university Botathon.">
           <img class="thumb" src="assets/project6.png" alt="Botathon prototype preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=6'">
           <h3>Botathon Prototype (Runner‑Up)</h3>
           <p>Automation bot for Excel tasks that reads sheets, transforms data, applies logic and emails results. Awarded Runner‑Up in a university Botathon competition.</p>
-          <div class="meta">
-            <a href="https://github.com/AyushKatiya20322/BotathonPrototype" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-            <button class="btn alt quick-view">Quick View</button>
-          </div>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/BotathonPrototype" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <!-- Traveller's Guide -->
         <article class="card" data-tags="rpa,web" data-title="Traveller’s Guide" data-img="assets/project7.png" data-github="https://github.com/AyushKatiya20322/TravellersGuide" data-desc="RPA assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps shortlist travel choices efficiently.">
           <img class="thumb" src="assets/project7.png" alt="Traveller's guide preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=7'">
           <h3>Traveller’s Guide</h3>
           <p>RPA‑based assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps users shortlist travel choices efficiently.</p>
-          <div class="meta">
-            <a href="https://github.com/AyushKatiya20322/TravellersGuide" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
-            <button class="btn alt quick-view">Quick View</button>
-          </div>
+          <div class="meta"><a href="https://github.com/AyushKatiya20322/TravellersGuide" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
       </div>
     </section>
@@ -619,54 +424,31 @@
     <section id="education" class="panel" aria-labelledby="edu-title">
       <div class="section-title"><h2 id="edu-title">Education</h2><div class="underline"></div></div>
       <div class="timeline">
-        <article class="timeline-item">
-          <h3>Arizona State University — MS Robotics & Autonomous Systems (AI)</h3>
-          <small>Aug 2025 – Jun 2027 (expected)</small>
-          <p class="muted small">Mechatronics, Robotics & Automation Engineering — research focus on autonomous navigation, perception, and AI.</p>
-        </article>
-        <article class="timeline-item">
-          <h3>Acropolis Institute of Technology & Research (AITR), Indore — B.Tech in AI & Data Science</h3>
-          <small>Aug 2020 – Jun 2024</small>
-          <p class="muted small">CGPA: 8.07 — coursework: ML, Computer Vision, Data Structures & Algorithms, Signals.</p>
-        </article>
-        <article class="timeline-item">
-          <h3>SICA Senior Secondary School — Higher Secondary (PCM)</h3>
-          <small>Mar 2009 – Jun 2020</small>
-        </article>
+        <article class="timeline-item"><h3>Arizona State University — MS Robotics & Autonomous Systems (AI)</h3><small>Aug 2025 – Jun 2027 (expected)</small><p class="muted small">Mechatronics, Robotics & Automation Engineering — research focus on autonomous navigation, perception, and AI.</p></article>
+        <article class="timeline-item"><h3>Acropolis Institute of Technology & Research (AITR), Indore — B.Tech in AI & Data Science</h3><small>Aug 2020 – Jun 2024</small><p class="muted small">CGPA: 8.07 — coursework: ML, Computer Vision, Data Structures & Algorithms, Signals.</p></article>
+        <article class="timeline-item"><h3>SICA Senior Secondary School — Higher Secondary (PCM)</h3><small>Mar 2009 – Jun 2020</small></article>
       </div>
     </section>
 
     <!-- SKILLS -->
     <section id="skills" class="panel" aria-labelledby="skills-title">
       <div class="section-title"><h2 id="skills-title">Skills</h2><div class="underline"></div></div>
-
       <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-bottom:12px">
         <div class="skill"><i class="fa-solid fa-microchip"></i> Edge AI</div>
         <div class="skill"><i class="fa-solid fa-cubes"></i> ROS 2</div>
         <div class="skill"><i class="fa-solid fa-drone"></i> UAV Navigation</div>
         <div class="skill"><i class="fa-solid fa-layer-group"></i> MLOps</div>
       </div>
-
       <div class="skills" aria-hidden="false">
         <span class="skill">Python</span><span class="skill">C++</span><span class="skill">Java</span><span class="skill">JavaScript</span>
         <span class="skill">React.js</span><span class="skill">FastAPI</span><span class="skill">TensorFlow</span><span class="skill">PyTorch</span>
         <span class="skill">ROS</span><span class="skill">Gazebo</span><span class="skill">Firebase</span><span class="skill">MongoDB</span><span class="skill">SQL</span>
         <span class="skill">Power BI</span><span class="skill">UiPath (RPA)</span><span class="skill">Docker</span><span class="skill">Adobe Photoshop</span>
       </div>
-
       <div style="display:flex; gap:10px; justify-content:center; margin-top:14px; flex-wrap:wrap">
-        <div class="counter">
-          <div class="num" data-counter="7">0</div>
-          <div class="muted small">Projects</div>
-        </div>
-        <div class="counter">
-          <div class="num" data-counter="4">0</div>
-          <div class="muted small">Tech Stacks</div>
-        </div>
-        <div class="counter">
-          <div class="num" data-counter="3">0</div>
-          <div class="muted small">Internships</div>
-        </div>
+        <div class="counter"><div class="num" data-counter="7">7</div><div class="muted small">Projects</div></div>
+        <div class="counter"><div class="num" data-counter="4">4</div><div class="muted small">Tech Stacks</div></div>
+        <div class="counter"><div class="num" data-counter="3">3</div><div class="muted small">Internships</div></div>
       </div>
     </section>
 
@@ -687,10 +469,8 @@
     <section id="contact" class="panel" aria-labelledby="contact-title">
       <div class="section-title"><h2 id="contact-title">Contact</h2><div class="underline"></div></div>
       <p class="muted">Open to internships, research collaborations & full‑time roles. Preferred contact: <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></p>
-
       <div style="max-width:760px;margin:18px auto;">
         <form id="contactForm" class="panel" aria-label="Contact form">
-          <!-- Honeypot -->
           <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; opacity:0" aria-hidden="true">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <input name="name" type="text" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid #27344d;width:100%;background:#0b1324;color:#eaf3ff">
@@ -703,18 +483,15 @@
           </div>
         </form>
       </div>
-
-      <div class="socials" style="display:flex;gap:8px;justify-content:center;margin-top:8px">
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
         <a class="btn alt" href="mailto:ayushkatiya@gmail.com" title="Email"><i class="fa-regular fa-envelope"></i></a>
         <a class="btn alt" href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a class="btn alt" href="https://github.com/AyushKatiya20322" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
       </div>
     </section>
-
   </main>
 
   <footer>© 2025 Ayush Katiya • Star‑Wars‑inspired fan theme • Built for GitHub Pages</footer>
-
   <a class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
 
   <!-- Quick View Dialog -->
@@ -732,368 +509,317 @@
     </div>
   </dialog>
 
-  <!-- Opening Crawl Overlay -->
+  <!-- Opening Crawl -->
   <div id="crawlOverlay" role="dialog" aria-modal="true" aria-label="Opening intro">
     <button class="skip-btn" id="skipCrawl">Skip</button>
     <div class="crawl">
       <p class="mono" style="text-align:center; margin: 0 0 12px">EPISODE AK</p>
       <h1>THE PATH OF THE ENGINEER</h1>
-      <p>
-        In a galaxy of datasets and drifting signals, a young engineer sets out to bring order to noisy worlds.
-        With <strong>Python</strong> as a reliable blaster and <strong>ROS</strong> for guidance,
-        Ayush Katiya deploys models that see, reason, and act.
-      </p>
-      <p>
-        From <strong>computer vision</strong> and <strong>UAV navigation</strong> to <strong>RPA</strong> and
-        full‑stack ML, projects assemble like droids in formation. The mission: build useful systems,
-        ship them to production, and never turn to the dark side of overfitting.
-      </p>
-      <p>
-        The journey now leads to <strong>Arizona State University</strong>, where new alliances are forged
-        and research in <strong>autonomy</strong> takes flight. May the <em>Source</em> be with you.
-      </p>
+      <p>In a galaxy of datasets and drifting signals, a young engineer sets out to bring order to noisy worlds. With <strong>Python</strong> as a reliable blaster and <strong>ROS</strong> for guidance, Ayush Katiya deploys models that see, reason, and act.</p>
+      <p>From <strong>computer vision</strong> and <strong>UAV navigation</strong> to <strong>RPA</strong> and full‑stack ML, projects assemble like droids in formation. The mission: build useful systems, ship them to production, and never turn to the dark side of overfitting.</p>
+      <p>The journey now leads to <strong>Arizona State University</strong>, where new alliances are forged and research in <strong>autonomy</strong> takes flight. May the <em>Source</em> be with you.</p>
     </div>
   </div>
 
-  <!-- SCRIPTS -->
+  <noscript>
+    <div style="position:fixed;bottom:8px;left:8px;background:#111;color:#fff;padding:.5rem .75rem;border-radius:8px;z-index:9999;">
+      JavaScript is disabled — animations are off, but the page should display. 👍
+    </div>
+  </noscript>
+
   <script>
-    /***** CONFIG - set your Formspree endpoint here if you want serverless form submission *****/
-    const FORM_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx' (leave empty to use mailto fallback)
+    /* -----------------------------
+       FAIL-SAFE ANIMATION SETUP
+       ----------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Only animate if JS loads successfully
+      document.body.classList.add('animate');
 
-    // ===== Utilities =====
-    const $ = s => document.querySelector(s);
-    const $$ = s => Array.from(document.querySelectorAll(s));
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // Immediately reveal sections already in view (handles deep links like #projects)
+      const revealNow = () => {
+        document.querySelectorAll('section, .hero').forEach(s => {
+          const r = s.getBoundingClientRect();
+          if (r.top < window.innerHeight * 0.9) s.classList.add('visible');
+        });
+      };
+      revealNow();
 
-    // ===== Mobile menu =====
-    const menuBtn = $('#menuBtn');
-    const mobileMenu = $('#mobileMenu');
-    menuBtn?.addEventListener('click', () => {
-      const open = mobileMenu.style.display === 'block';
-      mobileMenu.style.display = open ? 'none' : 'block';
-      mobileMenu.setAttribute('aria-hidden', String(open));
-      menuBtn.setAttribute('aria-expanded', String(!open));
-    });
-    document.addEventListener('click', (e) => {
-      if(!mobileMenu || !menuBtn) return;
-      const within = e.target.closest('#mobileMenu') || e.target.closest('#menuBtn');
-      if(!within && mobileMenu.style.display === 'block'){
-        mobileMenu.style.display = 'none'; mobileMenu.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
+      /* ---------- Utilities ---------- */
+      const $ = s => document.querySelector(s);
+      const $$ = s => Array.from(document.querySelectorAll(s));
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ===== Theme (Light vs Dark Side) =====
-    const themeToggle = $('#themeToggle');
-    const applyTheme = (dark) => {
-      document.body.classList.toggle('dark', dark);
-      localStorage.setItem('site-theme', dark ? 'dark' : 'light');
-      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#05080f' : '#0b0f17');
-      saberPulse(); // small audio sweep
-    };
-    const savedTheme = localStorage.getItem('site-theme');
-    applyTheme(savedTheme ? savedTheme === 'dark' : false);
-    themeToggle?.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')));
-
-    // ===== Typing effect in tagline =====
-    const typingEl = $('#typing');
-    const roles = ["AI Researcher", "Robotics Engineer", "ML Enthusiast", "UAV Navigation & CV"];
-    let ridx = 0, cidx = 0;
-    function typeLoop(){
-      if(!typingEl) return;
-      const role = roles[ridx];
-      typingEl.textContent = role.slice(0, cidx);
-      cidx++;
-      if(cidx <= role.length) setTimeout(typeLoop, prefersReduced ? 0 : 70);
-      else setTimeout(eraseLoop, prefersReduced ? 300 : 1200);
-    }
-    function eraseLoop(){
-      if(!typingEl) return;
-      const role = roles[ridx];
-      typingEl.textContent = role.slice(0, cidx);
-      cidx--;
-      if(cidx >= 0) setTimeout(eraseLoop, prefersReduced ? 0 : 28);
-      else { ridx = (ridx + 1) % roles.length; setTimeout(typeLoop, prefersReduced ? 0 : 280); }
-    }
-    typeLoop();
-
-    // ===== Reveal on scroll =====
-    const sections = $$('.hero, main section');
-    const revIO = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible') })
-    }, { threshold: .18 });
-    sections.forEach(s=> revIO.observe(s));
-
-    // ===== Active nav + smooth scroll + hyperjump =====
-    const navLinks = $$('#navLinks a');
-    const secObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          const id = e.target.id;
-          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      /* ---------- Mobile menu ---------- */
+      const menuBtn = $('#menuBtn');
+      const mobileMenu = $('#mobileMenu');
+      menuBtn?.addEventListener('click', () => {
+        const open = mobileMenu.style.display === 'block';
+        mobileMenu.style.display = open ? 'none' : 'block';
+        mobileMenu.setAttribute('aria-hidden', String(open));
+        menuBtn.setAttribute('aria-expanded', String(!open));
+      });
+      document.addEventListener('click', (e) => {
+        if(!mobileMenu || !menuBtn) return;
+        const within = e.target.closest('#mobileMenu') || e.target.closest('#menuBtn');
+        if(!within && mobileMenu.style.display === 'block'){
+          mobileMenu.style.display = 'none'; mobileMenu.setAttribute('aria-hidden', 'true'); menuBtn.setAttribute('aria-expanded', 'false');
         }
       });
-    }, { threshold:.35 });
-    document.querySelectorAll('main section[id]').forEach(s=> secObserver.observe(s));
 
-    const hyperdrive = $('#hyperdrive');
-    function jump(){
-      if(prefersReduced) return;
-      hyperdrive.classList.remove('active');
-      void hyperdrive.offsetWidth;
-      hyperdrive.classList.add('active');
-      boostStars();
-      saberClick();
-    }
-    navLinks.forEach(a=>{
-      a.addEventListener('click', (ev)=>{
-        ev.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if(!target) return;
-        const y = target.getBoundingClientRect().top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72) + 8;
-        jump(); window.scrollTo({ top: y, behavior: 'smooth' });
-        mobileMenu && (mobileMenu.style.display = 'none');
-      });
-    });
+      /* ---------- Theme toggle ---------- */
+      const themeToggle = $('#themeToggle');
+      const applyTheme = (dark) => {
+        document.body.classList.toggle('dark', dark);
+        localStorage.setItem('site-theme', dark ? 'dark' : 'light');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#05080f' : '#0b0f17');
+        saberPulse();
+      };
+      const savedTheme = localStorage.getItem('site-theme');
+      applyTheme(savedTheme ? savedTheme === 'dark' : false);
+      themeToggle?.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')));
 
-    // ===== Scroll progress + back-to-top =====
-    const backTop = $('#backTop');
-    const scrollProgress = $('#scrollProgress');
-    const onScroll = () => {
-      const scrolled = window.scrollY;
-      backTop.classList.toggle('show', scrolled > window.innerHeight);
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = Math.max(0, Math.min(1, scrolled / (docH || 1)));
-      if(scrollProgress) scrollProgress.style.width = (pct * 100).toFixed(2) + '%';
-    };
-    window.addEventListener('scroll', onScroll);
-    backTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // ===== Project filters =====
-    const filterBtns = $$('.filter-btn');
-    const projectCards = $$('#projectGrid .card');
-    filterBtns.forEach(btn => btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const tag = btn.dataset.filter;
-      projectCards.forEach(card => {
-        const tags = (card.getAttribute('data-tags') || '').split(',').map(s => s.trim());
-        const show = tag === 'all' || tags.includes(tag);
-        card.style.display = show ? '' : 'none';
-      });
-      saberClick();
-    }));
-
-    // ===== Quick View dialog =====
-    const dlg = $('#projectDialog'), dlgClose = $('#dialogClose');
-    $$('.quick-view').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.card'); if(!card || !dlg) return;
-        $('#dialogTitle').textContent = card.dataset.title || 'Project';
-        $('#dialogImg').src = card.dataset.img || card.querySelector('img')?.src || '';
-        $('#dialogImg').alt = (card.dataset.title || 'Project') + ' preview';
-        $('#dialogDesc').textContent = card.dataset.desc || card.querySelector('p')?.textContent || '';
-        $('#dialogGithub').href = card.dataset.github || '#';
-        dlg.showModal(); saberClick();
-      });
-    });
-    dlgClose?.addEventListener('click', ()=> dlg?.close());
-    dlg?.addEventListener('click', (e)=> { if(e.target === dlg) dlg.close() });
-
-    // ===== Fun counters =====
-    const counters = $$('[data-counter]');
-    const ctrIO = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          const el = entry.target;
-          const target = Number(el.getAttribute('data-counter')) || 0;
-          const start = performance.now(); const dur = 900;
-          const step = (t) => { const p = Math.min(1, (t - start)/dur); el.textContent = Math.round(target * p); if(p < 1) requestAnimationFrame(step) };
-          requestAnimationFrame(step); ctrIO.unobserve(el);
-        }
-      })
-    }, {threshold:.6});
-    counters.forEach(c=> ctrIO.observe(c));
-
-    // ===== Copy email =====
-    $('#copyEmail')?.addEventListener('click', async () => {
-      try{ await navigator.clipboard.writeText('ayushkatiya@gmail.com'); $('#copyEmail').innerHTML = '<i class="fa-solid fa-check"></i>'; setTimeout(()=> $('#copyEmail').innerHTML = '<i class="fa-solid fa-copy"></i>', 1400); saberClick(); } catch(e){}
-    });
-
-    // ===== Contact form (Formspree or mailto) =====
-    const contactForm = $('#contactForm');
-    const formStatus = $('#formStatus');
-    if(contactForm){
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if($('#website')?.value) { formStatus.textContent = 'Detected as droid spam.'; return; }
-        formStatus.textContent = 'Transmitting...';
-        const formData = new FormData(contactForm);
-        const payload = Object.fromEntries(formData.entries());
-        try{
-          if(FORM_ENDPOINT && FORM_ENDPOINT.trim().length){
-            const res = await fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Accept':'application/json' }, body: formData });
-            formStatus.textContent = res.ok ? 'Message sent — thank you!' : 'Unable to send (Formspree). Try email below.';
-            if(res.ok) contactForm.reset();
-          } else {
-            const subject = encodeURIComponent(`Portfolio message from ${payload.name || 'Visitor'}`);
-            const body = encodeURIComponent(`Name: ${payload.name || ''}\nEmail: ${payload.email || ''}\n\nMessage:\n${payload.message || ''}`);
-            window.location.href = `mailto:ayushkatiya@gmail.com?subject=${subject}&body=${body}`;
-            formStatus.textContent = 'Opening your holoterminal...';
-          }
-        } catch(err){ console.error(err); formStatus.textContent = 'Transmission error. Try again or email directly.'; }
-        finally{ setTimeout(()=> formStatus.textContent = '', 5000) }
-      });
-    }
-
-    // ============================
-    //   STARFIELD (3-layer)
-    // ============================
-    const layers = [
-      { id: 'stars',  count: 140, speed: .12, size:[1,2], color: 'rgba(255,255,255,.85)' },
-      { id: 'stars2', count: 90,  speed: .24, size:[1.2,2.4], color: 'rgba(180,220,255,.85)' },
-      { id: 'stars3', count: 60,  speed: .45, size:[1.4,2.8], color: 'rgba(140,200,255,.9)' }
-    ];
-    const starLayers = [];
-    let hyperBoost = 1;
-    function makeStars(canvas, cfg){
-      const ctx = canvas.getContext('2d');
-      const stars = [];
-      const DPR = Math.min(2, window.devicePixelRatio || 1);
-      function resize(){
-        canvas.width  = Math.floor(canvas.clientWidth  * DPR);
-        canvas.height = Math.floor(canvas.clientHeight * DPR);
+      /* ---------- Typing effect ---------- */
+      const typingEl = $('#typing');
+      const roles = ["AI Researcher", "Robotics Engineer", "ML Enthusiast", "UAV Navigation & CV"];
+      let ridx = 0, cidx = 0;
+      function typeLoop(){
+        if(!typingEl) return;
+        const role = roles[ridx];
+        typingEl.textContent = role.slice(0, cidx);
+        cidx++;
+        if(cidx <= role.length) setTimeout(typeLoop, prefersReduced ? 0 : 70);
+        else setTimeout(eraseLoop, prefersReduced ? 300 : 1200);
       }
-      function init(){
-        resize();
-        stars.length = 0;
-        for(let i=0;i<cfg.count;i++){
-          stars.push({
-            x: Math.random()*canvas.width,
-            y: Math.random()*canvas.height,
-            z: Math.random()*1 + .5,
-            r: (Math.random()*(cfg.size[1]-cfg.size[0]) + cfg.size[0]) * (DPR*.6)
+      function eraseLoop(){
+        if(!typingEl) return;
+        const role = roles[ridx];
+        typingEl.textContent = role.slice(0, cidx);
+        cidx--;
+        if(cidx >= 0) setTimeout(eraseLoop, prefersReduced ? 0 : 28);
+        else { ridx = (ridx + 1) % roles.length; setTimeout(typeLoop, prefersReduced ? 0 : 280); }
+      }
+      typeLoop();
+
+      /* ---------- Reveal on scroll (with fallback) ---------- */
+      const sections = $$('.hero, main section');
+      if ('IntersectionObserver' in window){
+        const revIO = new IntersectionObserver((entries)=>{
+          entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('visible') })
+        }, { threshold: .18 });
+        sections.forEach(s=> revIO.observe(s));
+      } else {
+        // Older browsers: just show everything
+        sections.forEach(s => s.classList.add('visible'));
+      }
+
+      /* ---------- Active nav + smooth scroll + hyperjump ---------- */
+      const navLinks = $$('#navLinks a');
+      if ('IntersectionObserver' in window){
+        const secObserver = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting){
+              const id = e.target.id;
+              navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+            }
           });
-        }
+        }, { threshold:.35 });
+        document.querySelectorAll('main section[id]').forEach(s=> secObserver.observe(s));
       }
-      function draw(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        ctx.fillStyle = cfg.color;
-        for(const s of stars){
-          ctx.beginPath(); ctx.arc(s.x, s.y, s.r*s.z, 0, Math.PI*2); ctx.fill();
-          s.y += cfg.speed * s.z * hyperBoost;
-          if(s.y > canvas.height){ s.y = -4; s.x = Math.random()*canvas.width; s.z = Math.random()*1 + .5 }
-        }
-        requestAnimationFrame(draw);
+      const hyperdrive = $('#hyperdrive');
+      function jump(){
+        if(prefersReduced) return;
+        hyperdrive.classList.remove('active'); void hyperdrive.offsetWidth;
+        hyperdrive.classList.add('active'); boostStars(); saberClick();
       }
-      window.addEventListener('resize', init);
-      init(); draw();
-      return { init, draw, resize };
-    }
-    function boostStars(){
-      if(prefersReduced) return;
-      hyperBoost = 6;
-      setTimeout(()=> hyperBoost = 1, 700);
-    }
-    layers.forEach(cfg=>{
-      const c = document.getElementById(cfg.id);
-      starLayers.push(makeStars(c, cfg));
-    });
-
-    // ============================
-    //   OPENING CRAWL
-    // ============================
-    const crawlOverlay = $('#crawlOverlay');
-    const playIntro = $('#playIntro');
-    const skipCrawl = $('#skipCrawl');
-    playIntro?.addEventListener('click', () => {
-      crawlOverlay.classList.add('active'); saberIgnite();
-    });
-    skipCrawl?.addEventListener('click', () => {
-      crawlOverlay.classList.remove('active'); saberRetract();
-    });
-    crawlOverlay?.addEventListener('click', (e)=> {
-      if(e.target === crawlOverlay) crawlOverlay.classList.remove('active');
-    });
-
-    // ============================
-    //   WEB AUDIO — SFX (no media)
-    // ============================
-    let audioCtx = null, masterGain = null, sfxOn = false, humOsc = null, humGain = null;
-    const sfxToggle = $('#sfxToggle');
-    function initAudio(){
-      if(audioCtx) return;
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = audioCtx.createGain();
-      masterGain.gain.value = 0.12;
-      masterGain.connect(audioCtx.destination);
-    }
-    function playBeep(freq=880, dur=0.08){
-      if(!sfxOn || !audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const g = audioCtx.createGain();
-      osc.type='triangle'; osc.frequency.value=freq;
-      g.gain.value=0.0001;
-      osc.connect(g); g.connect(masterGain);
-      osc.start();
-      g.gain.exponentialRampToValueAtTime(0.35, audioCtx.currentTime + 0.01);
-      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
-      osc.stop(audioCtx.currentTime + dur + 0.02);
-    }
-    function saberIgnite(){
-      if(!sfxOn || !audioCtx) return;
-      const o = audioCtx.createOscillator();
-      const g = audioCtx.createGain();
-      o.type='sawtooth'; o.frequency.setValueAtTime(120, audioCtx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 0.15);
-      g.gain.value=0.0001; g.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.12);
-      o.connect(g); g.connect(masterGain); o.start(); o.stop(audioCtx.currentTime + 0.25);
-      startHum();
-    }
-    function saberRetract(){
-      if(!sfxOn || !audioCtx) return stopHum();
-      stopHum();
-      const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-      o.type='sawtooth'; o.frequency.setValueAtTime(220, audioCtx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.15);
-      g.gain.value=0.25; g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.2);
-      o.connect(g); g.connect(masterGain); o.start(); o.stop(audioCtx.currentTime + 0.22);
-    }
-    function startHum(){
-      if(!sfxOn || !audioCtx || humOsc) return;
-      humOsc = audioCtx.createOscillator(); humGain = audioCtx.createGain();
-      humOsc.type='sawtooth'; humOsc.frequency.value = 70; humGain.gain.value = 0.05;
-      humOsc.connect(humGain); humGain.connect(masterGain); humOsc.start();
-    }
-    function stopHum(){
-      if(humOsc && humGain){
-        humGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
-        humOsc.stop(audioCtx.currentTime + 0.18);
-      }
-      humOsc = null; humGain = null;
-    }
-    function saberClick(){ playBeep(980, .06) }
-    function saberPulse(){ playBeep(520, .06) }
-
-    sfxToggle?.addEventListener('click', async ()=>{
-      if(!audioCtx) initAudio();
-      if(audioCtx && audioCtx.state === 'suspended') await audioCtx.resume();
-      sfxOn = !sfxOn;
-      sfxToggle.innerHTML = sfxOn ? '<i class="fa-solid fa-volume-high"></i><span class="hide-sm"> SFX</span>' :
-                                     '<i class="fa-solid fa-volume-xmark"></i><span class="hide-sm"> SFX</span>';
-      if(sfxOn){ saberIgnite() } else { saberRetract() }
-    });
-
-    // ===== FUN: press "H" for hyperjump =====
-    document.addEventListener('keydown', (e)=>{
-      if(e.key.toLowerCase() === 'h'){ jump() }
-    });
-
-    // ===== Opening reveal for sections in viewport (on load) =====
-    window.addEventListener('load', () => {
-      sections.forEach(s => {
-        const rect = s.getBoundingClientRect();
-        if(rect.top < window.innerHeight * 0.85) s.classList.add('visible');
+      navLinks.forEach(a=>{
+        a.addEventListener('click', (ev)=>{
+          ev.preventDefault();
+          const target = document.querySelector(a.getAttribute('href'));
+          if(!target) return;
+          const y = target.getBoundingClientRect().top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72) + 8;
+          jump(); window.scrollTo({ top: y, behavior: 'smooth' });
+          mobileMenu && (mobileMenu.style.display = 'none');
+        });
       });
+
+      /* ---------- Scroll progress + back-to-top ---------- */
+      const backTop = $('#backTop');
+      const scrollProgress = $('#scrollProgress');
+      const onScroll = () => {
+        const scrolled = window.scrollY;
+        backTop.classList.toggle('show', scrolled > window.innerHeight);
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = Math.max(0, Math.min(1, scrolled / (docH || 1)));
+        if(scrollProgress) scrollProgress.style.width = (pct * 100).toFixed(2) + '%';
+      };
+      window.addEventListener('scroll', onScroll);
+      backTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      /* ---------- Project filters ---------- */
+      const filterBtns = $$('.filter-btn');
+      const projectCards = $$('#projectGrid .card');
+      filterBtns.forEach(btn => btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const tag = btn.dataset.filter;
+        projectCards.forEach(card => {
+          const tags = (card.getAttribute('data-tags') || '').split(',').map(s => s.trim());
+          const show = tag === 'all' || tags.includes(tag);
+          card.style.display = show ? '' : 'none';
+        });
+        saberClick();
+      }));
+
+      /* ---------- Quick View dialog ---------- */
+      const dlg = $('#projectDialog'), dlgClose = $('#dialogClose');
+      $$('.quick-view').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.card'); if(!card || !dlg) return;
+          $('#dialogTitle').textContent = card.dataset.title || 'Project';
+          $('#dialogImg').src = card.dataset.img || card.querySelector('img')?.src || '';
+          $('#dialogImg').alt = (card.dataset.title || 'Project') + ' preview';
+          $('#dialogDesc').textContent = card.dataset.desc || card.querySelector('p')?.textContent || '';
+          $('#dialogGithub').href = card.dataset.github || '#';
+          dlg.showModal(); saberClick();
+        });
+      });
+      dlgClose?.addEventListener('click', ()=> dlg?.close());
+      dlg?.addEventListener('click', (e)=> { if(e.target === dlg) dlg.close() });
+
+      /* ---------- Counters (defensive default values set in HTML) ---------- */
+      const counters = $$('[data-counter]');
+      if ('IntersectionObserver' in window){
+        const ctrIO = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              const el = entry.target;
+              const target = Number(el.getAttribute('data-counter')) || Number(el.textContent) || 0;
+              const start = performance.now(); const dur = 900;
+              const step = (t) => { const p = Math.min(1, (t - start)/dur); el.textContent = Math.round(target * p); if(p < 1) requestAnimationFrame(step) };
+              requestAnimationFrame(step); ctrIO.unobserve(el);
+            }
+          })
+        }, {threshold:.6});
+        counters.forEach(c=> ctrIO.observe(c));
+      }
+
+      /* ---------- Copy email ---------- */
+      $('#copyEmail')?.addEventListener('click', async () => {
+        try{ await navigator.clipboard.writeText('ayushkatiya@gmail.com'); $('#copyEmail').innerHTML = '<i class="fa-solid fa-check"></i>'; setTimeout(()=> $('#copyEmail').innerHTML = '<i class="fa-solid fa-copy"></i>', 1400); saberClick(); } catch(e){}
+      });
+
+      /* ---------- Contact form ---------- */
+      const FORM_ENDPOINT = ''; // set your Formspree endpoint if you want serverless submit
+      const contactForm = $('#contactForm'); const formStatus = $('#formStatus');
+      if(contactForm){
+        contactForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if($('#website')?.value) { formStatus.textContent = 'Detected as droid spam.'; return; }
+          formStatus.textContent = 'Transmitting...';
+          const formData = new FormData(contactForm);
+          const payload = Object.fromEntries(formData.entries());
+          try{
+            if(FORM_ENDPOINT && FORM_ENDPOINT.trim().length){
+              const res = await fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Accept':'application/json' }, body: formData });
+              formStatus.textContent = res.ok ? 'Message sent — thank you!' : 'Unable to send (Formspree). Try email below.';
+              if(res.ok) contactForm.reset();
+            } else {
+              const subject = encodeURIComponent(`Portfolio message from ${payload.name || 'Visitor'}`);
+              const body = encodeURIComponent(`Name: ${payload.name || ''}\nEmail: ${payload.email || ''}\n\nMessage:\n${payload.message || ''}`);
+              window.location.href = `mailto:ayushkatiya@gmail.com?subject=${subject}&body=${body}`;
+              formStatus.textContent = 'Opening your holoterminal...';
+            }
+          } catch(err){ console.error(err); formStatus.textContent = 'Transmission error. Try again or email directly.'; }
+          finally{ setTimeout(()=> formStatus.textContent = '', 5000) }
+        });
+      }
+
+      /* ---------- Starfield (after DOM ready) ---------- */
+      const layers = [
+        { id: 'stars',  count: 140, speed: .12, size:[1,2], color: 'rgba(255,255,255,.85)' },
+        { id: 'stars2', count: 90,  speed: .24, size:[1.2,2.4], color: 'rgba(180,220,255,.85)' },
+        { id: 'stars3', count: 60,  speed: .45, size:[1.4,2.8], color: 'rgba(140,200,255,.9)' }
+      ];
+      let hyperBoost = 1;
+      function makeStars(canvas, cfg){
+        if(!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const stars = [];
+        const DPR = Math.min(2, window.devicePixelRatio || 1);
+        function resize(){
+          // Use the CSS size (set in style) to compute backing store size
+          const rect = canvas.getBoundingClientRect();
+          canvas.width  = Math.max(1, Math.floor(rect.width  * DPR));
+          canvas.height = Math.max(1, Math.floor(rect.height * DPR));
+        }
+        function init(){
+          resize(); stars.length = 0;
+          for(let i=0;i<cfg.count;i++){
+            stars.push({
+              x: Math.random()*canvas.width,
+              y: Math.random()*canvas.height,
+              z: Math.random()*1 + .5,
+              r: (Math.random()*(cfg.size[1]-cfg.size[0]) + cfg.size[0]) * (DPR*.6)
+            });
+          }
+        }
+        function draw(){
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+          ctx.fillStyle = cfg.color;
+          for(const s of stars){
+            ctx.beginPath(); ctx.arc(s.x, s.y, s.r*s.z, 0, Math.PI*2); ctx.fill();
+            s.y += cfg.speed * s.z * hyperBoost;
+            if(s.y > canvas.height){ s.y = -4; s.x = Math.random()*canvas.width; s.z = Math.random()*1 + .5 }
+          }
+          requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', init);
+        init(); draw();
+      }
+      function boostStars(){ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){ hyperBoost = 6; setTimeout(()=> hyperBoost = 1, 700); } }
+      layers.forEach(cfg=> makeStars(document.getElementById(cfg.id), cfg));
+
+      /* ---------- Opening crawl + SFX ---------- */
+      const crawlOverlay = $('#crawlOverlay'); const playIntro = $('#playIntro'); const skipCrawl = $('#skipCrawl');
+      playIntro?.addEventListener('click', () => { crawlOverlay.classList.add('active'); saberIgnite(); });
+      skipCrawl?.addEventListener('click', () => { crawlOverlay.classList.remove('active'); saberRetract(); });
+      crawlOverlay?.addEventListener('click', (e)=> { if(e.target === crawlOverlay) crawlOverlay.classList.remove('active'); });
+
+      let audioCtx = null, masterGain = null, sfxOn = false, humOsc = null, humGain = null;
+      const sfxToggle = $('#sfxToggle');
+      function initAudio(){
+        if(audioCtx) return;
+        try{
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          masterGain = audioCtx.createGain();
+          masterGain.gain.value = 0.12;
+          masterGain.connect(audioCtx.destination);
+        }catch{ /* audio may be unavailable (HTTP or permissions) — ignore */ }
+      }
+      function playBeep(freq=880, dur=0.08){
+        if(!sfxOn || !audioCtx) return;
+        const osc = audioCtx.createOscillator(); const g = audioCtx.createGain();
+        osc.type='triangle'; osc.frequency.value=freq; g.gain.value=0.0001;
+        osc.connect(g); g.connect(masterGain); osc.start();
+        g.gain.exponentialRampToValueAtTime(0.35, audioCtx.currentTime + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+        osc.stop(audioCtx.currentTime + dur + 0.02);
+      }
+      function saberIgnite(){ if(!sfxOn || !audioCtx) return; const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type='sawtooth'; o.frequency.setValueAtTime(120, audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 0.15); g.gain.value=0.0001; g.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime + 0.12); o.connect(g); g.connect(masterGain); o.start(); o.stop(audioCtx.currentTime + 0.25); startHum(); }
+      function saberRetract(){ if(!sfxOn || !audioCtx) return stopHum(); stopHum(); const o = audioCtx.createOscillator(); const g = audioCtx.createGain(); o.type='sawtooth'; o.frequency.setValueAtTime(220, audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.15); g.gain.value=0.25; g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.2); o.connect(g); g.connect(masterGain); o.start(); o.stop(audioCtx.currentTime + 0.22); }
+      function startHum(){ if(!sfxOn || !audioCtx || humOsc) return; humOsc = audioCtx.createOscillator(); humGain = audioCtx.createGain(); humOsc.type='sawtooth'; humOsc.frequency.value = 70; humGain.gain.value = 0.05; humOsc.connect(humGain); humGain.connect(masterGain); humOsc.start(); }
+      function stopHum(){ try{ if(humOsc && humGain){ humGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15); humOsc.stop(audioCtx.currentTime + 0.18); } }catch{} humOsc=null; humGain=null; }
+      function saberClick(){ playBeep(980, .06) } function saberPulse(){ playBeep(520, .06) }
+      sfxToggle?.addEventListener('click', async ()=>{
+        if(!audioCtx) initAudio();
+        try{ if(audioCtx && audioCtx.state === 'suspended') await audioCtx.resume(); }catch{}
+        sfxOn = !sfxOn;
+        sfxToggle.innerHTML = sfxOn ? '<i class="fa-solid fa-volume-high"></i> SFX' : '<i class="fa-solid fa-volume-xmark"></i> SFX';
+        if(sfxOn){ saberIgnite() } else { saberRetract() }
+      });
+
+      // Keyboard hyperjump
+      document.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase() === 'h'){ jump() } });
     });
   </script>
 </body>
