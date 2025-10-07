@@ -1,0 +1,16 @@
+{
+  "name": "Ayush Katiya — Cyberpunk Robotics & AI",
+  "short_name": "Ayush Katiya",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0a0e16",
+  "theme_color": "#0a0e16",
+  "icons": [
+    {
+      "src": "assets/profile.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
