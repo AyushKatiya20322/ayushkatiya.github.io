@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Ayush Katiya — Star-Wars-inspired portfolio (enhanced, fixed Top-Skills pills) -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ayush Katiya — Robotics & AI</title>
@@ -17,7 +16,6 @@
       --space-1:#0b0f17; --text:#e6f0ff; --muted:#95a3bd;
       --panel:#0d1320cc; --panel-border:#7df9ff44; --scanline:linear-gradient(to bottom, rgba(255,255,255,.08) 0, rgba(255,255,255,0) 2px);
       --nav-height:72px; --radius:14px; --ring:0 0 0 3px rgba(0,230,255,.35);
-      /* accents (modifiable live) */
       --a1:#00e6ff; --a2:#52ff9a; --a3:#ff3b56; --a4:#ffe81f;
     }
     body.dark{ --text:#f3f7ff; --muted:#9bb0d1; --panel:#070a12cc; --panel-border:#ff3b5644; --ring:0 0 0 3px rgba(255,59,86,.35) }
@@ -39,17 +37,15 @@
     :focus-visible{ outline:none; box-shadow:var(--ring) }
     .container{ max-width:1100px; margin:0 auto; padding:1rem 1.1rem }
     .muted{ color:var(--muted) } .mono{ font-family:"Share Tech Mono",ui-monospace,Menlo,Consolas,monospace }
-
-    /* Skip link */
     .skip{ position:absolute; left:-999px; top:-999px } .skip:focus{ left:8px; top:8px; background:#000; color:#fff; padding:.5rem .75rem; border-radius:8px; z-index:2001 }
 
-    /* Starfield */
-    #stars,#stars2,#stars3{ position:fixed; inset:0; z-index:-3; pointer-events:none; width:100vw; height:100vh; display:block }
+    /* Starfield layers */
+    #stars,#stars2,#stars3{ position:fixed; inset:0; z-index:-3; width:100vw; height:100vh; display:block; pointer-events:none }
 
     /* Navbar */
     header.navbar{ position:fixed; inset:0 0 auto; height:var(--nav-height); display:flex; align-items:center; z-index:1000; backdrop-filter:blur(10px); background:linear-gradient(to bottom, rgba(2,6,23,.55), rgba(2,6,23,.25)); border-bottom:1px solid #ffffff14 }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; width:100%; max-width:1100px; margin:0 auto }
-    .brand{ font-family:Orbitron,system-ui; font-weight:800; letter-spacing:.5px; color:var(--a4); text-shadow:0 0 12px #ffe81f22 }
+    .brand{ font-family:Orbitron; font-weight:800; letter-spacing:.5px; color:var(--a4); text-shadow:0 0 12px #ffe81f22 }
     .nav-links{ list-style:none; display:flex; gap:.2rem; padding:0; margin:0 }
     .nav-links a{ display:inline-flex; align-items:center; gap:.4rem; padding:.6rem .7rem; border-radius:10px; font-weight:800; color:var(--text); text-decoration:none; position:relative }
     .nav-links a .blade{
@@ -60,25 +56,25 @@
     }
     .nav-links a:hover .blade, .nav-links a.active .blade{ transform:scaleX(1) }
     .controls{ display:flex; align-items:center; gap:.45rem }
-    .chip-btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .6rem; border:1px solid #ffffff2a; border-radius:999px; background:#0b1220aa; color:var(--text); font-weight:800; cursor:pointer }
+    .chip-btn{ display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .6rem; border:1px solid #ffffff2a; border-radius:999px; background:#0b1220aa; color:var(--text); font-weight:800; cursor:pointer; position:relative; z-index:5 }
     .menu-btn{ display:none }
 
     /* Hero */
     .hero{ min-height:calc(100vh - var(--nav-height)); display:grid; place-items:center; text-align:center; padding:calc(var(--nav-height) + 48px) 1rem 4rem; position:relative }
-    .holo-frame{ position:relative; max-width:980px; margin:0 auto; padding:1.4rem 1.2rem 1.1rem; border-radius:18px; background:var(--panel); border:1px solid var(--panel-border); box-shadow:0 0 24px var(--a1)22, inset 0 0 24px var(--a1)11; overflow:hidden }
+    .holo-frame{ position:relative; max-width:980px; margin:0 auto; padding:1.4rem 1.2rem 1.1rem; border-radius:18px; background:var(--panel); border:1px solid var(--panel-border); box-shadow:0 0 24px var(--a1)22, inset 0 0 24px var(--a1)11; overflow:hidden; z-index:5 }
     .holo-frame::before{ content:""; position:absolute; inset:0; background-image:var(--scanline); background-size:100% 3px; opacity:.25; pointer-events:none }
     .profile{ width:148px; height:148px; border-radius:50%; object-fit:cover; margin:0 auto 14px; border:4px solid var(--a1); box-shadow:0 0 24px var(--a1), 0 0 36px var(--a1)33; background:#111 }
     .holo-header{ font-family:Orbitron; letter-spacing:.5px; margin:0 0 4px; font-size:2.6rem }
     .tagline{ color:var(--a2); font-weight:800; letter-spacing:.4px; margin-bottom:10px; min-height:28px }
     .lead{ color:var(--muted); max-width:760px; margin:0 auto 18px }
-    .cta{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px }
+    .cta{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px; position:relative; z-index:5 }
     .btn{ appearance:none; border:0; cursor:pointer; font-weight:900; letter-spacing:.3px; text-decoration:none; padding:.8rem 1rem; border-radius:12px; background:var(--a1); color:#061018; display:inline-flex; gap:.5rem; align-items:center; box-shadow:0 10px 32px var(--a1)2a, inset 0 0 14px #ffffff55; transition:transform .15s }
     .btn:hover{ transform:translateY(-2px) }
     .btn.alt{ background:transparent; color:var(--text); border:1.5px solid #ffffff2a; box-shadow:0 6px 16px #0006 }
 
-    /* Sections / panels */
+    /* Sections */
     main{ margin-top:18px }
-    section{ padding:48px 0 }                 /* visible by default */
+    section{ padding:48px 0 }
     body.animate section{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease }
     body.animate section.visible{ opacity:1; transform:none }
     .panel{ background:var(--panel); border:1px solid var(--panel-border); border-radius:16px; padding:1.2rem; box-shadow:0 0 24px var(--a1)12, inset 0 0 24px var(--a1)0a }
@@ -88,15 +84,11 @@
 
     .two-col{ display:grid; grid-template-columns:1fr 320px; gap:20px; align-items:start }
     @media (max-width:1000px){ .two-col{ grid-template-columns:1fr } }
-    .info-card{ background:#0a1220bb; border:1px solid #ffffff1a; border-radius:12px; padding:14px; box-shadow:0 12px 30px #0008, inset 0 0 16px #ffffff06 }
+    .info-card{ background:#0a1220bb; border:1px solid #ffffff1a; border-radius:12px; padding:14px; box-shadow:0 12px 30px #0008, inset 0 0 16px #ffffff06; position:relative; z-index:5 }
     .info-row{ display:flex; gap:10px; align-items:flex-start; margin-bottom:10px }
     .info-label{ min-width:110px; font-weight:800; color:var(--muted) }
-
-    /* >>> FIX: let value column wrap and avoid overlap */
-    .info-row > :nth-child(2){
-      min-width:0;        /* critical for flex children to shrink */
-      flex:1 1 auto;      /* allow wrapping */
-    }
+    /* pills fix: allow value column to wrap */
+    .info-row > :nth-child(2){ min-width:0; flex:1 1 auto; }
 
     .timeline{ border-left:3px solid var(--a1); padding-left:16px }
     .timeline-item{ margin-bottom:18px }
@@ -104,7 +96,6 @@
     .timeline-item small{ display:block; color:var(--muted); margin-bottom:6px }
 
     .grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:14px }
-
     .card{ position:relative; overflow:hidden; background:#0c1322dd; border:1px solid var(--a2)22; border-radius:12px; padding:12px; display:flex; flex-direction:column; min-width:0; transition:transform .25s, box-shadow .25s, border-color .25s }
     .card:hover{ transform:translateY(-4px) rotateX(.6deg) rotateY(-.6deg); box-shadow:0 14px 40px var(--a1)22, inset 0 0 20px var(--a2)11; border-color:var(--a2)55 }
     .card::after{ content:""; position:absolute; inset:-60% -60% auto auto; width:140%; height:140%; background:radial-gradient(500px 120px at 10% 10%, var(--a2)22, transparent 50%); transform:rotate(25deg); pointer-events:none; opacity:.25; mix-blend-mode:screen }
@@ -115,26 +106,18 @@
     .meta a{ text-decoration:none }
 
     .filters{ display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin:-4px 0 18px }
-    .filter-btn{ border:1px solid #ffffff2a; background:#0b1220bb; color:var(--text); padding:.4rem .7rem; border-radius:999px; font-weight:800; cursor:pointer }
+    .filter-btn{ border:1px solid #ffffff2a; background:#0b1220bb; color:#fff; padding:.4rem .7rem; border-radius:999px; font-weight:800; cursor:pointer }
     .filter-btn.active{ background:linear-gradient(90deg, var(--a1), var(--a2)); color:#061018; border-color:transparent }
 
-    .skills{ display:flex; flex-wrap:wrap; gap:8px }                  /* global skills container */
-    .skill, .chip{                                                  /* unify pills */
-      display:inline-flex; align-items:center;
-      white-space:nowrap; line-height:1;
-      padding:.45rem .75rem; border-radius:999px;
-      background:#0a121f; color:#bfe5ff; border:1px solid #ffffff14;
-      font-weight:800;
-    }
+    .skills{ display:flex; flex-wrap:wrap; gap:8px }
+    .skill, .chip{ display:inline-flex; align-items:center; white-space:nowrap; line-height:1; padding:.45rem .75rem; border-radius:999px; background:#0a121f; color:#bfe5ff; border:1px solid #ffffff14; font-weight:800 }
     .skill:hover, .chip:hover{ box-shadow:0 0 16px var(--a1)22 }
-
-    /* ensure pills lay out correctly inside info-card */
     .info-card .skills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:2px }
 
     .counter{ text-align:center; min-width:160px; border:1px solid #ffffff22; border-radius:12px; padding:10px; background:#0a121fcc }
     .counter .num{ font-size:1.8rem; font-weight:900 }
 
-    .scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0; z-index:1200; background:linear-gradient(90deg, var(--a3), #fff, var(--a1)); box-shadow:0 0 10px #fff8, 0 0 18px var(--a1) }
+    .scroll-progress{ position:fixed; top:0; left:0; height:3px; width:0; z-index:1200; background:linear-gradient(90deg, var(--a3), #fff, var(--a1)); box-shadow:0 0 10px #fff8, 0 0 18px var(--a1); pointer-events:none }
     .back-top{ position:fixed; right:18px; bottom:18px; background:linear-gradient(90deg, var(--a1), var(--a2)); border-radius:10px; padding:10px; color:#061018; box-shadow:0 8px 20px var(--a1)2a; display:none; z-index:1100; cursor:pointer }
     .back-top.show{ display:inline-flex }
 
@@ -164,31 +147,19 @@
     .pal-item b{ color:#fff }
     .pal-item[aria-selected="true"]{ background:#0f1a2e; outline:2px solid var(--a1)33 }
 
-    /* Section anchor (copy link) */
-    .anchor{ opacity:0; transition:opacity .2s; margin-left:.4rem; color:var(--muted) }
-    .section-title:hover .anchor{ opacity:1 }
-
-    /* Theme lab popover */
-    .lab{ position:fixed; right:12px; top:calc(var(--nav-height) + 12px); z-index:1201; display:none }
+    /* Theme Lab (only the card takes clicks) */
+    .lab{ position:fixed; right:12px; top:calc(var(--nav-height) + 12px); z-index:1201; display:none; pointer-events:none }
     .lab.show{ display:block }
-    .lab .card{ padding:12px; width:280px }
+    .lab .card{ padding:12px; width:280px; pointer-events:auto }
     .lab .row{ display:flex; gap:8px; align-items:center; margin:.25rem 0 }
     .lab .sw{ flex:1; display:flex; gap:6px }
     .lab .sw button{ flex:1; padding:.4rem 0; border-radius:999px; border:1px solid #ffffff25; background:#0b1220; color:#fff; cursor:pointer; font-weight:700 }
     .lab .row small{ color:var(--muted) }
 
-    /* Print */
-    @media print{
-      #stars,#stars2,#stars3,#hyperdrive,#crawlOverlay,#palette,.back-top,header.navbar{ display:none !important }
-      body{ background:#fff; color:#000 }
-      a{ color:#000; text-decoration:underline }
-      .panel{ border:0; box-shadow:none }
-    }
-
-    @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important } }
+    /* Click-through safety: when closed these overlays do not block clicks */
+    #crawlOverlay:not(.active), #palette:not(.show){ display:none !important; }
   </style>
 
-  <!-- JSON-LD (valid, static) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -224,14 +195,14 @@
         <li><a class="nav-link" href="#contact">Contact<span class="blade"></span></a></li>
       </ul>
       <div class="controls">
-        <button class="chip-btn" id="playIntro" title="Opening crawl (fun)"><i class="fa-solid fa-film"></i> Intro</button>
+        <button class="chip-btn" id="playIntro" title="Opening crawl"><i class="fa-solid fa-film"></i> Intro</button>
         <button class="chip-btn" id="sfxToggle" title="Sound FX"><i class="fa-solid fa-volume-xmark"></i> SFX</button>
         <button class="chip-btn" id="openLab" title="Theme & Offline"><i class="fa-solid fa-jedi"></i> Side</button>
         <button class="chip-btn" id="openPalette" title="Command Palette (Ctrl/Cmd+K)"><i class="fa-solid fa-magnifying-glass"></i> K</button>
         <button class="chip-btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
-    <nav class="panel" id="mobileMenu" aria-hidden="true" role="menu" style="display:none; position:absolute; top:calc(var(--nav-height) + 8px); right:12px; width:260px">
+    <nav class="panel" id="mobileMenu" aria-hidden="true" role="menu" style="display:none; position:absolute; top:calc(var(--nav-height) + 8px); right:12px; width:260px; z-index:1202">
       <a class="nav-link" href="#about">About</a>
       <a class="nav-link" href="#now">Now (2025)</a>
       <a class="nav-link" href="#experience">Experience</a>
@@ -307,8 +278,6 @@
               <div><a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a> <button class="chip-btn" id="copyEmail" title="Copy email"><i class="fa-solid fa-copy"></i></button></div>
             </div>
           </div>
-
-          <!-- FIXED TOP SKILLS ROW -->
           <div class="info-row">
             <div class="info-label">Top Skills</div>
             <div class="skills" role="list">
@@ -316,7 +285,6 @@
               <span class="skill" role="listitem">Robot Programming</span>
             </div>
           </div>
-
           <div class="info-row"><div class="info-label">Languages</div><div><div class="small muted">Hindi (Native), English (Full Professional), German (Elementary)</div></div></div>
           <div class="info-row"><div class="info-label">Links</div><div><a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="me noopener">LinkedIn</a> • <a href="https://github.com/AyushKatiya20322" target="_blank" rel="me noopener">GitHub</a></div></div>
         </aside>
@@ -372,52 +340,52 @@
       </div>
 
       <div class="grid" aria-live="polite" id="projectGrid">
-        <article class="card" data-tags="ai,cv" data-title="Image Caption Generator (CNN + RNN)" data-img="assets/project1.png" data-github="https://github.com/AyushKatiya20322/Image-Caption-Generator" data-desc="Generates captions describing input images using a CNN encoder and LSTM decoder. Evaluated with BLEU/CIDEr and packaged for inference.">
+        <article class="card" data-tags="ai,cv" data-title="Image Caption Generator (CNN + RNN)" data-img="assets/project1.png" data-github="https://github.com/AyushKatiya20322/Image-Caption-Generator" data-desc="CNN encoder + LSTM decoder; BLEU/CIDEr eval; packaged for inference.">
           <img class="thumb" src="assets/project1.png" alt="Image Caption Generator preview" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/600/350?random=1'">
           <h3>Image Caption Generator (CNN + RNN)</h3>
-          <p>Generates captions describing input images using a CNN to extract features and an RNN (LSTM) decoder to produce natural language captions. Evaluated with BLEU/CIDEr and packaged for inference.</p>
+          <p>Generates captions describing input images using a CNN to extract features and an LSTM decoder to produce natural language captions.</p>
           <div class="meta"><a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <article class="card" data-tags="web,ai" data-title="Technology Portfolio (E-Commerce)" data-img="assets/project2.png" data-github="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" data-desc="Full-stack e-commerce built with React.js, FastAPI backend, Firebase DB, ML-based recommendations, and RPA automation to streamline workflows.">
+        <article class="card" data-tags="web,ai" data-title="Technology Portfolio (E-Commerce)" data-img="assets/project2.png" data-github="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" data-desc="React + FastAPI + Firebase; ML recommendations; RPA automation.">
           <img class="thumb" src="assets/project2.png" alt="E-Commerce project preview" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/600/350?random=2'">
           <h3>Technology_portfolio_Major_Project_2023-2024 (E-Commerce)</h3>
-          <p>Full-stack e-commerce site built with React.js, FastAPI backend, Firebase database, ML-based product recommendations, and RPA automation to streamline workflows.</p>
+          <p>Full-stack e-commerce site: React.js frontend, FastAPI backend, Firebase database, ML-based product recommendations, and RPA workflows.</p>
           <div class="meta"><a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <article class="card" data-tags="ai,cv" data-title="Plant Disease Prediction" data-img="assets/project3.png" data-github="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" data-desc="CNN trained on Kaggle datasets to classify plant diseases. Deployed via FastAPI and integrated into a React frontend for real-time inference and farmer-friendly UI.">
+        <article class="card" data-tags="ai,cv" data-title="Plant Disease Prediction" data-img="assets/project3.png" data-github="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" data-desc="CNN classifier on Kaggle datasets; FastAPI deploy; React UI.">
           <img class="thumb" src="assets/project3.png" alt="Plant Disease Prediction preview" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/600/350?random=3'">
           <h3>Plant Disease Prediction</h3>
-          <p>CNN model trained on Kaggle datasets to classify plant diseases. Deployed using FastAPI and integrated into a React frontend for real-time inference and farmer-friendly UI.</p>
+          <p>CNN model to classify plant diseases. Deployed using FastAPI and integrated into a React frontend for real-time inference.</p>
           <div class="meta"><a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <article class="card" data-tags="nlp,ai" data-title="Text-Data-Processing (RNN)" data-img="assets/project4.png" data-github="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" data-desc="RNN-based pipeline for sequence modeling & sentiment analysis. Includes preprocessing, model training, and evaluation on labeled corpora.">
+        <article class="card" data-tags="nlp,ai" data-title="Text-Data-Processing (RNN)" data-img="assets/project4.png" data-github="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" data-desc="Sequence modeling & sentiment analysis with RNNs.">
           <img class="thumb" src="assets/project4.png" alt="Text Data Processing preview" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/600/350?random=4'">
           <h3>Text-Data-Processing_DeepLearning_RNN</h3>
-          <p>An RNN-based pipeline for extracting information and performing sentiment analysis on text data. Includes preprocessing, sequence modeling, and evaluation on labeled corpora.</p>
+          <p>RNN-based pipeline for extracting information and performing sentiment analysis on text data.</p>
           <div class="meta"><a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <article class="card" data-tags="rpa,web" data-title="Customer Relationship Management (RPA)" data-img="assets/project5.png" data-github="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" data-desc="UiPath pipeline that scrapes e-commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports.">
+        <article class="card" data-tags="rpa,web" data-title="Customer Relationship Management (RPA)" data-img="assets/project5.png" data-github="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" data-desc="UiPath + sentiment analysis + MS DB + email reporting.">
           <img class="thumb" src="assets/project5.png" alt="CRM RPA preview" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/600/350?random=5'">
           <h3>Customer Relationship Management (RPA)</h3>
-          <p>UiPath pipeline that scrapes e-commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports to stakeholders.</p>
+          <p>UiPath pipeline that scrapes e-commerce reviews, runs sentiment analysis, stores results, and emails consolidated reports.</p>
           <div class="meta"><a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <article class="card" data-tags="rpa" data-title="Botathon Prototype (Runner-Up)" data-img="assets/project6.png" data-github="https://github.com/AyushKatiya20322/BotathonPrototype" data-desc="Automation bot for Excel tasks that reads sheets, transforms data, applies logic, and emails results. Awarded Runner-Up in a university Botathon.">
+        <article class="card" data-tags="rpa" data-title="Botathon Prototype (Runner-Up)" data-img="assets/project6.png" data-github="https://github.com/AyushKatiya20322/BotathonPrototype" data-desc="Excel automation bot; competition runner-up.">
           <img class="thumb" src="assets/project6.png" alt="Botathon prototype preview" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/600/350?random=6'">
           <h3>Botathon Prototype (Runner-Up)</h3>
-          <p>Automation bot for Excel tasks that reads sheets, transforms data, applies logic and emails results. Awarded Runner-Up in a university Botathon competition.</p>
+          <p>Automation bot for Excel tasks that reads sheets, transforms data, applies logic and emails results.</p>
           <div class="meta"><a href="https://github.com/AyushKatiya20322/BotathonPrototype" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
 
-        <article class="card" data-tags="rpa,web" data-title="Traveller’s Guide" data-img="assets/project7.png" data-github="https://github.com/AyushKatiya20322/TravellersGuide" data-desc="RPA assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps shortlist travel choices efficiently.">
+        <article class="card" data-tags="rpa,web" data-title="Traveller’s Guide" data-img="assets/project7.png" data-github="https://github.com/AyushKatiya20322/TravellersGuide" data-desc="RPA assistant to rank flights/hotels across sites.">
           <img class="thumb" src="assets/project7.png" alt="Traveller's guide preview" loading="lazy" decoding="async" onerror="this.src='https://picsum.photos/600/350?random=7'">
           <h3>Traveller’s Guide</h3>
-          <p>RPA-based assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps users shortlist travel choices efficiently.</p>
+          <p>Scrapes multiple travel sites, compiles ranked options into spreadsheets, and helps shortlist travel choices efficiently.</p>
           <div class="meta"><a href="https://github.com/AyushKatiya20322/TravellersGuide" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a><button class="btn alt quick-view">Quick View</button></div>
         </article>
       </div>
@@ -431,8 +399,8 @@
         <div class="underline"></div>
       </div>
       <div class="timeline">
-        <article class="timeline-item"><h3>Arizona State University — MS Robotics & Autonomous Systems (AI)</h3><small>Aug 2025 – Jun 2027 (expected)</small><p class="muted small">Mechatronics, Robotics & Automation Engineering — research focus on autonomous navigation, perception, and AI.</p></article>
-        <article class="timeline-item"><h3>Acropolis Institute of Technology & Research (AITR), Indore — B.Tech in AI & Data Science</h3><small>Aug 2020 – Jun 2024</small><p class="muted small">CGPA: 8.07 — coursework: ML, Computer Vision, Data Structures & Algorithms, Signals.</p></article>
+        <article class="timeline-item"><h3>Arizona State University — MS Robotics & Autonomous Systems (AI)</h3><small>Aug 2025 – Jun 2027 (expected)</small><p class="muted small">Focus: autonomous navigation, perception, AI.</p></article>
+        <article class="timeline-item"><h3>AITR, Indore — B.Tech in AI & Data Science</h3><small>Aug 2020 – Jun 2024</small><p class="muted small">CGPA: 8.07 — ML, CV, DSA, Signals.</p></article>
         <article class="timeline-item"><h3>SICA Senior Secondary School — Higher Secondary (PCM)</h3><small>Mar 2009 – Jun 2020</small></article>
       </div>
     </section>
@@ -450,7 +418,7 @@
         <div class="skill"><i class="fa-solid fa-drone"></i> UAV Navigation</div>
         <div class="skill"><i class="fa-solid fa-layer-group"></i> MLOps</div>
       </div>
-      <div class="skills" aria-hidden="false">
+      <div class="skills">
         <span class="skill">Python</span><span class="skill">C++</span><span class="skill">Java</span><span class="skill">JavaScript</span>
         <span class="skill">React.js</span><span class="skill">FastAPI</span><span class="skill">TensorFlow</span><span class="skill">PyTorch</span>
         <span class="skill">ROS</span><span class="skill">Gazebo</span><span class="skill">Firebase</span><span class="skill">MongoDB</span><span class="skill">SQL</span>
@@ -559,23 +527,49 @@
   </noscript>
 
   <script>
-  // Boot safe animations
-  document.addEventListener('DOMContentLoaded', ()=> document.body.classList.add('animate'));
-
-  // Utils
+  // ========= Helpers & global refs =========
   const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Auto year
   $('#y').textContent = new Date().getFullYear();
+  document.addEventListener('DOMContentLoaded', ()=> document.body.classList.add('animate'));
 
-  // Reveal on load + IO
-  function revealNow(){
-    document.querySelectorAll('section, .hero').forEach(s => {
-      const r = s.getBoundingClientRect();
-      if (r.top < innerHeight*0.9) s.classList.add('visible');
-    });
+  // ========= Reliable SFX / WebAudio =========
+  let audioCtx, masterGain, sfxOn = false, humOsc = null;
+  function ensureAudio(){
+    if (audioCtx) return true;
+    try{
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = 0.18;
+      masterGain.connect(audioCtx.destination);
+      return true;
+    }catch(e){ console.warn('Audio init failed', e); return false; }
   }
+  async function resumeAudio(){ try{ if(!audioCtx) ensureAudio(); if(audioCtx && audioCtx.state==='suspended') await audioCtx.resume(); }catch{} }
+  document.addEventListener('pointerdown', async ()=>{ ensureAudio(); await resumeAudio(); }, { once:true });
+
+  function tone({ freq=440, type='sawtooth', dur=0.22, gain=0.22, glideTo, glideTime=0.15 }){
+    if(!audioCtx || !sfxOn) return;
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain(), f=audioCtx.createBiquadFilter();
+    f.type='lowpass'; f.frequency.value=8000;
+    o.type=type; o.frequency.value=freq; g.gain.value=.0001;
+    o.connect(f); f.connect(g); g.connect(masterGain);
+    o.start();
+    g.gain.exponentialRampToValueAtTime(gain, audioCtx.currentTime+.01);
+    if(glideTo) o.frequency.exponentialRampToValueAtTime(glideTo, audioCtx.currentTime+glideTime);
+    g.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+dur);
+    o.stop(audioCtx.currentTime+dur+.02);
+  }
+  function startHum(){ if(!audioCtx || humOsc) return; const g=audioCtx.createGain(); humOsc=audioCtx.createOscillator(); humOsc.type='sawtooth'; humOsc.frequency.value=80; g.gain.value=.06; humOsc.connect(g); g.connect(masterGain); humOsc.start(); humOsc._gain=g; }
+  function stopHum(){ if(!humOsc) return; try{ humOsc._gain.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+.1); humOsc.stop(audioCtx.currentTime+.12);}catch{} humOsc=null; }
+  function ignite(){ tone({freq:120, glideTo:220, gain:.28}); startHum(); }
+  function retract(){ stopHum(); tone({freq:220, glideTo:110, gain:.28}); }
+  function beep(f=900,d=.12){ tone({freq:f, type:'triangle', dur:d, gain:.22}); }
+  // expose for other code
+  window.beep = beep; window.ignite = ignite; window.retract = retract;
+
+  // ========= Reveal / IO =========
+  function revealNow(){ document.querySelectorAll('section, .hero').forEach(s => { const r=s.getBoundingClientRect(); if (r.top < innerHeight*0.9) s.classList.add('visible'); }); }
   revealNow();
 
   const sections = $$('.hero, main section');
@@ -584,87 +578,79 @@
     sections.forEach(s=> revIO.observe(s));
   } else { sections.forEach(s=> s.classList.add('visible')); }
 
-  // Mobile menu
+  // ========= Mobile menu =========
   const menuBtn=$('#menuBtn'), mobileMenu=$('#mobileMenu');
   menuBtn?.addEventListener('click',()=>{ const open=mobileMenu.style.display==='block'; mobileMenu.style.display=open?'none':'block'; mobileMenu.setAttribute('aria-hidden', String(open)); menuBtn.setAttribute('aria-expanded', String(!open)); });
   document.addEventListener('click',e=>{ if(!mobileMenu||!menuBtn) return; const within=e.target.closest('#mobileMenu')||e.target.closest('#menuBtn'); if(!within&&mobileMenu.style.display==='block'){ mobileMenu.style.display='none'; mobileMenu.setAttribute('aria-hidden','true'); menuBtn.setAttribute('aria-expanded','false'); } });
 
-  // Theme lab
+  // ========= Theme Lab =========
   const lab=$('#lab'), openLab=$('#openLab'); openLab.addEventListener('click',()=> lab.classList.toggle('show'));
   const themeToggle=$('#themeToggle');
-  const applyTheme = (dark) => { document.body.classList.toggle('dark', dark); localStorage.setItem('site-theme', dark ? 'dark':'light'); document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#05080f':'#0b0f17'); beep(520); };
+  const applyTheme = (dark) => { document.body.classList.toggle('dark', dark); localStorage.setItem('site-theme', dark ? 'dark':'light'); document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#05080f':'#0b0f17'); if(sfxOn) beep(520); };
   const savedTheme = localStorage.getItem('site-theme'); applyTheme(savedTheme ? savedTheme==='dark' : false);
   themeToggle?.addEventListener('click', ()=> applyTheme(!document.body.classList.contains('dark')));
-
-  // Presets + hue
-  $$('.lab .sw button').forEach(b=> b.addEventListener('click',()=>{ document.body.setAttribute('data-theme', b.dataset.t); localStorage.setItem('preset', b.dataset.t); beep(740); }));
+  $$('.lab .sw button').forEach(b=> b.addEventListener('click',()=>{ document.body.setAttribute('data-theme', b.dataset.t); localStorage.setItem('preset', b.dataset.t); if(sfxOn) beep(740); }));
   const hue=$('#hue'); const setHue=v=>{ const h=parseInt(v,10)||185; document.documentElement.style.setProperty('--a1', `hsl(${h} 100% 55%)`); document.documentElement.style.setProperty('--a2', `hsl(${(h+70)%360} 100% 70%)`); document.documentElement.style.setProperty('--a3', `hsl(${(h+180)%360} 100% 60%)`); };
   const savedPreset=localStorage.getItem('preset'); if(savedPreset) document.body.setAttribute('data-theme', savedPreset);
   const savedHue=localStorage.getItem('hue'); if(savedHue){ hue.value=savedHue; setHue(savedHue); }
   hue.addEventListener('input', e=>{ setHue(e.target.value); localStorage.setItem('hue', e.target.value); });
 
-  // Tagline typing
+  // ========= Tagline typing =========
   const typingEl=$('#typing'); const roles=["AI Researcher","Robotics Engineer","ML Enthusiast","UAV Navigation & CV"]; let ri=0, ci=0;
   function typeLoop(){ if(!typingEl) return; const r=roles[ri]; typingEl.textContent=r.slice(0,ci); ci++; if(ci<=r.length) setTimeout(typeLoop, prefersReduced?0:70); else setTimeout(eraseLoop, prefersReduced?300:1200); }
   function eraseLoop(){ if(!typingEl) return; const r=roles[ri]; typingEl.textContent=r.slice(0,ci); ci--; if(ci>=0) setTimeout(eraseLoop, prefersReduced?0:28); else { ri=(ri+1)%roles.length; setTimeout(typeLoop, prefersReduced?0:280); } }
   typeLoop();
 
-  // Active nav + smooth scroll + hyperjump
+  // ========= Nav smooth + active + hyperjump =========
   const navLinks=$$('#navLinks a'), hyperdrive=$('#hyperdrive');
-  function boostStars(){ if(!prefersReduced){ hyperdrive.classList.remove('active'); void hyperdrive.offsetWidth; hyperdrive.classList.add('active'); } }
-  navLinks.forEach(a=> a.addEventListener('click',ev=>{ ev.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(!t) return; const y=t.getBoundingClientRect().top+scrollY-((parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')))||72)+8; boostStars(); scrollTo({top:y, behavior:'smooth'}); mobileMenu && (mobileMenu.style.display='none'); }));
+  let hyperBoost = 1;
+  function doHyper(){ if(!prefersReduced){ hyperdrive.classList.remove('active'); void hyperdrive.offsetWidth; hyperdrive.classList.add('active'); hyperBoost=6; setTimeout(()=> hyperBoost=1, 700); } }
+  navLinks.forEach(a=> a.addEventListener('click',ev=>{ ev.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(!t) return; const y=t.getBoundingClientRect().top+scrollY-((parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')))||72)+8; doHyper(); scrollTo({top:y, behavior:'smooth'}); mobileMenu && (mobileMenu.style.display='none'); }));
   if('IntersectionObserver' in window){ const secObserver = new IntersectionObserver((entries)=> entries.forEach(e=>{ if(e.isIntersecting){ const id=e.target.id; navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+id)); }}), {threshold:.35}); document.querySelectorAll('main section[id]').forEach(s=> secObserver.observe(s)); }
 
-  // Progress + back-to-top
+  // ========= Scroll progress + back-to-top =========
   const backTop=$('#backTop'), scrollProgress=$('#scrollProgress');
   addEventListener('scroll', ()=>{ const sc=scrollY; backTop.classList.toggle('show', sc>innerHeight); const docH=document.documentElement.scrollHeight-innerHeight; const pct=Math.max(0, Math.min(1, sc/(docH||1))); if(scrollProgress) scrollProgress.style.width=(pct*100).toFixed(2)+'%'; });
   backTop?.addEventListener('click', ()=> scrollTo({ top:0, behavior:'smooth' }));
 
-  // Copy section links
+  // ========= Copy anchors + email =========
   $$('.anchor').forEach(a=> a.addEventListener('click', ()=>{ const id=a.dataset.anchor||''; const url=location.origin+location.pathname+id; navigator.clipboard.writeText(url).then(()=>{ a.innerHTML='<i class="fa-solid fa-check"></i>'; setTimeout(()=> a.innerHTML='<i class="fa-solid fa-link"></i>',1200); }); }));
+  $('#copyEmail')?.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText('ayushkatiya@gmail.com'); $('#copyEmail').innerHTML='<i class="fa-solid fa-check"></i>'; setTimeout(()=> $('#copyEmail').innerHTML='<i class="fa-solid fa-copy"></i>',1400); if(sfxOn) beep(740);}catch{} });
 
-  // Filters + deep link
+  // ========= Filters + deep link =========
   const filterBtns=$$('.filter-btn'); const projectCards=$$('#projectGrid .card');
   function applyFilter(tag){ filterBtns.forEach(b=> b.classList.toggle('active', b.dataset.filter===tag || (tag==='all'&&b.dataset.filter==='all'))); projectCards.forEach(card=>{ const tags=(card.getAttribute('data-tags')||'').split(',').map(s=>s.trim()); const show=tag==='all'||tags.includes(tag); card.style.display=show?'':'none'; }); }
-  filterBtns.forEach(btn=> btn.addEventListener('click', ()=>{ const tag=btn.dataset.filter; applyFilter(tag); history.replaceState({},'', '#projects?tag='+encodeURIComponent(tag)); beep(740); }));
+  filterBtns.forEach(btn=> btn.addEventListener('click', ()=>{ const tag=btn.dataset.filter; applyFilter(tag); history.replaceState({},'', '#projects?tag='+encodeURIComponent(tag)); if(sfxOn) beep(740); }));
   if(location.hash.startsWith('#projects')&&location.hash.includes('tag=')){ const tag=decodeURIComponent(location.hash.split('tag=')[1]||'all'); applyFilter(tag); }
 
-  // Quick view dialog
+  // ========= Quick view dialog =========
   const dlg=$('#projectDialog'), dlgClose=$('#dialogClose');
-  $$('.quick-view').forEach(btn=> btn.addEventListener('click', ()=>{ const card=btn.closest('.card'); if(!card||!dlg) return; $('#dialogTitle').textContent=card.dataset.title||'Project'; $('#dialogImg').src=card.dataset.img||card.querySelector('img')?.src||''; $('#dialogImg').alt=(card.dataset.title||'Project')+' preview'; $('#dialogDesc').textContent=card.dataset.desc||card.querySelector('p')?.textContent||''; $('#dialogGithub').href=card.dataset.github||'#'; dlg.showModal(); beep(620); }));
+  $$('.quick-view').forEach(btn=> btn.addEventListener('click', ()=>{ const card=btn.closest('.card'); if(!card||!dlg) return; $('#dialogTitle').textContent=card.dataset.title||'Project'; $('#dialogImg').src=card.dataset.img||card.querySelector('img')?.src||''; $('#dialogImg').alt=(card.dataset.title||'Project')+' preview'; $('#dialogDesc').textContent=card.dataset.desc||card.querySelector('p')?.textContent||''; $('#dialogGithub').href=card.dataset.github||'#'; dlg.showModal(); if(sfxOn) beep(620); }));
   dlgClose?.addEventListener('click', ()=> dlg?.close());
   dlg?.addEventListener('click', e=>{ if(e.target===dlg) dlg.close(); });
 
-  // Counters
+  // ========= Counters =========
   const counters=$$('[data-counter]');
   if('IntersectionObserver' in window){ const ctrIO=new IntersectionObserver((entries)=> entries.forEach(en=>{ if(en.isIntersecting){ const el=en.target; const goal=Number(el.getAttribute('data-counter'))||Number(el.textContent)||0; const start=performance.now(); const dur=900; const step=(t)=>{ const p=Math.min(1,(t-start)/dur); el.textContent=Math.round(goal*p); if(p<1) requestAnimationFrame(step); }; requestAnimationFrame(step); ctrIO.unobserve(el);} }),{threshold:.6}); counters.forEach(c=> ctrIO.observe(c)); }
 
-  // Copy email
-  $('#copyEmail')?.addEventListener('click', async ()=>{ try{ await navigator.clipboard.writeText('ayushkatiya@gmail.com'); $('#copyEmail').innerHTML='<i class="fa-solid fa-check"></i>'; setTimeout(()=> $('#copyEmail').innerHTML='<i class="fa-solid fa-copy"></i>',1400); beep(740);}catch{} });
-
-  // Contact form
+  // ========= Contact form =========
   const FORM_ENDPOINT=''; const contactForm=$('#contactForm'), formStatus=$('#formStatus');
   contactForm?.addEventListener('submit', async e=>{ e.preventDefault(); if($('#website')?.value){ formStatus.textContent='Detected as droid spam.'; return; } formStatus.textContent='Transmitting...'; const fd=new FormData(contactForm); const payload=Object.fromEntries(fd.entries()); try{ if(FORM_ENDPOINT&&FORM_ENDPOINT.trim().length){ const res=await fetch(FORM_ENDPOINT,{method:'POST', headers:{'Accept':'application/json'}, body:fd}); formStatus.textContent=res.ok?'Message sent — thank you!':'Unable to send (Formspree). Try email below.'; if(res.ok) contactForm.reset(); } else { const subject=encodeURIComponent(`Portfolio message from ${payload.name||'Visitor'}`); const body=encodeURIComponent(`Name: ${payload.name||''}\nEmail: ${payload.email||''}\n\nMessage:\n${payload.message||''}`); location.href=`mailto:ayushkatiya@gmail.com?subject=${subject}&body=${body}`; formStatus.textContent='Opening your holoterminal...'; } }catch(err){ console.error(err); formStatus.textContent='Transmission error. Try again or email directly.'; } finally{ setTimeout(()=> formStatus.textContent='', 5000); } });
 
-  // Starfield
+  // ========= Starfield =========
   const layers=[ {id:'stars', count:140, speed:.12, size:[1,2], color:'rgba(255,255,255,.85)'}, {id:'stars2', count:90, speed:.24, size:[1.2,2.4], color:'rgba(180,220,255,.85)'}, {id:'stars3', count:60, speed:.45, size:[1.4,2.8], color:'rgba(140,200,255,.9)'} ];
-  let hyperBoost=1;
-  function makeStars(canvas, cfg){ if(!canvas) return; const ctx=canvas.getContext('2d'); const stars=[]; const DPR=Math.min(2, devicePixelRatio||1); function resize(){ const r=canvas.getBoundingClientRect(); canvas.width=Math.max(1,Math.floor(r.width*DPR)); canvas.height=Math.max(1,Math.floor(r.height*DPR)); } function init(){ resize(); stars.length=0; for(let i=0;i<cfg.count;i++){ stars.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, z:Math.random()*1+.5, r:(Math.random()*(cfg.size[1]-cfg.size[0])+cfg.size[0])*(DPR*.6) }); } } function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle=cfg.color; for(const s of stars){ ctx.beginPath(); ctx.arc(s.x, s.y, s.r*s.z, 0, Math.PI*2); ctx.fill(); s.y += cfg.speed*s.z*hyperBoost; if(s.y>canvas.height){ s.y=-4; s.x=Math.random()*canvas.width; s.z=Math.random()*1+.5; } } requestAnimationFrame(draw); } addEventListener('resize', init); init(); draw(); }
-  function boostStars(){ if(!prefersReduced){ hyperBoost=6; setTimeout(()=> hyperBoost=1, 700); } }
+  function makeStars(canvas, cfg){ if(!canvas) return; const ctx=canvas.getContext('2d'); const stars=[]; const DPR=Math.min(2, devicePixelRatio||1); function resize(){ const r=canvas.getBoundingClientRect(); canvas.width=Math.max(1,Math.floor(r.width*DPR)); canvas.height=Math.max(1,Math.floor(r.height*DPR)); } function init(){ resize(); stars.length=0; for(let i=0;i<cfg.count;i++){ stars.push({ x:Math.random()*canvas.width, y:Math.random()*canvas.height, z:Math.random()*1+.5, r:(Math.random()*(cfg.size[1]-cfg.size[0])+cfg.size[0])*(DPR*.6) }); } } function draw(){ ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle=cfg.color; for(const s of stars){ ctx.beginPath(); ctx.arc(s.x, s.y, s.r*s.z, 0, Math.PI*2); ctx.fill(); s.y += cfg.speed*s.z*(window.hyperBoost||1); if(s.y>canvas.height){ s.y=-4; s.x=Math.random()*canvas.width; s.z=Math.random()*1+.5; } } requestAnimationFrame(draw); } addEventListener('resize', init); init(); draw(); }
   layers.forEach(cfg=> makeStars(document.getElementById(cfg.id), cfg));
 
-  // Opening crawl & SFX (synth only)
-  const crawlOverlay=$('#crawlOverlay'), playIntro=$('#playIntro'), skipCrawl=$('#skipCrawl'); playIntro?.addEventListener('click', ()=>{ crawlOverlay.classList.add('active'); ignite(); }); skipCrawl?.addEventListener('click', ()=>{ crawlOverlay.classList.remove('active'); retract(); });
-  let audioCtx=null, masterGain=null, sfxOn=false, humOsc=null, humGain=null;
-  function initAudio(){ if(audioCtx) return; try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); masterGain=audioCtx.createGain(); masterGain.gain.value=.12; masterGain.connect(audioCtx.destination); }catch{} }
-  function beep(f=880,d=.08){ if(!sfxOn||!audioCtx) return; const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type='triangle'; o.frequency.value=f; g.gain.value=.0001; o.connect(g); g.connect(masterGain); o.start(); g.gain.exponentialRampToValueAtTime(.35, audioCtx.currentTime+.01); g.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+d); o.stop(audioCtx.currentTime+d+.02); }
-  function ignite(){ if(!sfxOn||!audioCtx) return; const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type='sawtooth'; o.frequency.setValueAtTime(120, audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime+.15); g.gain.value=.0001; g.gain.exponentialRampToValueAtTime(.3, audioCtx.currentTime+.12); o.connect(g); g.connect(masterGain); o.start(); o.stop(audioCtx.currentTime+.25); startHum(); }
-  function retract(){ if(!sfxOn||!audioCtx) return stopHum(); stopHum(); const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type='sawtooth'; o.frequency.setValueAtTime(220, audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime+.15); g.gain.value=.25; g.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+.2); o.connect(g); g.connect(masterGain); o.start(); o.stop(audioCtx.currentTime+.22); }
-  function startHum(){ if(!sfxOn||!audioCtx||humOsc) return; humOsc=audioCtx.createOscillator(); humGain=audioCtx.createGain(); humOsc.type='sawtooth'; humOsc.frequency.value=70; humGain.gain.value=.05; humOsc.connect(humGain); humGain.connect(masterGain); humOsc.start(); }
-  function stopHum(){ try{ if(humOsc&&humGain){ humGain.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+.15); humOsc.stop(audioCtx.currentTime+.18); } }catch{} humOsc=null; humGain=null; }
-  const sfxToggle=$('#sfxToggle'); sfxToggle?.addEventListener('click', async ()=>{ if(!audioCtx) initAudio(); try{ if(audioCtx && audioCtx.state==='suspended') await audioCtx.resume(); }catch{} sfxOn=!sfxOn; sfxToggle.innerHTML = sfxOn? '<i class="fa-solid fa-volume-high"></i> SFX':'<i class="fa-solid fa-volume-xmark"></i> SFX'; if(sfxOn) ignite(); else retract(); });
+  // ========= Opening crawl & SFX toggle =========
+  const crawlOverlay=$('#crawlOverlay'), playIntro=$('#playIntro'), skipCrawl=$('#skipCrawl');
+  playIntro?.addEventListener('click', async ()=>{ ensureAudio(); await resumeAudio(); crawlOverlay.classList.add('active'); if(sfxOn){ ignite(); beep(1046,.08);} });
+  skipCrawl?.addEventListener('click', ()=>{ crawlOverlay.classList.remove('active'); if(sfxOn){ retract(); } });
 
-  // Command Palette
+  const sfxToggle=$('#sfxToggle');
+  sfxToggle?.addEventListener('click', async ()=>{ ensureAudio(); await resumeAudio(); sfxOn=!sfxOn; sfxToggle.innerHTML = sfxOn? '<i class="fa-solid fa-volume-high"></i> SFX':'<i class="fa-solid fa-volume-xmark"></i> SFX'; if(sfxOn){ ignite(); beep(1046,.08); } else { retract(); } });
+
+  // ========= Command Palette =========
   const palette=$('#palette'), palInput=$('#palInput'), palList=$('#palList'), palClose=$('#palClose'), openPalette=$('#openPalette');
   const items = [
     ...$$('main section[id]').map(s => ({ type:'section', id:s.id, title:s.querySelector('h2')?.textContent?.trim()||s.id, href:'#'+s.id })),
@@ -676,12 +662,12 @@
   function highlight(q, s){ if(!q) return s; const idx=s.toLowerCase().indexOf(q.toLowerCase()); if(idx<0) return s; return s.slice(0,idx)+'<b>'+s.slice(idx, idx+q.length)+'</b>'+s.slice(idx+q.length); }
   function renderList(list){ palList.innerHTML=''; list.slice(0,50).forEach((it, i)=>{ const div=document.createElement('div'); div.className='pal-item'; div.setAttribute('role','option'); div.setAttribute('aria-selected', String(i===0)); div.dataset.href=it.href; div.dataset.filter=it.filterTag||''; div.innerHTML = (it.type==='project' ? '<i class="fa-solid fa-rocket"></i>' : '<i class="fa-solid fa-section"></i>') + ' ' + (it._hl || it.title); palList.appendChild(div); }); }
   palInput.addEventListener('input', ()=>{ const q=palInput.value.trim(); const scored=items.map(it=>({ ...it, _score: score(q, it.title + ' ' + (it.tags||'')), _hl: highlight(q, it.title) })).filter(x=>x._score>0).sort((a,b)=> b._score-a._score); renderList(scored); });
-  palList.addEventListener('click', e=>{ const row=e.target.closest('.pal-item'); if(!row) return; boostStars(); if(row.dataset.filter){ applyFilter(row.dataset.filter); location.hash = '#projects?tag='+encodeURIComponent(row.dataset.filter); } else { location.hash = row.dataset.href; } closePal(); });
+  palList.addEventListener('click', e=>{ const row=e.target.closest('.pal-item'); if(!row) return; doHyper(); if(row.dataset.filter){ applyFilter(row.dataset.filter); location.hash = '#projects?tag='+encodeURIComponent(row.dataset.filter); } else { location.hash = row.dataset.href; } closePal(); });
   let sel=0; function updateSel(n){ const rows=[...palList.children]; if(!rows.length) return; rows.forEach(r=> r.setAttribute('aria-selected','false')); sel=(n+rows.length)%rows.length; rows[sel].setAttribute('aria-selected','true'); rows[sel].scrollIntoView({block:'nearest'}); }
   addEventListener('keydown', (e)=>{ const mod=e.ctrlKey||e.metaKey; if(mod && e.key.toLowerCase()==='k'){ e.preventDefault(); palette.classList.contains('show')? closePal(): openPal(); } if(palette.classList.contains('show')){ if(e.key==='Escape'){ closePal(); } if(e.key==='ArrowDown'){ e.preventDefault(); updateSel(sel+1); } if(e.key==='ArrowUp'){ e.preventDefault(); updateSel(sel-1); } if(e.key==='Enter'){ e.preventDefault(); palList.children[sel]?.click(); } }});
-  palClose.addEventListener('click', closePal); openPalette.addEventListener('click', openPal);
+  palClose.addEventListener('click', closePal);
 
-  // Optional tiny PWA (click “Enable Offline”)
+  // ========= Tiny PWA (optional) =========
   const enableOfflineBtn=$('#enableOffline');
   enableOfflineBtn?.addEventListener('click', ()=>{
     if(!('serviceWorker' in navigator)) { alert('Service Worker not supported in this browser.'); return; }
@@ -702,7 +688,7 @@
     `;
     const blob = new Blob([swCode], {type:'text/javascript'});
     const swUrl = URL.createObjectURL(blob);
-    navigator.serviceWorker.register(swUrl).then(()=>{ enableOfflineBtn.textContent='Offline ✓'; beep(620); setTimeout(()=> URL.revokeObjectURL(swUrl), 1000); }).catch(()=> alert('Failed to register offline cache'));
+    navigator.serviceWorker.register(swUrl).then(()=>{ enableOfflineBtn.textContent='Offline ✓'; if(sfxOn) beep(620); setTimeout(()=> URL.revokeObjectURL(swUrl), 1000); }).catch(()=> alert('Failed to register offline cache'));
   });
   </script>
 </body>
