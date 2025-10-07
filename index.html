@@ -555,11 +555,36 @@ menuBtn?.addEventListener('click',()=>{ const open=mobileMenu.style.display==='b
 document.addEventListener('click',e=>{ if(!mobileMenu||!menuBtn) return; const within=e.target.closest('#mobileMenu')||e.target.closest('#menuBtn'); if(!within&&mobileMenu.style.display==='block'){ mobileMenu.style.display='none'; mobileMenu.setAttribute('aria-hidden','true'); menuBtn.setAttribute('aria-expanded','false'); } });
 
 /* ========= typing effect ========= */
-const typingEl=$('#typing'); const roles=["AI Researcher","Robotics Engineer","ML Enthusiast","UAV Navigation & CV"]; let ri=0, ci=0;
-function typeLoop(){ if(!typingEl) return; const r=roles[ri]; typingEl.textContent=r.slice(0,ci); ci++; if(ci<=r.length) setTimeout(typeLoop, prefersReduced?0:75); else setTimeout(eraseLoop, prefersReduced?250:1100); }
-function eraseLoop(){ if(!typingEl) return; const r=roles[ri]; typingEl.textContent=r.slice(0,ci); ci--; if(ci>=0) setTimeout(eraseLoop, prefersReduced?0:28); else { ri=(ri+1)%roles.length; setTimeout(typeLoop, prefersReduced?0:260); } }
-typeLoop();
+const typingEl = $('#typing');
+const roles = ["AI Researcher", "Robotics Engineer", "ML Enthusiast", "UAV Navigation & CV"];
+let ri = 0, ci = 0;
 
+function typeLoop() {
+  if (!typingEl) return;
+  const r = roles[ri];
+  typingEl.textContent = r.slice(0, ci);
+  ci++;
+  // slower typing speed (was 75 → now 130)
+  if (ci <= r.length) setTimeout(typeLoop, prefersReduced ? 0 : 130);
+  // longer pause before erasing (was 1100 → now 1600)
+  else setTimeout(eraseLoop, prefersReduced ? 250 : 1600);
+}
+
+function eraseLoop() {
+  if (!typingEl) return;
+  const r = roles[ri];
+  typingEl.textContent = r.slice(0, ci);
+  ci--;
+  // slower erasing speed (was 28 → now 60)
+  if (ci >= 0) setTimeout(eraseLoop, prefersReduced ? 0 : 60);
+  // slightly longer pause before next word (was 260 → now 400)
+  else {
+    ri = (ri + 1) % roles.length;
+    setTimeout(typeLoop, prefersReduced ? 0 : 400);
+  }
+}
+
+typeLoop();
 /* ========= SFX & music (gesture-safe) ========= */
 let audioCtx, masterGain, sfxOn=false, musicOn=false, loopNodes=[];
 function ensureAudio(){ if(audioCtx) return true; try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); masterGain=audioCtx.createGain(); masterGain.gain.value=0.16; masterGain.connect(audioCtx.destination); return true; }catch(e){ console.warn('Audio init failed',e); return false; } }
