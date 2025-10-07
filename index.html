@@ -6,10 +6,19 @@
 <title>Ayush Katiya — Cyberpunk Robotics & AI</title>
 <meta name="description" content="Ayush Katiya — MS Robotics & Autonomous Systems (AI) @ ASU. Cyberpunk portfolio with live GitHub stats, search/sort, notes, SFX & PWA."/>
 <meta name="theme-color" content="#0a0e16">
+<link rel="manifest" href="manifest.webmanifest">
+<!-- Open Graph / Twitter (nice share cards) -->
+<meta property="og:title" content="Ayush Katiya — Cyberpunk Robotics & AI">
+<meta property="og:description" content="MS Robotics & Autonomous Systems (AI). Robotics • CV • Edge AI • ROS 2 • FastAPI + React.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/profile.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Rajdhani:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='20' fill='%230a0e16'/%3E%3Cpath d='M20 94h88M20 64h88M20 34h88' stroke='%23ff2d95' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E">
+
 <style>
 :root{
   --bg:#0a0e16; --bg-2:#0b1020; --text:#eaf3ff; --muted:#8aa1c7;
@@ -29,6 +38,13 @@ a{color:var(--a); text-decoration:none} a:hover{text-decoration:underline}
 .container{max-width:1100px;margin:0 auto;padding:1rem 1.1rem}
 .mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
 h1,h2{font-family:Rajdhani,Inter,sans-serif; letter-spacing:.5px}
+
+/* Skip link */
+a[href="#main"]:focus{
+  position:absolute; left:10px; top:10px; width:auto; height:auto;
+  padding:.4rem .6rem; z-index:2000; background:#0a1020; color:#eaf3ff;
+  border-radius:8px; border:1px solid #ffffff2a; outline:none;
+}
 
 .neon-grid{position:fixed; inset:0; z-index:-2; pointer-events:none; background:linear-gradient(#0000,#0008), radial-gradient(600px 400px at 50% 20%, #071022, transparent 60%), var(--bg);}
 canvas#grid{position:fixed; inset:0; z-index:-1; pointer-events:none}
@@ -144,13 +160,15 @@ footer{padding:34px 0; text-align:center; color:var(--muted); border-top:1px sol
 </script>
 </head>
 <body>
+<a href="#main" class="mono" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
 <div class="neon-grid" aria-hidden="true"></div>
 <canvas id="grid" aria-hidden="true"></canvas>
 <div class="progress" id="progress"></div>
 
 <header class="nav" role="banner">
   <div class="inner container" role="navigation" aria-label="Main navigation">
-    <div class="brand">AYUSH <span class="accent">KATIYA</span></div>
+    <div class="brand" aria-label="Ayush Katiya — home">AYUSH <span class="accent">KATIYA</span></div>
     <ul class="links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#now">Now</a></li>
@@ -171,15 +189,15 @@ footer{padding:34px 0; text-align:center; color:var(--muted); border-top:1px sol
   </div>
   <!-- mobile -->
   <nav class="panel" id="mobileMenu" aria-hidden="true" role="menu" style="display:none; position:absolute; top:calc(var(--nav-h) + 8px); right:12px; width:280px; z-index:1202">
-    <a class="nav-link" href="#about">About</a>
-    <a class="nav-link" href="#now">Now (2025)</a>
-    <a class="nav-link" href="#stats">Code Stats</a>
-    <a class="nav-link" href="#projects">Projects</a>
-    <a class="nav-link" href="#education">Education</a>
-    <a class="nav-link" href="#skills">Skills</a>
-    <a class="nav-link" href="#notes">Notes</a>
-    <a class="nav-link" href="#contact">Contact</a>
-    <a class="nav-link" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+    <a class="nav-link" href="#about" role="menuitem">About</a>
+    <a class="nav-link" href="#now" role="menuitem">Now (2025)</a>
+    <a class="nav-link" href="#stats" role="menuitem">Code Stats</a>
+    <a class="nav-link" href="#projects" role="menuitem">Projects</a>
+    <a class="nav-link" href="#education" role="menuitem">Education</a>
+    <a class="nav-link" href="#skills" role="menuitem">Skills</a>
+    <a class="nav-link" href="#notes" role="menuitem">Notes</a>
+    <a class="nav-link" href="#contact" role="menuitem">Contact</a>
+    <a class="nav-link" href="resume.pdf" target="_blank" rel="noopener" role="menuitem">Resume</a>
   </nav>
 </header>
 
@@ -187,7 +205,7 @@ footer{padding:34px 0; text-align:center; color:var(--muted); border-top:1px sol
   <div class="holo">
     <img class="profile" src="assets/profile.jpg" alt="Ayush Katiya portrait" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/150'">
     <h1 id="hero-heading" class="glitch" data-text="Ayush Katiya">Ayush Katiya</h1>
-    <div class="tagline mono" id="typing">AI Researcher • Robotics Engineer • ML Enthusiast</div>
+    <div class="tagline mono" id="typing" aria-live="off">AI Developer • Robotics Enthusiast • ML Enthusiast</div>
     <p class="lead">Graduate Student — Robotics & Autonomous Systems (AI) at Arizona State University. I build ML-powered perception systems, robotic automation (RPA), and deploy full-stack solutions (FastAPI + React) for research & production.</p>
     <div class="cta">
       <a class="btn" href="resume.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file"></i> Download Resume</a>
@@ -232,9 +250,7 @@ footer{padding:34px 0; text-align:center; color:var(--muted); border-top:1px sol
         <div class="info-row"><div class="info-label">Languages</div><div><div class="small muted">Hindi (Native), English (Full Professional), German (Elementary)</div></div></div>
         <div class="info-row"><div class="info-label">Links</div><div><a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="me noopener">LinkedIn</a> • <a href="https://github.com/AyushKatiya20322" target="_blank" rel="me noopener">GitHub</a></div></div>
         <div class="info-row"><div class="info-label">Files</div>
-          <div>
-            <button class="btn-chip" id="downloadVCard"><i class="fa-regular fa-address-card"></i> vCard</button>
-          </div>
+          <div><button class="btn-chip" id="downloadVCard"><i class="fa-regular fa-address-card"></i> vCard</button></div>
         </div>
       </aside>
     </div>
@@ -458,7 +474,7 @@ footer{padding:34px 0; text-align:center; color:var(--muted); border-top:1px sol
       <input id="palInput" type="text" placeholder="Jump to section or project… (Esc to close)">
       <button class="btn-chip" id="palClose"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    <div class="pal-b" id="palList"></div>
+    <div class="pal-b" id="palList" role="listbox"></div>
   </div>
 </div>
 
@@ -478,6 +494,10 @@ footer{padding:34px 0; text-align:center; color:var(--muted); border-top:1px sol
       <input id="gridSpeed" type="range" min="0" max="2" step="0.1" value="1" style="flex:1">
     </div>
     <div class="row">
+      <small>Typing speed</small>
+      <input id="typeSpeed" type="range" min="0.6" max="2" step="0.1" value="1" style="flex:1">
+    </div>
+    <div class="row">
       <button class="btn-chip" id="themeToggle"><i class="fa-solid fa-circle-half-stroke"></i> Light/Dark</button>
       <button class="btn-chip" id="enableOffline"><i class="fa-solid fa-download"></i> Enable Offline</button>
     </div>
@@ -494,31 +514,31 @@ $('#y').textContent=new Date().getFullYear();
 document.addEventListener('DOMContentLoaded',()=>document.body.classList.add('anim'));
 const prefersReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ========= synthwave grid ========= */
+/* Cache grid speed globally (updated from Cyber Lab slider) */
+let gridSpeedVal = parseFloat(localStorage.getItem('grid-speed') || '1') || 1;
+
+/* ========= synthwave grid (perf: no per-frame getComputedStyle) ========= */
 (function(){
   const canvas=document.getElementById('grid'); if(!canvas) return;
   const ctx=canvas.getContext('2d'); let W=innerWidth, H=innerHeight, DPR=Math.min(2,devicePixelRatio||1);
   function resize(){ W=innerWidth; H=innerHeight; canvas.width=Math.floor(W*DPR); canvas.height=Math.floor(H*DPR); ctx.setTransform(DPR,0,0,DPR,0,0); }
   function line(x1,y1,x2,y2,alpha=.6){ ctx.globalAlpha=alpha; ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); }
-  let t=0; function draw(){
+  let t=0; ctx.strokeStyle='#00f0ff55'; ctx.lineWidth=1;
+  function draw(){
     ctx.clearRect(0,0,W,H);
     const g=ctx.createLinearGradient(0,H*0.45,0,H); g.addColorStop(0,'#00f0ff22'); g.addColorStop(1,'#00f0ff00');
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-    ctx.strokeStyle='#00f0ff55'; ctx.lineWidth=1;
-    const horizon=H*0.45, depth=H*0.7, vanX=W/2;
+    const horizon=H*0.45, depth=H*0.7, vanX=W/2; const speed = gridSpeedVal;
     for(let i=0;i<30;i++){
-      const z=((i+t* (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--grid-speed')) || 1))%10)/10+.02;
+      const z=((i+t*speed)%10)/10+.02;
       const y=horizon + (depth/(z*z+0.05));
-      if(y>H) continue;
-      line(0,y,W,y,0.5);
+      if(y>H) continue; line(0,y,W,y,0.5);
     }
     for(let i=-22;i<=22;i++){
-      const x1=vanX + i*30, y1=horizon;
-      const x2=vanX + i*1800, y2=H+100;
+      const x1=vanX + i*30, y1=horizon; const x2=vanX + i*1800, y2=H+100;
       line(x1,y1,x2,y2,0.35);
     }
-    t+=0.02;
-    requestAnimationFrame(draw);
+    t+=0.02; requestAnimationFrame(draw);
   }
   addEventListener('resize',resize,{passive:true}); resize(); draw();
 })();
@@ -534,8 +554,8 @@ const backTop=$('#backTop'), progress=$('#progress');
 addEventListener('scroll',()=>{ const sc=scrollY; backTop.classList.toggle('show', sc>innerHeight); const docH=document.documentElement.scrollHeight-innerHeight; const pct=Math.max(0,Math.min(1,sc/(docH||1))); progress.style.width=(pct*100).toFixed(2)+'%'; },{passive:true});
 backTop.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 
-/* ========= nav smooth + active ========= */
-const navLinks=$$('#navLinks a');
+/* ========= nav smooth + active + ARIA ========= */
+const navLinks = $$('#navLinks a');
 function scrollToId(id){
   const t=document.querySelector(id); if(!t) return;
   const off=(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))||72)-8;
@@ -543,48 +563,54 @@ function scrollToId(id){
   scrollTo({top:y, behavior:'smooth'});
 }
 navLinks.forEach(a=>a.addEventListener('click',e=>{ e.preventDefault(); scrollToId(a.getAttribute('href')); $('#mobileMenu').style.display='none'; }));
+
+/* Active section tracking + aria-current */
 if('IntersectionObserver' in window){
   const so=new IntersectionObserver(es=>es.forEach(e=>{
-    if(e.isIntersecting){ const id=e.target.id; navLinks.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+id)); }
+    if(e.isIntersecting){
+      const id=e.target.id;
+      navLinks.forEach(a=>{
+        const active = a.getAttribute('href')==='#'+id;
+        a.classList.toggle('active', active);
+        a.setAttribute('aria-current', active ? 'page' : 'false');
+      });
+    }
   }),{threshold:.35});
   $$('#main section[id]').forEach(s=>so.observe(s));
 }
-/* mobile menu */
+
+/* mobile menu toggle + close on outside click and on link click */
 const menuBtn=$('#menuBtn'), mobileMenu=$('#mobileMenu');
 menuBtn?.addEventListener('click',()=>{ const open=mobileMenu.style.display==='block'; mobileMenu.style.display=open?'none':'block'; mobileMenu.setAttribute('aria-hidden', String(open)); menuBtn.setAttribute('aria-expanded', String(!open)); });
 document.addEventListener('click',e=>{ if(!mobileMenu||!menuBtn) return; const within=e.target.closest('#mobileMenu')||e.target.closest('#menuBtn'); if(!within&&mobileMenu.style.display==='block'){ mobileMenu.style.display='none'; mobileMenu.setAttribute('aria-hidden','true'); menuBtn.setAttribute('aria-expanded','false'); } });
+document.querySelectorAll('#mobileMenu .nav-link').forEach(a=>{
+  a.addEventListener('click',(e)=>{ e.preventDefault(); const href=a.getAttribute('href'); if(href?.startsWith('#')) scrollToId(href);
+    mobileMenu.style.display='none'; mobileMenu.setAttribute('aria-hidden','true'); menuBtn.setAttribute('aria-expanded','false'); });
+});
 
-/* ========= typing effect ========= */
-const typingEl = $('#typing');
-const roles = ["AI Researcher", "Robotics Engineer", "ML Enthusiast", "UAV Navigation & CV"];
-let ri = 0, ci = 0;
-
-function typeLoop() {
+/* ========= typing effect v2 (slow + tunable) ========= */
+const typingEl = document.getElementById('typing');
+const roles = ["AI Developer", "Robotics Engineer", "Robotics Enthusiast", "ML Enthusiast", "UAV Navigation & CV"];
+let TYPE_MS = 200, ERASE_MS = 180, PAUSE_AFTER = 2600, PAUSE_BEFORE = 1400;
+let typeSpeedMultiplier = parseFloat(localStorage.getItem('type-speed') || '1'); if (!typeSpeedMultiplier || typeSpeedMultiplier<=0) typeSpeedMultiplier = 1;
+const typeSpeedInput = document.getElementById('typeSpeed'); if (typeSpeedInput) { typeSpeedInput.value = String(typeSpeedMultiplier); typeSpeedInput.addEventListener('input', (e)=>{ const v=parseFloat(e.target.value)||1; typeSpeedMultiplier=v; localStorage.setItem('type-speed', String(v)); if (window.sfxOn && typeof beep==='function') beep(560); }); }
+let ri = 0, ci = 0, mode = 'type';
+function tick() {
   if (!typingEl) return;
-  const r = roles[ri];
-  typingEl.textContent = r.slice(0, ci);
-  ci++;
-  // slower typing speed (was 75 → now 130)
-  if (ci <= r.length) setTimeout(typeLoop, prefersReduced ? 0 : 130);
-  // longer pause before erasing (was 1100 → now 1600)
-  else setTimeout(eraseLoop, prefersReduced ? 250 : 2600);
+  if (prefersReduced) { typingEl.textContent = roles[ri]; return; }
+  const cur = roles[ri];
+  if (mode === 'type') {
+    ci++; typingEl.textContent = cur.slice(0, ci);
+    if (ci <= cur.length) setTimeout(tick, TYPE_MS * typeSpeedMultiplier);
+    else { mode='erase-wait'; setTimeout(()=>{ mode='erase'; tick(); }, PAUSE_AFTER); }
+  } else if (mode === 'erase') {
+    ci--; typingEl.textContent = cur.slice(0, Math.max(ci,0));
+    if (ci >= 0) setTimeout(tick, ERASE_MS * typeSpeedMultiplier);
+    else { ri=(ri+1)%roles.length; mode='type-wait'; setTimeout(()=>{ mode='type'; tick(); }, PAUSE_BEFORE); }
+  } else { setTimeout(tick,16); }
 }
+tick();
 
-function eraseLoop() {
-  if (!typingEl) return;
-  const r = roles[ri];
-  typingEl.textContent = r.slice(0, ci);
-  ci--;
-  // slower erasing speed (was 28 → now 60)
-  if (ci >= 0) setTimeout(eraseLoop, prefersReduced ? 0 : 160);
-  // slightly longer pause before next word (was 260 → now 400)
-  else {
-    ri = (ri + 1) % roles.length;
-    setTimeout(typeLoop, prefersReduced ? 0 : 1400);
-  }
-}
-
-typeLoop();
 /* ========= SFX & music (gesture-safe) ========= */
 let audioCtx, masterGain, sfxOn=false, musicOn=false, loopNodes=[];
 function ensureAudio(){ if(audioCtx) return true; try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); masterGain=audioCtx.createGain(); masterGain.gain.value=0.16; masterGain.connect(audioCtx.destination); return true; }catch(e){ console.warn('Audio init failed',e); return false; } }
@@ -594,24 +620,14 @@ function beep(freq=920, dur=.12, type='square'){ if(!audioCtx||!sfxOn) return; c
 const sfxBtn=$('#sfx'); sfxBtn.addEventListener('click',async()=>{ ensureAudio(); await resumeAudio(); sfxOn=!sfxOn; sfxBtn.innerHTML = sfxOn? '<i class="fa-solid fa-volume-high"></i> SFX':'<i class="fa-solid fa-volume-xmark"></i> SFX'; if(sfxOn) beep(1046,.09,'sawtooth'); });
 
 function startMusic(){
-  if(!audioCtx || musicOn) return;
-  musicOn=true;
-  const tempo=88; // bpm
-  // pad
-  const pad=audioCtx.createOscillator(), pG=audioCtx.createGain(); pad.type='sawtooth'; pad.frequency.value=220; pG.gain.value=.0001; pad.connect(pG); pG.connect(masterGain); pad.start();
+  if(!audioCtx || musicOn) return; musicOn=true;
+  const tempo=88; const pad=audioCtx.createOscillator(), pG=audioCtx.createGain(); pad.type='sawtooth'; pad.frequency.value=220; pG.gain.value=.0001; pad.connect(pG); pG.connect(masterGain); pad.start();
   pG.gain.exponentialRampToValueAtTime(.06, audioCtx.currentTime+.4);
-  // arpeggio
-  const seq=[261.63, 329.63, 392.00, 329.63]; // C E G E
-  let i=0;
-  const tick=()=>{ if(!musicOn) return; const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type='triangle'; o.frequency.value=seq[i%seq.length]; g.gain.value=.0001; o.connect(g); g.connect(masterGain); o.start(); g.gain.exponentialRampToValueAtTime(.18, audioCtx.currentTime+.01); g.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+.25); o.stop(audioCtx.currentTime+.28); i++; loopNodes[1]=setTimeout(tick, (60/tempo)*1000); };
-  loopNodes[0]=pad; loopNodes[1]=setTimeout(tick, 10);
+  const seq=[261.63, 329.63, 392.00, 329.63]; let i=0;
+  const tickArp=()=>{ if(!musicOn) return; const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type='triangle'; o.frequency.value=seq[i%seq.length]; g.gain.value=.0001; o.connect(g); g.connect(masterGain); o.start(); g.gain.exponentialRampToValueAtTime(.18, audioCtx.currentTime+.01); g.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+.25); o.stop(audioCtx.currentTime+.28); i++; loopNodes[1]=setTimeout(tickArp, (60/tempo)*1000); };
+  loopNodes[0]=pad; loopNodes[1]=setTimeout(tickArp, 10);
 }
-function stopMusic(){
-  musicOn=false;
-  if(loopNodes[0]?.stop){ try{ loopNodes[0].stop(); }catch{} }
-  if(loopNodes[1]) clearTimeout(loopNodes[1]);
-  loopNodes=[];
-}
+function stopMusic(){ musicOn=false; if(loopNodes[0]?.stop){ try{ loopNodes[0].stop(); }catch{} } if(loopNodes[1]) clearTimeout(loopNodes[1]); loopNodes=[]; }
 const musicBtn=$('#music');
 musicBtn.addEventListener('click', async ()=>{ ensureAudio(); await resumeAudio(); if(musicOn){ stopMusic(); musicBtn.innerHTML='<i class="fa-solid fa-music"></i> Music'; } else { startMusic(); musicBtn.innerHTML='<i class="fa-solid fa-pause"></i> Music'; if(sfxOn) beep(660); } });
 
@@ -629,8 +645,11 @@ const savedAcc=localStorage.getItem('accent'); if(savedAcc) setAccent(savedAcc);
 function applyTheme(dark){ document.body.classList.toggle('dark', dark); localStorage.setItem('theme', dark?'dark':'light'); if(sfxOn) beep(620); }
 applyTheme(localStorage.getItem('theme')==='dark');
 themeToggle.addEventListener('click',()=> applyTheme(!document.body.classList.contains('dark')));
-const gridSpeed=$('#gridSpeed'); const savedSpeed=localStorage.getItem('grid-speed'); if(savedSpeed){ gridSpeed.value=savedSpeed; document.documentElement.style.setProperty('--grid-speed', savedSpeed); }
-gridSpeed.addEventListener('input', e=>{ document.documentElement.style.setProperty('--grid-speed', e.target.value); localStorage.setItem('grid-speed', e.target.value); if(sfxOn) beep(520); });
+
+/* Grid speed slider wiring (updates cached value + CSS var) */
+const gridSpeed=$('#gridSpeed'); const savedSpeed=localStorage.getItem('grid-speed');
+if(savedSpeed){ gridSpeed.value=savedSpeed; gridSpeedVal=parseFloat(savedSpeed)||1; document.documentElement.style.setProperty('--grid-speed', savedSpeed); }
+gridSpeed.addEventListener('input', e=>{ gridSpeedVal=parseFloat(e.target.value)||1; document.documentElement.style.setProperty('--grid-speed', e.target.value); localStorage.setItem('grid-speed', e.target.value); if(sfxOn) beep(520); });
 
 /* ========= anchors copy ========= */
 $$('.anchor').forEach(a=> a.addEventListener('click', ()=>{ const id=a.dataset.anchor||''; const url=location.origin+location.pathname+id; navigator.clipboard.writeText(url).then(()=>{ a.innerHTML='<i class="fa-solid fa-check"></i>'; setTimeout(()=> a.innerHTML='<i class="fa-solid fa-link"></i>',1200); if(sfxOn) beep(780); }); }));
@@ -647,7 +666,7 @@ $('#downloadVCard')?.addEventListener('click', ()=>{
     'URL:https://ayushkatiya20322.github.io',
     'ORG:ASU;Robotics & Autonomous Systems','TITLE:AI Researcher / Robotics Engineer',
     'END:VCARD'
-  ].join('\\n');
+  ].join('\n');
   const blob=new Blob([vcf],{type:'text/vcard'}); const url=URL.createObjectURL(blob);
   const a=document.createElement('a'); a.href=url; a.download='Ayush-Katiya.vcf'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),500);
   if(sfxOn) beep(640);
@@ -667,13 +686,10 @@ const searchInput=$('#projectSearch'); const sortSel=$('#projectSort');
 function score(q,s){ q=q.toLowerCase(); s=s.toLowerCase(); if(!q) return 1; const i=s.indexOf(q); if(i===0) return 3; if(i>0) return 2; let qi=0; for(let si=0;si<s.length&&qi<q.length;si++){ if(s[si]===q[qi]) qi++; } return qi===q.length?1.5:0; }
 function filterSearchSort(){
   let list=[...cards];
-  // tag from active btn
   const activeTag=(filterBtns.find(b=>b.classList.contains('active'))?.dataset.filter)||'all';
   if(activeTag!=='all'){ list=list.filter(c=> (c.dataset.tags||'').split(',').map(s=>s.trim()).includes(activeTag)); }
-  // search
   const q=(searchInput.value||'').trim();
   if(q){ list=list.map(c=>({c, s: score(q, (c.dataset.title||'') + ' ' + (c.querySelector('p')?.textContent||''))})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.c); }
-  // sort
   const mode=sortSel.value;
   if(mode==='az') list.sort((a,b)=> (a.dataset.title||'').localeCompare(b.dataset.title||''));
   if(mode==='za') list.sort((a,b)=> (b.dataset.title||'').localeCompare(a.dataset.title||''));
@@ -694,9 +710,24 @@ $('#exportProjects').addEventListener('click', ()=>{
   if(sfxOn) beep(600);
 });
 
-/* ========= quick view dialog ========= */
-const dlg=$('#projectDialog'), dlgClose=$('#dialogClose');
-$$('.quick-view').forEach(btn=> btn.addEventListener('click', ()=>{ const card=btn.closest('.card'); if(!card||!dlg) return; $('#dialogTitle').textContent=card.dataset.title||'Project'; $('#dialogImg').src=card.dataset.img||card.querySelector('img')?.src||''; $('#dialogImg').alt=(card.dataset.title||'Project')+' preview'; $('#dialogDesc').textContent=card.dataset.desc||card.querySelector('p')?.textContent||''; $('#dialogGithub').href=card.dataset.github||'#'; dlg.showModal(); if(sfxOn) beep(600); }));
+/* ========= quick view dialog (accessibility) ========= */
+const dlg = document.getElementById('projectDialog');
+const dlgClose = document.getElementById('dialogClose');
+function trapFocus(modal) {
+  const focusable = modal.querySelectorAll('a,button,input,textarea,select,summary,[tabindex]:not([tabindex="-1"])');
+  if (!focusable.length) return; const first = focusable[0]; const last = focusable[focusable.length - 1];
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'Tab') {
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+    if (e.key === 'Escape') modal.close();
+  });
+}
+$$('.quick-view').forEach(btn=> btn.addEventListener('click', ()=>{ const card=btn.closest('.card'); if(!card||!dlg) return;
+  $('#dialogTitle').textContent=card.dataset.title||'Project'; $('#dialogImg').src=card.dataset.img||card.querySelector('img')?.src||''; $('#dialogImg').alt=(card.dataset.title||'Project')+' preview'; $('#dialogDesc').textContent=card.dataset.desc||card.querySelector('p')?.textContent||''; $('#dialogGithub').href=card.dataset.github||'#';
+  dlg.showModal(); trapFocus(dlg); dlgClose?.focus(); if(sfxOn) beep(600);
+}));
 dlgClose?.addEventListener('click', ()=> dlg?.close());
 dlg?.addEventListener('click', e=>{ if(e.target===dlg) dlg.close(); });
 
@@ -750,7 +781,7 @@ contactForm?.addEventListener('submit', async e=>{
 const palette=$('#palette'), palInput=$('#palInput'), palList=$('#palList'), palClose=$('#palClose'), paletteBtn=$('#paletteBtn');
 const items=[
   ...$$('main section[id]').map(s=>({type:'section',title:s.querySelector('h2')?.textContent?.trim()||s.id, href:'#'+s.id})),
-  ...$$('#projectGrid .card').map((c,i)=>({type:'project',title:c.dataset.title||c.querySelector('h3')?.textContent?.trim()||'Project',href:'#projects',filter:c.dataset.tags?.split(',')[0]||'all'}))
+  ...$$('#projectGrid .card').map((c)=>({type:'project',title:c.dataset.title||c.querySelector('h3')?.textContent?.trim()||'Project',href:'#projects',filter:c.dataset.tags?.split(',')[0]||'all'}))
 ];
 function openPal(){ palette.classList.add('show'); palInput.value=''; render(items); palInput.focus(); }
 function closePal(){ palette.classList.remove('show'); }
@@ -784,10 +815,8 @@ async function loadStats(){
     const repos = await fetchJSON(`https://api.github.com/users/${user}/repos?per_page=100&sort=updated`);
     const stars = repos.reduce((a,r)=>a+(r.stargazers_count||0),0);
     statStars.textContent = stars.toString();
-    // last activity in days (from updated_at of most recent repo)
     const last = repos[0]?.updated_at ? new Date(repos[0].updated_at) : null;
     statUpdated.textContent = last ? Math.max(0, Math.round((Date.now()-last.getTime())/86400000)).toString() : '—';
-    // show 4 latest repos
     repos.slice(0,4).forEach(r=>{
       const div=document.createElement('div'); div.className='card';
       div.innerHTML = `
@@ -807,24 +836,19 @@ async function loadStats(){
   }
 }
 $('#refreshStats').addEventListener('click', loadStats);
-loadStats(); // initial try; will gracefully fail if offline
+loadStats(); // initial try
 
-/* ========= tiny PWA ========= */
+/* ========= PWA register sw.js (works on GH Pages) ========= */
 const enableOfflineBtn=$('#enableOffline');
-enableOfflineBtn?.addEventListener('click', ()=>{
+enableOfflineBtn?.addEventListener('click', async ()=>{
   if(!('serviceWorker' in navigator)){ alert('Service Worker not supported in this browser.'); return; }
-  const swCode=`
-    const CACHE='ak-cyberpunk-v2';
-    const ASSETS=['./','index.html','assets/profile.jpg','assets/project1.png','assets/project2.png','assets/project3.png','assets/project4.png','assets/project5.png','assets/project6.png','assets/project7.png','resume.pdf'];
-    self.addEventListener('install',e=>{ e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())); });
-    self.addEventListener('activate',e=>{ e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))); self.clients.claim(); });
-    self.addEventListener('fetch',e=>{
-      if(e.request.method!=='GET') return;
-      e.respondWith( caches.match(e.request).then(c=> c || fetch(e.request).then(res=>{ const cp=res.clone(); caches.open(CACHE).then(cache=>cache.put(e.request,cp)); return res; }).catch(()=>caches.match('./')) ) );
-    });
-  `;
-  const blob=new Blob([swCode],{type:'text/javascript'}); const url=URL.createObjectURL(blob);
-  navigator.serviceWorker.register(url).then(()=>{ enableOfflineBtn.textContent='Offline ✓'; if(sfxOn) beep(660); setTimeout(()=>URL.revokeObjectURL(url),1000); }).catch(()=> alert('Failed to enable offline'));
+  try{
+    await navigator.serviceWorker.register('./sw.js', { scope: './' });
+    enableOfflineBtn.textContent='Offline ✓';
+    if(sfxOn) beep(660);
+  }catch(e){
+    alert('Failed to enable offline. Make sure sw.js is deployed at the site root.');
+  }
 });
 </script>
 </body>
