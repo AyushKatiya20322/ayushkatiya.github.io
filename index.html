@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Ayush Katiya — Star-Wars-inspired portfolio (enhanced, Oct 2025) -->
+  <!-- Ayush Katiya — Star-Wars-inspired portfolio (enhanced, fixed Top-Skills pills) -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ayush Katiya — Robotics & AI</title>
@@ -92,6 +92,12 @@
     .info-row{ display:flex; gap:10px; align-items:flex-start; margin-bottom:10px }
     .info-label{ min-width:110px; font-weight:800; color:var(--muted) }
 
+    /* >>> FIX: let value column wrap and avoid overlap */
+    .info-row > :nth-child(2){
+      min-width:0;        /* critical for flex children to shrink */
+      flex:1 1 auto;      /* allow wrapping */
+    }
+
     .timeline{ border-left:3px solid var(--a1); padding-left:16px }
     .timeline-item{ margin-bottom:18px }
     .timeline-item h3{ margin:0 0 6px; font-size:1.05rem }
@@ -112,9 +118,19 @@
     .filter-btn{ border:1px solid #ffffff2a; background:#0b1220bb; color:var(--text); padding:.4rem .7rem; border-radius:999px; font-weight:800; cursor:pointer }
     .filter-btn.active{ background:linear-gradient(90deg, var(--a1), var(--a2)); color:#061018; border-color:transparent }
 
-    .skills{ display:flex; flex-wrap:wrap; gap:8px }
-    .skill{ background:#0a121f; color:#bfe5ff; padding:.45rem .75rem; border-radius:999px; font-weight:800; border:1px solid #ffffff14 }
-    .skill:hover{ box-shadow:0 0 16px var(--a1)22 }
+    .skills{ display:flex; flex-wrap:wrap; gap:8px }                  /* global skills container */
+    .skill, .chip{                                                  /* unify pills */
+      display:inline-flex; align-items:center;
+      white-space:nowrap; line-height:1;
+      padding:.45rem .75rem; border-radius:999px;
+      background:#0a121f; color:#bfe5ff; border:1px solid #ffffff14;
+      font-weight:800;
+    }
+    .skill:hover, .chip:hover{ box-shadow:0 0 16px var(--a1)22 }
+
+    /* ensure pills lay out correctly inside info-card */
+    .info-card .skills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:2px }
+
     .counter{ text-align:center; min-width:160px; border:1px solid #ffffff22; border-radius:12px; padding:10px; background:#0a121fcc }
     .counter .num{ font-size:1.8rem; font-weight:900 }
 
@@ -125,7 +141,7 @@
     @media (max-width:900px){ .menu-btn{ display:inline-flex } .nav-links{ display:none } }
     @media (max-width:600px){ .grid{ grid-template-columns:1fr } .card .thumb{ height:120px } .holo-header{ font-size:2.25rem } }
 
-    /* Opening crawl + hyperdrive (unchanged visuals) */
+    /* Opening crawl + hyperdrive */
     #crawlOverlay{ position:fixed; inset:0; display:none; align-items:flex-end; justify-content:center; background:radial-gradient(80% 50% at 50% 40%, rgba(0,0,0,.6), rgba(0,0,0,.9)), #000; z-index:2000; perspective:400px }
     #crawlOverlay.active{ display:flex }
     .crawl{ width:min(680px,92vw); font-family:"Share Tech Mono",monospace; color:var(--a4); text-align:justify; line-height:1.5; letter-spacing:.6px; transform-origin:50% 100%; animation:crawl 40s linear forwards }
@@ -172,7 +188,7 @@
     @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important } }
   </style>
 
-  <!-- JSON-LD (Person + Site Search) -->
+  <!-- JSON-LD (valid, static) -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -180,7 +196,7 @@
     "name":"Ayush Katiya",
     "email":"mailto:ayushkatiya@gmail.com",
     "jobTitle":"AI Researcher / Robotics Engineer",
-    "url":document.currentScript && document.currentScript.ownerDocument.location.origin,
+    "url":"https://ayushkatiya20322.github.io",
     "sameAs":["https://www.linkedin.com/in/ayushkatiya","https://github.com/AyushKatiya20322"]
   }
   </script>
@@ -291,7 +307,16 @@
               <div><a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a> <button class="chip-btn" id="copyEmail" title="Copy email"><i class="fa-solid fa-copy"></i></button></div>
             </div>
           </div>
-          <div class="info-row"><div class="info-label">Top Skills</div><div><span class="skill">Robotics</span> <span class="skill">Robot Programming</span></div></div>
+
+          <!-- FIXED TOP SKILLS ROW -->
+          <div class="info-row">
+            <div class="info-label">Top Skills</div>
+            <div class="skills" role="list">
+              <span class="skill" role="listitem">Robotics</span>
+              <span class="skill" role="listitem">Robot Programming</span>
+            </div>
+          </div>
+
           <div class="info-row"><div class="info-label">Languages</div><div><div class="small muted">Hindi (Native), English (Full Professional), German (Elementary)</div></div></div>
           <div class="info-row"><div class="info-label">Links</div><div><a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="me noopener">LinkedIn</a> • <a href="https://github.com/AyushKatiya20322" target="_blank" rel="me noopener">GitHub</a></div></div>
         </aside>
@@ -586,24 +611,22 @@
 
   // Active nav + smooth scroll + hyperjump
   const navLinks=$$('#navLinks a'), hyperdrive=$('#hyperdrive');
-  function jump(){ if(prefersReduced) return; hyperdrive.classList.remove('active'); void hyperdrive.offsetWidth; hyperdrive.classList.add('active'); boostStars(); beep(980); }
-  navLinks.forEach(a=> a.addEventListener('click',ev=>{ ev.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(!t) return; const y=t.getBoundingClientRect().top+scrollY-((parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')))||72)+8; jump(); scrollTo({top:y, behavior:'smooth'}); mobileMenu && (mobileMenu.style.display='none'); }));
+  function boostStars(){ if(!prefersReduced){ hyperdrive.classList.remove('active'); void hyperdrive.offsetWidth; hyperdrive.classList.add('active'); } }
+  navLinks.forEach(a=> a.addEventListener('click',ev=>{ ev.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(!t) return; const y=t.getBoundingClientRect().top+scrollY-((parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')))||72)+8; boostStars(); scrollTo({top:y, behavior:'smooth'}); mobileMenu && (mobileMenu.style.display='none'); }));
   if('IntersectionObserver' in window){ const secObserver = new IntersectionObserver((entries)=> entries.forEach(e=>{ if(e.isIntersecting){ const id=e.target.id; navLinks.forEach(a=> a.classList.toggle('active', a.getAttribute('href')==='#'+id)); }}), {threshold:.35}); document.querySelectorAll('main section[id]').forEach(s=> secObserver.observe(s)); }
 
   // Progress + back-to-top
   const backTop=$('#backTop'), scrollProgress=$('#scrollProgress');
   addEventListener('scroll', ()=>{ const sc=scrollY; backTop.classList.toggle('show', sc>innerHeight); const docH=document.documentElement.scrollHeight-innerHeight; const pct=Math.max(0, Math.min(1, sc/(docH||1))); if(scrollProgress) scrollProgress.style.width=(pct*100).toFixed(2)+'%'; });
-
   backTop?.addEventListener('click', ()=> scrollTo({ top:0, behavior:'smooth' }));
 
   // Copy section links
   $$('.anchor').forEach(a=> a.addEventListener('click', ()=>{ const id=a.dataset.anchor||''; const url=location.origin+location.pathname+id; navigator.clipboard.writeText(url).then(()=>{ a.innerHTML='<i class="fa-solid fa-check"></i>'; setTimeout(()=> a.innerHTML='<i class="fa-solid fa-link"></i>',1200); }); }));
 
-  // Filter + URL deep-link
+  // Filters + deep link
   const filterBtns=$$('.filter-btn'); const projectCards=$$('#projectGrid .card');
   function applyFilter(tag){ filterBtns.forEach(b=> b.classList.toggle('active', b.dataset.filter===tag || (tag==='all'&&b.dataset.filter==='all'))); projectCards.forEach(card=>{ const tags=(card.getAttribute('data-tags')||'').split(',').map(s=>s.trim()); const show=tag==='all'||tags.includes(tag); card.style.display=show?'':'none'; }); }
   filterBtns.forEach(btn=> btn.addEventListener('click', ()=>{ const tag=btn.dataset.filter; applyFilter(tag); history.replaceState({},'', '#projects?tag='+encodeURIComponent(tag)); beep(740); }));
-  // On load if deep-linked
   if(location.hash.startsWith('#projects')&&location.hash.includes('tag=')){ const tag=decodeURIComponent(location.hash.split('tag=')[1]||'all'); applyFilter(tag); }
 
   // Quick view dialog
@@ -630,33 +653,8 @@
   function boostStars(){ if(!prefersReduced){ hyperBoost=6; setTimeout(()=> hyperBoost=1, 700); } }
   layers.forEach(cfg=> makeStars(document.getElementById(cfg.id), cfg));
 
-  // Opening crawl
-  const crawlOverlay=$('#crawlOverlay'), playIntro=$('#playIntro'), skipCrawl=$('#skipCrawl'); playIntro?.addEventListener('click', ()=>{ crawlOverlay.classList.add('active'); ignite(); }); skipCrawl?.addEventListener('click', ()=>{ crawlOverlay.classList.remove('active'); retract(); }); crawlOverlay?.addEventListener('click', e=>{ if(e.target===crawlOverlay) crawlOverlay.classList.remove('active'); });
-
-  // Command Palette (Ctrl/Cmd+K)
-  const palette=$('#palette'), palInput=$('#palInput'), palList=$('#palList'), palClose=$('#palClose'), openPalette=$('#openPalette');
-  const items = [
-    ...$$('main section[id]').map(s => ({ type:'section', id:s.id, title:s.querySelector('h2')?.textContent?.trim()||s.id, href:'#'+s.id })),
-    ...$$('#projectGrid .card').map((c,i)=>({ type:'project', id:'p'+i, title:c.dataset.title||c.querySelector('h3')?.textContent?.trim()||'Project', tags:(c.dataset.tags||''), href:'#projects', filterTag:c.dataset.tags?.split(',')[0]||'all' }))
-  ];
-  function openPal(){ palette.classList.add('show'); palInput.value=''; renderList(items); palInput.focus(); }
-  function closePal(){ palette.classList.remove('show'); }
-  function score(q, s){ q=q.toLowerCase(); s=s.toLowerCase(); if(!q) return 1; const i=s.indexOf(q); if(i===0) return 3; if(i>0) return 2; // simple score
-    // fuzzy: characters in order
-    let qi=0; for(let si=0; si<s.length && qi<q.length; si++){ if(s[si]===q[qi]) qi++; } return qi===q.length ? 1.5 : 0;
-  }
-  function highlight(q, s){ if(!q) return s; const idx=s.toLowerCase().indexOf(q.toLowerCase()); if(idx<0) return s; return s.slice(0,idx)+'<b>'+s.slice(idx, idx+q.length)+'</b>'+s.slice(idx+q.length); }
-  function renderList(list){ palList.innerHTML=''; list.slice(0,50).forEach((it, i)=>{ const div=document.createElement('div'); div.className='pal-item'; div.setAttribute('role','option'); div.setAttribute('aria-selected', String(i===0)); div.dataset.href=it.href; div.dataset.filter=it.filterTag||''; div.innerHTML = (it.type==='project' ? '<i class="fa-solid fa-rocket"></i>' : '<i class="fa-solid fa-section"></i>') + ' ' + (it._hl || it.title); palList.appendChild(div); }); }
-  palInput.addEventListener('input', ()=>{ const q=palInput.value.trim(); const scored=items.map(it=>({ ...it, _score: score(q, it.title + ' ' + (it.tags||'')), _hl: highlight(q, it.title) })).filter(x=>x._score>0).sort((a,b)=> b._score-a._score); renderList(scored); });
-  palList.addEventListener('click', e=>{ const row=e.target.closest('.pal-item'); if(!row) return; jump(); if(row.dataset.filter){ applyFilter(row.dataset.filter); location.hash = '#projects?tag='+encodeURIComponent(row.dataset.filter); } else { location.hash = row.dataset.href; } closePal(); });
-  let sel=0; function updateSel(n){ const rows=[...palList.children]; if(!rows.length) return; rows.forEach(r=> r.setAttribute('aria-selected','false')); sel=(n+rows.length)%rows.length; rows[sel].setAttribute('aria-selected','true'); rows[sel].scrollIntoView({block:'nearest'}); }
-  addEventListener('keydown', (e)=>{ const mod=e.ctrlKey||e.metaKey; if(mod && e.key.toLowerCase()==='k'){ e.preventDefault(); palette.classList.contains('show')? closePal(): openPal(); } if(palette.classList.contains('show')){ if(e.key==='Escape'){ closePal(); } if(e.key==='ArrowDown'){ e.preventDefault(); updateSel(sel+1); } if(e.key==='ArrowUp'){ e.preventDefault(); updateSel(sel-1); } if(e.key==='Enter'){ e.preventDefault(); palList.children[sel]?.click(); } }});
-  palClose.addEventListener('click', closePal); openPalette.addEventListener('click', openPal);
-
-  // Section visible on load (deep links)
-  addEventListener('load', revealNow);
-
-  // SFX (no media)
+  // Opening crawl & SFX (synth only)
+  const crawlOverlay=$('#crawlOverlay'), playIntro=$('#playIntro'), skipCrawl=$('#skipCrawl'); playIntro?.addEventListener('click', ()=>{ crawlOverlay.classList.add('active'); ignite(); }); skipCrawl?.addEventListener('click', ()=>{ crawlOverlay.classList.remove('active'); retract(); });
   let audioCtx=null, masterGain=null, sfxOn=false, humOsc=null, humGain=null;
   function initAudio(){ if(audioCtx) return; try{ audioCtx=new (window.AudioContext||window.webkitAudioContext)(); masterGain=audioCtx.createGain(); masterGain.gain.value=.12; masterGain.connect(audioCtx.destination); }catch{} }
   function beep(f=880,d=.08){ if(!sfxOn||!audioCtx) return; const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.type='triangle'; o.frequency.value=f; g.gain.value=.0001; o.connect(g); g.connect(masterGain); o.start(); g.gain.exponentialRampToValueAtTime(.35, audioCtx.currentTime+.01); g.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+d); o.stop(audioCtx.currentTime+d+.02); }
@@ -666,13 +664,24 @@
   function stopHum(){ try{ if(humOsc&&humGain){ humGain.gain.exponentialRampToValueAtTime(.0001, audioCtx.currentTime+.15); humOsc.stop(audioCtx.currentTime+.18); } }catch{} humOsc=null; humGain=null; }
   const sfxToggle=$('#sfxToggle'); sfxToggle?.addEventListener('click', async ()=>{ if(!audioCtx) initAudio(); try{ if(audioCtx && audioCtx.state==='suspended') await audioCtx.resume(); }catch{} sfxOn=!sfxOn; sfxToggle.innerHTML = sfxOn? '<i class="fa-solid fa-volume-high"></i> SFX':'<i class="fa-solid fa-volume-xmark"></i> SFX'; if(sfxOn) ignite(); else retract(); });
 
-  // Opening crawl control
-  addEventListener('keydown', e=>{ if(e.key.toLowerCase()==='h'){ jump(); } });
+  // Command Palette
+  const palette=$('#palette'), palInput=$('#palInput'), palList=$('#palList'), palClose=$('#palClose'), openPalette=$('#openPalette');
+  const items = [
+    ...$$('main section[id]').map(s => ({ type:'section', id:s.id, title:s.querySelector('h2')?.textContent?.trim()||s.id, href:'#'+s.id })),
+    ...$$('#projectGrid .card').map((c,i)=>({ type:'project', id:'p'+i, title:c.dataset.title||c.querySelector('h3')?.textContent?.trim()||'Project', tags:(c.dataset.tags||''), href:'#projects', filterTag:c.dataset.tags?.split(',')[0]||'all' }))
+  ];
+  function openPal(){ palette.classList.add('show'); palInput.value=''; renderList(items); palInput.focus(); }
+  function closePal(){ palette.classList.remove('show'); }
+  function score(q, s){ q=q.toLowerCase(); s=s.toLowerCase(); if(!q) return 1; const i=s.indexOf(q); if(i===0) return 3; if(i>0) return 2; let qi=0; for(let si=0; si<s.length && qi<q.length; si++){ if(s[si]===q[qi]) qi++; } return qi===q.length ? 1.5 : 0; }
+  function highlight(q, s){ if(!q) return s; const idx=s.toLowerCase().indexOf(q.toLowerCase()); if(idx<0) return s; return s.slice(0,idx)+'<b>'+s.slice(idx, idx+q.length)+'</b>'+s.slice(idx+q.length); }
+  function renderList(list){ palList.innerHTML=''; list.slice(0,50).forEach((it, i)=>{ const div=document.createElement('div'); div.className='pal-item'; div.setAttribute('role','option'); div.setAttribute('aria-selected', String(i===0)); div.dataset.href=it.href; div.dataset.filter=it.filterTag||''; div.innerHTML = (it.type==='project' ? '<i class="fa-solid fa-rocket"></i>' : '<i class="fa-solid fa-section"></i>') + ' ' + (it._hl || it.title); palList.appendChild(div); }); }
+  palInput.addEventListener('input', ()=>{ const q=palInput.value.trim(); const scored=items.map(it=>({ ...it, _score: score(q, it.title + ' ' + (it.tags||'')), _hl: highlight(q, it.title) })).filter(x=>x._score>0).sort((a,b)=> b._score-a._score); renderList(scored); });
+  palList.addEventListener('click', e=>{ const row=e.target.closest('.pal-item'); if(!row) return; boostStars(); if(row.dataset.filter){ applyFilter(row.dataset.filter); location.hash = '#projects?tag='+encodeURIComponent(row.dataset.filter); } else { location.hash = row.dataset.href; } closePal(); });
+  let sel=0; function updateSel(n){ const rows=[...palList.children]; if(!rows.length) return; rows.forEach(r=> r.setAttribute('aria-selected','false')); sel=(n+rows.length)%rows.length; rows[sel].setAttribute('aria-selected','true'); rows[sel].scrollIntoView({block:'nearest'}); }
+  addEventListener('keydown', (e)=>{ const mod=e.ctrlKey||e.metaKey; if(mod && e.key.toLowerCase()==='k'){ e.preventDefault(); palette.classList.contains('show')? closePal(): openPal(); } if(palette.classList.contains('show')){ if(e.key==='Escape'){ closePal(); } if(e.key==='ArrowDown'){ e.preventDefault(); updateSel(sel+1); } if(e.key==='ArrowUp'){ e.preventDefault(); updateSel(sel-1); } if(e.key==='Enter'){ e.preventDefault(); palList.children[sel]?.click(); } }});
+  palClose.addEventListener('click', closePal); openPalette.addEventListener('click', openPal);
 
-  // Palette & section reveal for in-view on load
-  window.addEventListener('load', ()=> { revealNow(); });
-
-  // Optional: tiny PWA (offline) — no extra files. Click “Enable Offline”.
+  // Optional tiny PWA (click “Enable Offline”)
   const enableOfflineBtn=$('#enableOffline');
   enableOfflineBtn?.addEventListener('click', ()=>{
     if(!('serviceWorker' in navigator)) { alert('Service Worker not supported in this browser.'); return; }
@@ -695,14 +704,6 @@
     const swUrl = URL.createObjectURL(blob);
     navigator.serviceWorker.register(swUrl).then(()=>{ enableOfflineBtn.textContent='Offline ✓'; beep(620); setTimeout(()=> URL.revokeObjectURL(swUrl), 1000); }).catch(()=> alert('Failed to register offline cache'));
   });
-
-  // Opening crawl buttons
-  const playIntro=$('#playIntro'), crawlOverlay=$('#crawlOverlay'), skipCrawl=$('#skipCrawl');
-  playIntro?.addEventListener('click', ()=>{ crawlOverlay.classList.add('active'); ignite(); });
-  skipCrawl?.addEventListener('click', ()=>{ crawlOverlay.classList.remove('active'); retract(); });
-
-  // Command Palette open from button
-  // (handlers declared earlier)
   </script>
 </body>
 </html>
