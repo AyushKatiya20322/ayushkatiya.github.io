@@ -2,15 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ayush Katiya — Robotics & AI Portfolio</title>
-  <meta name="description" content="Ayush Katiya — MS Robotics & Autonomous Systems (AI) @ ASU. Projects: Image Captioning, Plant Disease Prediction, E-commerce portfolio, RPA bots, and more."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayush Katiya — Robotics & AI Portfolio (2025)</title>
+  <meta name="description" content="Ayush Katiya — MS Robotics & Autonomous Systems (AI) @ ASU. AI/Robotics projects: Image Captioning, Plant Disease Prediction, RPA bots, full‑stack ML (FastAPI + React), and more."/>
+  <link rel="canonical" href="https://<your-github-username>.github.io/<your-repo>/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ayush Katiya — Robotics & AI Portfolio">
+  <meta property="og:description" content="AI Researcher • Robotics Engineer • ML Enthusiast">
+  <meta property="og:image" content="assets/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#ffcc00">
+
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    /* ========= VARIABLES & RESET ========= */
+    /* ========= DESIGN TOKENS ========= */
     :root{
       --primary: #ffcc00;
       --bg: #f7f9fb;
@@ -22,6 +34,7 @@
       --accent-grad: linear-gradient(135deg,#0d1b2a,#142433);
       --nav-height: 72px;
       --dark: #222;
+      --ring: 0 0 0 3px rgba(255, 204, 0, .35);
     }
     body.dark{
       --bg: #07101a;
@@ -30,170 +43,250 @@
       --muted: #9fb0c6;
       --text: #e6eef8;
       --glass: rgba(8,12,16,0.45);
+      --ring: 0 0 0 3px rgba(255, 204, 0, .45);
     }
 
+    /* ========= RESET & BASE ========= */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale; transition: background .25s, color .25s;
-      scroll-behavior: smooth;
+      margin:0; font-family:Inter, system-ui, -apple-system,"Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg); color:var(--text);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      transition: background .25s, color .25s;
+      scroll-behavior:smooth;
     }
-    a{color:var(--primary)}
+    :focus-visible{outline:none; box-shadow:var(--ring)}
+    a{color:var(--primary); text-underline-offset:2px}
     img{display:block;max-width:100%}
     .container{max-width:1100px;margin:0 auto;padding:1rem 1.1rem}
+    .small{font-size:.95rem}
+    .muted{color:var(--muted)}
+
+    /* ========= REUSABLE UI ========= */
+    .btn{
+      appearance:none; border:0; cursor:pointer; font-weight:800; letter-spacing:.2px;
+      padding:.72rem 1rem; border-radius:12px; background:var(--primary); color:#111;
+      display:inline-flex; gap:.5rem; align-items:center; text-decoration:none;
+      transition: transform .2s, box-shadow .2s; box-shadow: 0 6px 18px rgba(0,0,0,.12);
+    }
+    .btn:hover{ transform: translateY(-2px) }
+    .btn:active{ transform: translateY(0) }
+    .btn.alt{ background:transparent; color:var(--text); border:1.5px solid rgba(0,0,0,.12) }
+    body.dark .btn.alt{ border-color: rgba(255,255,255,.18) }
+    .btn.ghost{ background:transparent; color:var(--primary); border:1.5px dashed var(--primary)}
+
+    .chip{
+      display:inline-flex; align-items:center; gap:.4rem;
+      background: rgba(0,0,0,.06); color:#111; padding:.35rem .6rem; border-radius:999px; font-weight:700;
+    }
+    body.dark .chip{ background: rgba(255,255,255,.08); color:#fff}
 
     /* ========= NAVBAR ========= */
     header.navbar{
-      position:fixed; left:0; right:0; top:0; height:var(--nav-height); display:flex; align-items:center;
-      z-index:1200; padding:0 1rem; transition:backdrop-filter .25s, background .25s, box-shadow .25s;
-      background:linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(255,255,255,0.25));
-      backdrop-filter: blur(6px);
+      position:fixed; inset:0 0 auto; height:var(--nav-height); display:flex; align-items:center;
+      z-index:1200; padding:0 1rem;
+      background:linear-gradient(to bottom, rgba(255,255,255,0.65), rgba(255,255,255,0.25));
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid rgba(2,6,23,0.06);
     }
-    body.dark header.navbar{ background: linear-gradient(to bottom, rgba(10,12,15,0.6), rgba(10,12,15,0.25)); }
+    body.dark header.navbar{ background: linear-gradient(to bottom, rgba(10,12,15,0.6), rgba(10,12,15,0.25)); border-color: rgba(255,255,255,.08) }
     .nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1100px;margin:0 auto}
-    .brand{font-weight:800;color:var(--primary);font-size:1.05rem;letter-spacing:.2px}
+    .brand{font-weight:800;color:var(--primary);font-size:1.1rem;letter-spacing:.2px}
 
-    /* FIXED NAVBAR LINKS */
     .nav-links {
-      list-style: none;
-      display: flex;
-      gap: .75rem;
-      align-items: center;
-      margin: 0;
-      padding: 0;
+      list-style:none; display:flex; gap:.5rem; align-items:center; margin:0; padding:0;
     }
-    .nav-links li { display: inline-block; }
-    .nav-links a.nav-link {
-      color: var(--text);
-      text-decoration: none;
-      padding: .5rem .6rem;
-      border-radius: 8px;
-      font-weight: 600;
+    .nav-links li { display:inline-block }
+    .nav-links a{
+      color:var(--text); text-decoration:none; padding:.5rem .6rem; border-radius:8px; font-weight:700;
     }
-    .nav-links a.nav-link:hover,
-    .nav-links a.nav-link.active {
-      color: var(--primary);
-      background: transparent;
-    }
+    .nav-links a:hover, .nav-links a.active{ color:var(--primary) }
 
     .controls{display:flex;gap:.5rem;align-items:center}
-    .theme-btn,.menu-btn{background:none;border:0;cursor:pointer;color:var(--muted);font-size:1.05rem;padding:.4rem;border-radius:8px}
+    .theme-btn,.menu-btn{background:none;border:0;cursor:pointer;color:var(--muted);font-size:1.05rem;padding:.45rem;border-radius:8px}
     .menu-btn{display:none}
-
-    /* mobile menu */
-    .mobile-menu{display:none;position:absolute;top:calc(var(--nav-height) + 8px);right:12px;background:var(--card);border-radius:10px;padding:.6rem;box-shadow:0 10px 35px rgba(2,6,23,0.12)}
-    .mobile-menu a{display:block;padding:.5rem .8rem;color:var(--text);text-decoration:none;border-radius:8px}
+    .mobile-menu{
+      display:none; position:absolute; top:calc(var(--nav-height) + 8px); right:12px; background:var(--card);
+      border-radius:12px; padding:.6rem; box-shadow:0 10px 35px rgba(2,6,23,0.12)
+    }
+    .mobile-menu a{display:block;padding:.55rem .8rem;color:var(--text);text-decoration:none;border-radius:8px}
     .mobile-menu a:hover{color:var(--primary)}
 
     /* ========= HERO ========= */
     .hero{
-      min-height:calc(100vh - var(--nav-height)); display:flex;align-items:center;justify-content:center;
-      background: linear-gradient(180deg, rgba(13,27,42,0.95) 0%, rgba(20,34,48,0.95) 100%), url('https://picsum.photos/1600/900?blur=2') center/cover no-repeat;
-      color:white;padding:calc(var(--nav-height) + 48px) 1rem 4rem;text-align:center;
+      min-height:calc(100vh - var(--nav-height));
+      display:grid; place-items:center; position:relative; text-align:center; color:#fff;
+      padding:calc(var(--nav-height) + 48px) 1rem 4rem;
+      overflow:hidden;
     }
-    .hero-inner{max-width:920px;margin:0 auto}
-    .profile {
-      width:148px;height:148px;border-radius:50%;object-fit:cover;border:4px solid var(--primary); margin:0 auto 18px; background:#222;
+    /* animated gradient backdrop */
+    .hero::before{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(1200px 600px at 70% -10%, rgba(255,204,0,.18), transparent 60%),
+                  radial-gradient(900px 600px at -10% 20%, rgba(0,180,255,.15), transparent 55%),
+                  linear-gradient(180deg, #0d1b2a 0%, #142433 100%);
+      animation: pan 18s linear infinite;
+      transform: translateZ(0);
+    }
+    @keyframes pan{
+      0%{ background-position: 0 0, 0 0, 0 0 }
+      50%{ background-position: 20% 10%, -10% 30%, 0 0 }
+      100%{ background-position: 0 0, 0 0, 0 0 }
+    }
+    .orb { position:absolute; border-radius:50%; filter:blur(18px); opacity:.55; mix-blend-mode: screen; pointer-events:none }
+    .orb.one{ width:260px; height:260px; background:#ffcc00; top:12%; left:6%; animation: float 14s ease-in-out infinite }
+    .orb.two{ width:200px; height:200px; background:#00d4ff; bottom:10%; right:12%; animation: float 16s ease-in-out infinite reverse }
+    @keyframes float{
+      0%,100%{ transform:translateY(0) translateX(0) }
+      50%{ transform:translateY(-16px) translateX(10px) }
+    }
+
+    .hero-inner{ max-width:920px; margin:0 auto; position:relative; z-index:1 }
+    .profile{
+      width:148px;height:148px;border-radius:50%;object-fit:cover;border:4px solid var(--primary);
+      margin:0 auto 18px; background:#222; box-shadow: 0 10px 40px rgba(255,204,0,.25)
     }
     .hero h1{font-size:2.6rem;margin-bottom:8px;line-height:1.05}
-    .tagline{color:var(--primary);font-weight:700;margin-bottom:14px;height:28px}
+    .tagline{color:var(--primary);font-weight:800;margin-bottom:14px;height:28px;letter-spacing:.3px}
     .hero p.lead{max-width:760px;margin:0 auto 20px;opacity:.95}
     .hero .cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 
-    /* glass panel main layout */
+    /* ========= PANEL / SECTIONS ========= */
     main{margin-top:18px}
-    .panel{background:linear-gradient(180deg,rgba(255,255,255,0.6), rgba(255,255,255,0.35)); border-radius:16px;padding:1.2rem;box-shadow: 0 8px 30px rgba(8,12,20,0.08)}
-    body.dark .panel{background:linear-gradient(180deg, rgba(4,8,12,0.5), rgba(6,10,14,0.45));}
+    .panel{
+      background:linear-gradient(180deg,rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+      border-radius:16px; padding:1.2rem; box-shadow:0 8px 30px rgba(8,12,20,0.08)
+    }
+    body.dark .panel{ background:linear-gradient(180deg, rgba(4,8,12,0.5), rgba(6,10,14,0.45)) }
 
-    /* ========= SECTIONS ========= */
-    section{padding:48px 0;opacity:0;transform:translateY(28px);transition:all .6s cubic-bezier(.2,.95,.2,1)}
-    section.visible{opacity:1;transform:none}
+    section{ padding:48px 0; opacity:0; transform:translateY(24px); transition: opacity .7s ease, transform .7s ease}
+    section.visible{ opacity:1; transform:none }
     .section-title{text-align:center;margin-bottom:28px}
-    .section-title h2{font-size:1.5rem;margin-bottom:6px}
+    .section-title h2{font-size:1.55rem;margin-bottom:6px}
     .underline{height:3px;width:64px;background:var(--primary);border-radius:6px;margin:0 auto}
 
-    /* ========= TWO COLUMN / SIDEBAR ========= */
+    /* ========= LAYOUTS ========= */
     .two-col{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
     @media (max-width:980px){.two-col{grid-template-columns:1fr}}
-
     .info-card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.06)}
     body.dark .info-card{background:var(--card)}
     .info-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
-    .info-label{min-width:110px;font-weight:700;color:var(--muted)}
+    .info-label{min-width:110px;font-weight:800;color:var(--muted)}
 
-    /* timeline */
     .timeline{border-left:3px solid var(--primary);padding-left:16px}
     .timeline-item{margin-bottom:18px}
     .timeline-item h3{font-size:1.05rem;margin-bottom:6px}
     .timeline-item small{display:block;color:var(--muted);margin-bottom:6px}
     .timeline-item p{color:var(--muted);font-size:.95rem}
 
-    /* grid cards */
-    .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 14px;
-}
-   .card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 12px;
-  box-shadow: 0 8px 30px rgba(2,6,23,0.06);
-  display: flex;
-  flex-direction: column;
-  min-width: 0; /* prevents overflow in grid */
-  overflow: hidden; /* clip long content */
-  word-break: break-word; /* break very long words */
-  max-width: 100%; /* keeps within box */
-}
-.card .thumb {
-  height: 150px;
-  width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
-  margin-bottom: 12px;
-}
-
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:14px }
+    .card{
+      background:var(--card); border-radius:12px; padding:12px; box-shadow:0 8px 30px rgba(2,6,23,0.06);
+      display:flex; flex-direction:column; min-width:0; overflow:hidden; word-break:break-word;
+      transform: translateZ(0); transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{ transform: translateY(-4px) rotateX(.6deg) rotateY(-.6deg); box-shadow:0 14px 40px rgba(2,6,23,.12) }
+    .card .thumb{ height:150px; width:100%; border-radius:8px; object-fit:cover; margin-bottom:12px; background:#10151d }
     .card h3{margin-bottom:6px}
-    .card p{flex:1;color:var(--muted);margin-bottom:8px; word-wrap: break-word; overflow-wrap: break-word;}
-    .card .meta{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.9rem}
+    .card p{flex:1;color:var(--muted);margin-bottom:8px}
+    .card .meta{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.92rem;flex-wrap:wrap}
+    .card[data-tags]::after{ content: attr(data-tags); position:absolute; inset:auto 12px 12px auto; font-size:.7rem; opacity:.55 }
 
-    /* skills */
+    /* Filters */
+    .filters{ display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin: -4px 0 18px }
+    .filter-btn{
+      border:1px solid rgba(0,0,0,.12); background:var(--card); color:var(--text); padding:.4rem .7rem; border-radius:999px; font-weight:800; cursor:pointer;
+    }
+    .filter-btn.active{ background:var(--primary); color:#111; border-color:transparent }
+    body.dark .filter-btn{ border-color: rgba(255,255,255,.14)}
+
+    /* Skills */
     .skills{display:flex;flex-wrap:wrap;gap:8px}
-    .skill {
-  background: var(--dark);
-  color: #fff;
-  padding: .45rem .75rem;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: background .25s, color .25s;
-}
-body.dark .skill {
-  background: var(--primary);
-  color: #222;
-}
+    .skill{
+      background: var(--dark); color:#fff; padding:.45rem .75rem; border-radius:999px; font-weight:800; font-size:1rem; transition: transform .2s;
+    }
+    .skill:hover{ transform: translateY(-2px) }
+    body.dark .skill{ background: var(--primary); color:#222 }
 
-    /* contact & socials */
+    /* Dialog (Quick View) */
+    dialog{
+      border:none; border-radius:16px; padding:0; width:min(720px, 96vw); background:var(--card); color:var(--text);
+      box-shadow:0 40px 80px rgba(0,0,0,.35);
+    }
+    dialog::backdrop{ background: rgba(0,0,0,.35) }
+    .dialog-head{padding:16px; border-bottom:1px solid rgba(0,0,0,.08); display:flex; justify-content:space-between; align-items:center}
+    .dialog-body{padding:16px}
+    .icon-btn{ background:none; border:0; font-size:1.1rem; cursor:pointer; color:var(--muted) }
+
+    /* Scroll progress */
+    .scroll-progress{
+      position:fixed; top:0; left:0; height:3px; width:0; background:var(--primary); z-index:1400; box-shadow:0 2px 8px rgba(0,0,0,.2)
+    }
+
+    /* Socials */
     .socials{display:flex;gap:8px;justify-content:center;margin-top:8px}
     .socials a{display:inline-flex;width:46px;height:46px;border-radius:10px;align-items:center;justify-content:center;background:var(--card);box-shadow:0 6px 18px rgba(0,0,0,0.06);color:var(--muted)}
     .socials a:hover{transform:translateY(-6px)}
 
-    /* floating back-to-top */
+    /* Back-to-top */
     .back-top{position:fixed;right:18px;bottom:18px;background:var(--primary);border-radius:10px;padding:10px;color:#07101a;box-shadow:0 8px 20px rgba(0,0,0,0.15);display:none;z-index:1400}
     .back-top.show{display:inline-flex}
 
-    /* Mobile responsive fix */
-@media (max-width: 600px) {
-  .grid { grid-template-columns: 1fr; }
-  .card { padding: 10px; }
-  .card .thumb { height: 120px; }
-}
+    /* Skip link */
+    .skip-link{
+      position:absolute; left:8px; top:-40px; padding:.6rem .9rem; background:#111; color:#fff; border-radius:8px; z-index:1500
+    }
+    .skip-link:focus{ top:8px }
+
+    /* Mobile responsiveness */
+    @media (max-width: 900px){
+      .menu-btn{ display:block }
+      .nav-links{ display:none }
+    }
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 10px; }
+      .card .thumb { height: 120px; }
+      .hero h1{ font-size:2.2rem }
+    }
+
+    /* Print (for resume-friendly output) */
+    @media print {
+      header, .hero, .back-top, .socials, .scroll-progress { display:none !important }
+      .panel, section { box-shadow:none; background:#fff }
+      a{ color:#000; text-decoration:underline }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important }
+    }
   </style>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ayush Katiya",
+    "email": "mailto:ayushkatiya@gmail.com",
+    "jobTitle": "AI Researcher / Robotics Engineer",
+    "url": "https://<your-github-username>.github.io/<your-repo>/",
+    "sameAs": [
+      "https://www.linkedin.com/in/ayushkatiya",
+      "https://github.com/AyushKatiya20322"
+    ],
+    "alumniOf": [
+      "Arizona State University",
+      "Acropolis Institute of Technology & Research (AITR), Indore"
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- NAVBAR -->
   <header class="navbar" role="banner">
@@ -202,24 +295,25 @@ body.dark .skill {
 
       <ul class="nav-links" id="navLinks">
         <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#now">Now (2025)</a></li>
         <li><a class="nav-link" href="#experience">Experience</a></li>
         <li><a class="nav-link" href="#projects">Projects</a></li>
         <li><a class="nav-link" href="#education">Education</a></li>
         <li><a class="nav-link" href="#skills">Skills</a></li>
         <li><a class="nav-link" href="#certifications">Certifications</a></li>
         <li><a class="nav-link" href="#contact">Contact</a></li>
-      
       </ul>
 
       <div class="controls">
         <button class="theme-btn" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-        <button class="menu-btn" id="menuBtn" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
 
     <!-- mobile menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="menu">
+    <nav class="mobile-menu" id="mobileMenu" aria-hidden="true" role="menu">
       <a href="#about">About</a>
+      <a href="#now">Now (2025)</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
@@ -227,27 +321,29 @@ body.dark .skill {
       <a href="#certifications">Certifications</a>
       <a href="#contact">Contact</a>
       <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-    </div>
+    </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-heading">
+    <span class="orb one" aria-hidden="true"></span>
+    <span class="orb two" aria-hidden="true"></span>
     <div class="hero-inner">
       <img class="profile" src="assets/profile.jpg" alt="Ayush Katiya portrait" loading="lazy" onerror="this.src='https://via.placeholder.com/150'">
       <h1 id="hero-heading">Ayush Katiya</h1>
-      <div class="tagline" id="typing">AI Researcher • Robotics Engineer • ML Enthusiast</div>
-      <p class="lead">Graduate Student — Robotics & Autonomous Systems (AI) at Arizona State University. I build ML-powered perception systems, robotic automation (RPA), and deploy full-stack solutions (FastAPI + React) for research & production.</p>
+      <div class="tagline" id="typing" aria-live="polite">AI Researcher • Robotics Engineer • ML Enthusiast</div>
+      <p class="lead">Graduate Student — Robotics & Autonomous Systems (AI) at Arizona State University. I build ML‑powered perception systems, robotic automation (RPA), and deploy full‑stack solutions (FastAPI + React) for research & production.</p>
       <div class="cta">
-        <a class="btn" href="resume.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file"></i>&nbsp;Download Resume</a>
-        <a class="btn alt" href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i>&nbsp;LinkedIn</a>
-        <a class="btn alt" href="https://github.com/AyushKatiya20322" target="_blank" rel="noopener"><i class="fab fa-github"></i>&nbsp;GitHub</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener"><i class="fa-regular fa-file"></i> Download Resume</a>
+        <a class="btn alt" href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a class="btn alt" href="https://github.com/AyushKatiya20322" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
       </div>
     </div>
   </section>
 
-  <main class="container" role="main">
+  <main id="main" class="container" role="main">
 
-    <!-- ABOUT + INFO SIDEBAR -->
+    <!-- ABOUT + INFO -->
     <section id="about" class="panel" aria-labelledby="about-title">
       <div class="two-col">
         <div>
@@ -256,7 +352,7 @@ body.dark .skill {
 
           <div style="margin-top:14px">
             <strong>Publication</strong>
-            <p class="small" style="color:var(--muted)">Enhancing Food Type Recognition: A Comprehensive Study on Sequential Convolutional Neural Networks for Image Classification Accuracy.</p>
+            <p class="small muted">Enhancing Food Type Recognition: A Comprehensive Study on Sequential Convolutional Neural Networks for Image Classification Accuracy.</p>
           </div>
         </div>
 
@@ -264,17 +360,43 @@ body.dark .skill {
           <div class="info-row"><div class="info-label">Contact</div>
             <div>
               <div>1215 E Lemon St</div>
-              <div class="small muted">Phone: +1 623-845-2525</div>
-              <div><a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></div>
+              <div class="small muted">Phone: <a href="tel:+16238452525">+1 623‑845‑2525</a></div>
+              <div><a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a> <button class="icon-btn" id="copyEmail" title="Copy email"><i class="fa-solid fa-copy"></i></button></div>
             </div>
           </div>
 
-          <div class="info-row"><div class="info-label">Top Skills</div><div><span class="chip">Robotics</span> <span class="chip">Robot Programming</span></div></div>
+          <div class="info-row"><div class="info-label">Top Skills</div><div><span class="chip"><i class="fa-solid fa-robot"></i> Robotics</span> <span class="chip"><i class="fa-solid fa-code"></i> Robot Programming</span></div></div>
 
           <div class="info-row"><div class="info-label">Languages</div><div><div class="small muted">Hindi (Native), English (Full Professional), German (Elementary)</div></div></div>
 
-          <div class="info-row"><div class="info-label">Links</div><div><a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="noopener">LinkedIn</a> • <a href="https://github.com/AyushKatiya20322" target="_blank" rel="noopener">GitHub</a></div></div>
+          <div class="info-row"><div class="info-label">Links</div><div><a href="https://www.linkedin.com/in/ayushkatiya" target="_blank" rel="me noopener">LinkedIn</a> • <a href="https://github.com/AyushKatiya20322" target="_blank" rel="me noopener">GitHub</a></div></div>
         </aside>
+      </div>
+    </section>
+
+    <!-- NOW (2025) -->
+    <section id="now" class="panel" aria-labelledby="now-title">
+      <div class="section-title"><h2 id="now-title">Now — October 2025</h2><div class="underline"></div></div>
+      <div class="grid" role="list">
+        <div class="card" role="listitem">
+          <img class="thumb" src="https://picsum.photos/600/350?random=11" alt="" loading="lazy">
+          <h3>Started MS @ ASU (Aug 2025)</h3>
+          <p>Trail‑mapping coursework across autonomous navigation and perception; building foundations for research in multi‑sensor fusion and ROS 2.</p>
+        </div>
+        <div class="card" role="listitem">
+          <img class="thumb" src="https://picsum.photos/600/350?random=12" alt="" loading="lazy">
+          <h3>Recently</h3>
+          <p>Wrapped up a Business Analyst Internship at Finlatics (Apr–Jul 2025): data storytelling with Power BI and ML‑driven insights powering product & business decisions.</p>
+        </div>
+        <div class="card" role="listitem">
+          <img class="thumb" src="https://picsum.photos/600/350?random=13" alt="" loading="lazy">
+          <h3>Open to</h3>
+          <p>Research assistantships & internships (Spring/Summer 2026). Interests: VLMs for robotics, SLAM, edge AI on Jetson, and autonomous UAVs.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:12px; text-align:center">
+        <a class="btn ghost" href="#contact"><i class="fa-regular fa-paper-plane"></i> Let’s collaborate</a>
       </div>
     </section>
 
@@ -286,7 +408,7 @@ body.dark .skill {
         <article class="timeline-item">
           <h3>Business Analyst Intern — Finlatics</h3>
           <small>April 2025 – July 2025 (4 months)</small>
-          <p>Analyzed complex datasets using Excel & Power BI; built and deployed ML models to provide real-time insights; created interactive dashboards used by product & business teams; collaborated cross-functionally to convert analytics into action.</p>
+          <p>Analyzed complex datasets using Excel & Power BI; built and deployed ML models to provide real‑time insights; created interactive dashboards used by product & business teams; collaborated cross‑functionally to convert analytics into action.</p>
         </article>
 
         <article class="timeline-item">
@@ -298,7 +420,7 @@ body.dark .skill {
         <article class="timeline-item">
           <h3>Data Science Intern — ArtifIntel</h3>
           <small>February 2022 – March 2022 (2 months)</small>
-          <p>Processed and cleaned large-scale datasets; supported R&D machine learning models and contributed code for preprocessing & model validation.</p>
+          <p>Processed and cleaned large‑scale datasets; supported R&D machine learning models and contributed code for preprocessing & model validation.</p>
         </article>
 
         <article class="timeline-item">
@@ -313,64 +435,93 @@ body.dark .skill {
     <section id="projects" class="panel" aria-labelledby="projects-title">
       <div class="section-title"><h2 id="projects-title">Projects</h2><div class="underline"></div></div>
 
-      <div class="grid" aria-live="polite">
+      <!-- Filters -->
+      <div class="filters" role="tablist" aria-label="Project filters">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="ai" role="tab">AI/CV</button>
+        <button class="filter-btn" data-filter="nlp" role="tab">NLP</button>
+        <button class="filter-btn" data-filter="web" role="tab">Web</button>
+        <button class="filter-btn" data-filter="rpa" role="tab">RPA</button>
+      </div>
+
+      <div class="grid" aria-live="polite" id="projectGrid">
         <!-- Image Caption Generator -->
-        <article class="card" aria-labelledby="p1">
+        <article class="card" data-tags="ai,cv" data-title="Image Caption Generator (CNN + RNN)" data-img="assets/project1.png" data-github="https://github.com/AyushKatiya20322/Image-Caption-Generator" data-desc="Generates captions describing input images using a CNN encoder and LSTM decoder. Evaluated with BLEU/CIDEr and packaged for inference.">
           <img class="thumb" src="assets/project1.png" alt="Image Caption Generator preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=1'">
-          <h3 id="p1">Image Caption Generator (CNN + RNN)</h3>
+          <h3>Image Caption Generator (CNN + RNN)</h3>
           <p>Generates captions describing input images using a CNN to extract features and an RNN (LSTM) decoder to produce natural language captions. Evaluated with BLEU/CIDEr and packaged for inference.</p>
-          <div class="meta"><a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank" rel="noopener">View on GitHub</a></div>
+          <div class="meta">
+            <a href="https://github.com/AyushKatiya20322/Image-Caption-Generator" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+            <button class="btn alt quick-view">Quick View</button>
+          </div>
         </article>
 
         <!-- E-commerce portfolio -->
-        <article class="card" aria-labelledby="p2">
-          <img class="thumb" src="assets/project2.png" alt="E-Commerce project preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=2'">
-          <h3 id="p2">Technology_portfolio_Major_Project_2023-2024 (E-Commerce)</h3>
-          <p>Full-stack e-commerce site built with React.js, FastAPI backend, Firebase database, ML-based product recommendations, and RPA automation to streamline workflows.</p>
-          <div class="meta"><a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank" rel="noopener">View on GitHub</a></div>
+        <article class="card" data-tags="web,ai" data-title="Technology Portfolio (E‑Commerce)" data-img="assets/project2.png" data-github="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" data-desc="Full‑stack e‑commerce built with React.js, FastAPI backend, Firebase DB, ML‑based recommendations, and RPA automation to streamline workflows.">
+          <img class="thumb" src="assets/project2.png" alt="E‑Commerce project preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=2'">
+          <h3>Technology_portfolio_Major_Project_2023‑2024 (E‑Commerce)</h3>
+          <p>Full‑stack e‑commerce site built with React.js, FastAPI backend, Firebase database, ML‑based product recommendations, and RPA automation to streamline workflows.</p>
+          <div class="meta">
+            <a href="https://github.com/AyushKatiya20322/Technology_portfolio_Major_Project_2023-2024" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+            <button class="btn alt quick-view">Quick View</button>
+          </div>
         </article>
 
         <!-- Plant Disease Prediction -->
-        <article class="card" aria-labelledby="p3">
+        <article class="card" data-tags="ai,cv" data-title="Plant Disease Prediction" data-img="assets/project3.png" data-github="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" data-desc="CNN trained on Kaggle datasets to classify plant diseases. Deployed via FastAPI and integrated into a React frontend for real‑time inference and farmer‑friendly UI.">
           <img class="thumb" src="assets/project3.png" alt="Plant Disease Prediction preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=3'">
-          <h3 id="p3">Plant Disease Prediction</h3>
-          <p>CNN model trained on Kaggle datasets to classify plant diseases. Deployed using FastAPI and integrated into a React frontend for real-time inference and farmer-friendly UI.</p>
-          <div class="meta"><a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank" rel="noopener">View on GitHub</a></div>
+          <h3>Plant Disease Prediction</h3>
+          <p>CNN model trained on Kaggle datasets to classify plant diseases. Deployed using FastAPI and integrated into a React frontend for real‑time inference and farmer‑friendly UI.</p>
+          <div class="meta">
+            <a href="https://github.com/AyushKatiya20322/Plant_Disease_Prediction_Project" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+            <button class="btn alt quick-view">Quick View</button>
+          </div>
         </article>
 
         <!-- Text RNN -->
-        <article class="card" aria-labelledby="p4">
+        <article class="card" data-tags="nlp,ai" data-title="Text‑Data‑Processing (RNN)" data-img="assets/project4.png" data-github="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" data-desc="RNN‑based pipeline for sequence modeling & sentiment analysis. Includes preprocessing, model training, and evaluation on labeled corpora.">
           <img class="thumb" src="assets/project4.png" alt="Text Data Processing preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=4'">
-          <h3 id="p4">Text-Data-Processing_DeepLearning_RNN</h3>
-          <p>An RNN-based pipeline for extracting information and performing sentiment analysis on text data. Includes preprocessing, sequence modeling, and evaluation on labeled corpora.</p>
-          <div class="meta"><a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" target="_blank" rel="noopener">View on GitHub</a></div>
+          <h3>Text‑Data‑Processing_DeepLearning_RNN</h3>
+          <p>An RNN‑based pipeline for extracting information and performing sentiment analysis on text data. Includes preprocessing, sequence modeling, and evaluation on labeled corpora.</p>
+          <div class="meta">
+            <a href="https://github.com/AyushKatiya20322/Text-Data-Processing_DeepLearning_RNN" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+            <button class="btn alt quick-view">Quick View</button>
+          </div>
         </article>
 
         <!-- CRM (RPA) -->
-        <article class="card" aria-labelledby="p5">
+        <article class="card" data-tags="rpa,web" data-title="Customer Relationship Management (RPA)" data-img="assets/project5.png" data-github="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" data-desc="UiPath pipeline that scrapes e‑commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports.">
           <img class="thumb" src="assets/project5.png" alt="CRM RPA preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=5'">
-          <h3 id="p5">Customer Relationship Management (RPA)</h3>
-          <p>UiPath pipeline that scrapes e-commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports to stakeholders.</p>
-          <div class="meta"><a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" target="_blank" rel="noopener">View on GitHub</a></div>
+          <h3>Customer Relationship Management (RPA)</h3>
+          <p>UiPath pipeline that scrapes e‑commerce reviews, runs sentiment analysis via AI Fabric, stores results in a Microsoft DB, and emails consolidated reports to stakeholders.</p>
+          <div class="meta">
+            <a href="https://github.com/AyushKatiya20322/CustomerRelationshipManagement" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+            <button class="btn alt quick-view">Quick View</button>
+          </div>
         </article>
 
         <!-- Botathon -->
-        <article class="card" aria-labelledby="p6">
+        <article class="card" data-tags="rpa" data-title="Botathon Prototype (Runner‑Up)" data-img="assets/project6.png" data-github="https://github.com/AyushKatiya20322/BotathonPrototype" data-desc="Automation bot for Excel tasks that reads sheets, transforms data, applies logic, and emails results. Awarded Runner‑Up in a university Botathon.">
           <img class="thumb" src="assets/project6.png" alt="Botathon prototype preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=6'">
-          <h3 id="p6">Botathon Prototype (Runner-Up)</h3>
-          <p>Automation bot for Excel tasks that reads sheets, transforms data, applies logic and emails results. Awarded Runner-Up in a university Botathon competition.</p>
-          <div class="meta"><a href="https://github.com/AyushKatiya20322/BotathonPrototype" target="_blank" rel="noopener">View on GitHub</a></div>
+          <h3>Botathon Prototype (Runner‑Up)</h3>
+          <p>Automation bot for Excel tasks that reads sheets, transforms data, applies logic and emails results. Awarded Runner‑Up in a university Botathon competition.</p>
+          <div class="meta">
+            <a href="https://github.com/AyushKatiya20322/BotathonPrototype" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+            <button class="btn alt quick-view">Quick View</button>
+          </div>
         </article>
 
         <!-- Traveller's Guide -->
-        <article class="card" aria-labelledby="p7">
+        <article class="card" data-tags="rpa,web" data-title="Traveller’s Guide" data-img="assets/project7.png" data-github="https://github.com/AyushKatiya20322/TravellersGuide" data-desc="RPA assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps shortlist travel choices efficiently.">
           <img class="thumb" src="assets/project7.png" alt="Traveller's guide preview" loading="lazy" onerror="this.src='https://picsum.photos/600/350?random=7'">
-          <h3 id="p7">Traveller’s Guide</h3>
-          <p>RPA-based assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps users shortlist travel choices efficiently.</p>
-          <div class="meta"><a href="https://github.com/AyushKatiya20322/TravellersGuide" target="_blank" rel="noopener">View on GitHub</a></div>
+          <h3>Traveller’s Guide</h3>
+          <p>RPA‑based assistant that scrapes multiple travel sites, compiles ranked flight/booking options into spreadsheets, and helps users shortlist travel choices efficiently.</p>
+          <div class="meta">
+            <a href="https://github.com/AyushKatiya20322/TravellersGuide" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+            <button class="btn alt quick-view">Quick View</button>
+          </div>
         </article>
       </div>
-    </div>
     </section>
 
     <!-- EDUCATION -->
@@ -397,11 +548,35 @@ body.dark .skill {
     <!-- SKILLS -->
     <section id="skills" class="panel" aria-labelledby="skills-title">
       <div class="section-title"><h2 id="skills-title">Skills</h2><div class="underline"></div></div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-bottom:12px">
+        <div class="chip"><i class="fa-solid fa-microchip"></i> Edge AI</div>
+        <div class="chip"><i class="fa-solid fa-cubes"></i> ROS 2</div>
+        <div class="chip"><i class="fa-solid fa-drone"></i> UAV Navigation</div>
+        <div class="chip"><i class="fa-solid fa-layer-group"></i> MLOps</div>
+      </div>
+
       <div class="skills" aria-hidden="false">
         <span class="skill">Python</span><span class="skill">C++</span><span class="skill">Java</span><span class="skill">JavaScript</span>
         <span class="skill">React.js</span><span class="skill">FastAPI</span><span class="skill">TensorFlow</span><span class="skill">PyTorch</span>
         <span class="skill">ROS</span><span class="skill">Gazebo</span><span class="skill">Firebase</span><span class="skill">MongoDB</span><span class="skill">SQL</span>
         <span class="skill">Power BI</span><span class="skill">UiPath (RPA)</span><span class="skill">Docker</span><span class="skill">Adobe Photoshop</span>
+      </div>
+
+      <!-- fun counters -->
+      <div style="display:flex; gap:10px; justify-content:center; margin-top:14px">
+        <div class="info-card" style="text-align:center; min-width:160px">
+          <div style="font-size:1.8rem; font-weight:900" data-counter="7">0</div>
+          <div class="muted small">Projects</div>
+        </div>
+        <div class="info-card" style="text-align:center; min-width:160px">
+          <div style="font-size:1.8rem; font-weight:900" data-counter="4">0</div>
+          <div class="muted small">Tech Stacks</div>
+        </div>
+        <div class="info-card" style="text-align:center; min-width:160px">
+          <div style="font-size:1.8rem; font-weight:900" data-counter="3">0</div>
+          <div class="muted small">Internships</div>
+        </div>
       </div>
     </section>
 
@@ -418,15 +593,34 @@ body.dark .skill {
       </div>
     </section>
 
+    <!-- ROADMAP (Forward-looking for 2025/26) -->
+    <section id="roadmap" class="panel" aria-labelledby="roadmap-title">
+      <div class="section-title"><h2 id="roadmap-title">What I’m Building Next</h2><div class="underline"></div></div>
+      <div class="grid">
+        <div class="card">
+          <h3>ROS 2 Perception Stack</h3>
+          <p>Modular nodes for detection, tracking, and sensor fusion to support indoor navigation demos on sim (Gazebo) and hardware (Jetson) — targeting Spring 2026.</p>
+        </div>
+        <div class="card">
+          <h3>VLM‑assisted Captioning v2</h3>
+          <p>Upgrade the Image Caption Generator with cross‑attention and better decoding (beam/top‑p), plus ONNX runtime for edge inference.</p>
+        </div>
+        <div class="card">
+          <h3>RPA + LLM Ops</h3>
+          <p>Connect UiPath pipelines to LLM‑powered extraction & summarization services; ship dashboards to monitor drift and human‑in‑the‑loop QA.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" class="panel" aria-labelledby="contact-title">
       <div class="section-title"><h2 id="contact-title">Contact</h2><div class="underline"></div></div>
+      <p class="muted">Open to internships, research collaborations & full‑time roles. Preferred contact: <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></p>
 
-      <p class="muted">Open to internships, research collaborations & full-time roles. Preferred contact: <a href="mailto:ayushkatiya@gmail.com">ayushkatiya@gmail.com</a></p>
-
-            <!-- Contact Form: Formspree placeholder. Replace FORM_ENDPOINT with your Formspree endpoint or leave commented for mailto fallback -->
       <div style="max-width:760px;margin:18px auto;">
         <form id="contactForm" class="panel" aria-label="Contact form">
+          <!-- Honeypot -->
+          <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; opacity:0" aria-hidden="true">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <input name="name" type="text" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid #ddd;width:100%;min-width:0;max-width:100%;box-sizing:border-box;">
             <input name="email" type="email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid #ddd;width:100%;min-width:0;max-width:100%;box-sizing:border-box;">
@@ -434,7 +628,7 @@ body.dark .skill {
           <textarea name="message" rows="5" placeholder="Tell me about your project or opportunity..." required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-top:10px;min-width:0;max-width:100%;box-sizing:border-box;"></textarea>
           <div style="display:flex;gap:10px;align-items:center;justify-content:flex-end;margin-top:10px">
             <button type="submit" class="btn">Send message</button>
-            <small id="formStatus" style="color:var(--muted)"></small>
+            <small id="formStatus" style="color:var(--muted)" aria-live="polite"></small>
           </div>
         </form>
       </div>
@@ -448,9 +642,24 @@ body.dark .skill {
 
   </main>
 
-  <footer style="padding:34px 0;text-align:center;color:var(--muted)">© 2025 Ayush Katiya • Built for GitHub Pages</footer>
+  <footer style="padding:34px 0;text-align:center;color:var(--muted)">© 2025 Ayush Katiya • Built for GitHub Pages • Last updated Oct 2025</footer>
 
   <a class="back-top" id="backTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
+
+  <!-- Quick View Dialog -->
+  <dialog id="projectDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-head">
+      <strong id="dialogTitle">Project</strong>
+      <button class="icon-btn" id="dialogClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="dialog-body">
+      <img id="dialogImg" src="" alt="" style="width:100%; border-radius:10px; margin-bottom:10px">
+      <p id="dialogDesc" class="muted"></p>
+      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:8px">
+        <a id="dialogGithub" class="btn alt" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+      </div>
+    </div>
+  </dialog>
 
   <!-- =========== SCRIPTS =========== -->
   <script>
@@ -465,58 +674,79 @@ body.dark .skill {
     const menuBtn = $('#menuBtn');
     const mobileMenu = $('#mobileMenu');
     menuBtn && menuBtn.addEventListener('click', () => {
-      const open = mobileMenu.getAttribute('aria-hidden') === 'false';
+      const open = mobileMenu.style.display === 'block';
       mobileMenu.style.display = open ? 'none' : 'block';
       mobileMenu.setAttribute('aria-hidden', String(open));
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+    document.addEventListener('click', (ev) => {
+      if(!mobileMenu || !menuBtn) return;
+      const withinMenu = ev.target.closest('#mobileMenu') || ev.target.closest('#menuBtn');
+      if(!withinMenu && mobileMenu.style.display === 'block') {
+        mobileMenu.style.display = 'none';
+        mobileMenu.setAttribute('aria-hidden','true');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+    });
+    document.addEventListener('keydown', (ev)=> {
+      if(ev.key === 'Escape' && mobileMenu && mobileMenu.style.display === 'block'){
+        mobileMenu.style.display = 'none';
+        mobileMenu.setAttribute('aria-hidden','true');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
     });
 
-    // Theme toggle with persistence
+    // Theme toggle with persistence + prefers-color-scheme bootstrap
     const themeToggle = $('#themeToggle');
     const applyTheme = (dark) => {
       document.body.classList.toggle('dark', dark);
       localStorage.setItem('site-theme', dark ? 'dark' : 'light');
       themeToggle.innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#07101a' : '#ffcc00');
     };
     const savedTheme = localStorage.getItem('site-theme');
-    applyTheme(savedTheme === 'dark');
+    if(savedTheme){
+      applyTheme(savedTheme === 'dark');
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(prefersDark);
+    }
     themeToggle && themeToggle.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')) );
 
     // Typing effect
     const typingEl = $('#typing');
     const roles = ["AI Researcher", "Robotics Engineer", "ML Enthusiast", "UAV Navigation & CV"];
     let ridx = 0, cidx = 0;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function typeLoop(){
+      if(!typingEl) return;
       const role = roles[ridx];
       typingEl.textContent = role.slice(0, cidx);
       cidx++;
-      if(cidx <= role.length) setTimeout(typeLoop, 70);
-      else setTimeout(eraseLoop, 1400);
+      if(cidx <= role.length) setTimeout(typeLoop, reduceMotion ? 0 : 70);
+      else setTimeout(eraseLoop, reduceMotion ? 400 : 1400);
     }
     function eraseLoop(){
+      if(!typingEl) return;
       const role = roles[ridx];
       typingEl.textContent = role.slice(0, cidx);
       cidx--;
-      if(cidx >= 0) setTimeout(eraseLoop, 30);
-      else { ridx = (ridx + 1) % roles.length; setTimeout(typeLoop, 300); }
+      if(cidx >= 0) setTimeout(eraseLoop, reduceMotion ? 0 : 30);
+      else { ridx = (ridx + 1) % roles.length; setTimeout(typeLoop, reduceMotion ? 0 : 300); }
     }
     typeLoop();
 
-    // IntersectionObserver for reveal-on-scroll + active nav link
+    // IntersectionObserver for reveal-on-scroll
     const sections = Array.from(document.querySelectorAll('main section, .hero'));
-    const navLinks = Array.from(document.querySelectorAll('nav a'));
-    const options = { root: null, rootMargin: '0px', threshold: 0.18 };
-
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        const el = entry.target;
-        if(entry.isIntersecting){
-          el.classList.add('visible');
-        }
+        if(entry.isIntersecting){ entry.target.classList.add('visible') }
       });
-    }, options);
+    }, { threshold: 0.18 });
     sections.forEach(s => io.observe(s));
 
-    // Active nav highlighting
+    // Active nav highlighting + smooth offset
+    const navLinks = Array.from(document.querySelectorAll('#navLinks a'));
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if(e.isIntersecting){
@@ -524,11 +754,9 @@ body.dark .skill {
           navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
         }
       });
-    }, { root:null, threshold: 0.35 });
-
+    }, { threshold: 0.35 });
     document.querySelectorAll('main section[id]').forEach(s => sectionObserver.observe(s));
 
-    // Smooth scroll with offset for nav links (fix fixed header)
     navLinks.forEach(a => {
       a.addEventListener('click', (ev) => {
         ev.preventDefault();
@@ -536,34 +764,36 @@ body.dark .skill {
         if(!target) return;
         const y = target.getBoundingClientRect().top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72) + 8;
         window.scrollTo({ top: y, behavior: 'smooth' });
-        mobileMenu && (mobileMenu.style.display = 'none');
+        if(mobileMenu) mobileMenu.style.display = 'none';
       });
     });
 
-    // Back to top button
+    // Back to top + scroll progress
     const backTop = $('#backTop');
-    window.addEventListener('scroll', () => {
-      backTop.classList.toggle('show', window.scrollY > window.innerHeight);
-    });
-    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    const scrollProgress = $('#scrollProgress');
+    const onScroll = () => {
+      const scrolled = window.scrollY;
+      backTop.classList.toggle('show', scrolled > window.innerHeight);
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = Math.max(0, Math.min(1, scrolled / (docH || 1)));
+      if(scrollProgress) scrollProgress.style.width = (pct * 100).toFixed(2) + '%';
+    };
+    window.addEventListener('scroll', onScroll);
+    backTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // Contact form handling: Formspree if endpoint set; otherwise mailto fallback
+    // Contact form handling: Formspree if endpoint set; otherwise mailto fallback (+honeypot)
     const contactForm = $('#contactForm');
     const formStatus = $('#formStatus');
     if(contactForm){
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        if($('#website')?.value) { formStatus.textContent = 'Spam detected.'; return; } // honeypot
         formStatus.textContent = 'Sending...';
         const formData = new FormData(contactForm);
         const payload = Object.fromEntries(formData.entries());
         try{
           if(FORM_ENDPOINT && FORM_ENDPOINT.trim().length){
-            // submit to Formspree
-            const res = await fetch(FORM_ENDPOINT, {
-              method:'POST',
-              headers:{ 'Accept':'application/json' },
-              body: formData
-            });
+            const res = await fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Accept':'application/json' }, body: formData });
             if(res.ok){
               formStatus.textContent = 'Message sent — thank you!';
               contactForm.reset();
@@ -571,7 +801,6 @@ body.dark .skill {
               formStatus.textContent = 'Unable to send (Formspree). Try email below.';
             }
           } else {
-            // mailto fallback
             const subject = encodeURIComponent(`Portfolio message from ${payload.name || 'Visitor'}`);
             const body = encodeURIComponent(`Name: ${payload.name || ''}\nEmail: ${payload.email || ''}\n\nMessage:\n${payload.message || ''}`);
             window.location.href = `mailto:ayushkatiya@gmail.com?subject=${subject}&body=${body}`;
@@ -586,18 +815,81 @@ body.dark .skill {
       });
     }
 
-    // Accessibility: close mobile menu on outside click
-    document.addEventListener('click', (ev) => {
-      if(!mobileMenu || !menuBtn) return;
-      const withinMenu = ev.target.closest('#mobileMenu') || ev.target.closest('#menuBtn');
-      if(!withinMenu && mobileMenu.style.display === 'block') mobileMenu.style.display = 'none';
+    // Copy email
+    $('#copyEmail')?.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText('ayushkatiya@gmail.com');
+        $('#copyEmail').innerHTML = '<i class="fa-solid fa-check"></i>';
+        setTimeout(()=> $('#copyEmail').innerHTML = '<i class="fa-solid fa-copy"></i>', 1400);
+      } catch(e){ console.warn('Clipboard not available'); }
     });
 
-    // Lazy-load improvement: swap placeholder thumb to actual images handled with <img loading="lazy"> above
+    // Project filters
+    const filterBtns = $$('.filter-btn');
+    const projectCards = $$('#projectGrid .card');
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tag = btn.dataset.filter;
+      projectCards.forEach(card => {
+        const tags = (card.getAttribute('data-tags') || '').split(',').map(s => s.trim());
+        const show = tag === 'all' || tags.includes(tag);
+        card.style.display = show ? '' : 'none';
+      });
+    }));
 
-    // Friendly fallback: if JS disabled, sections remain visible via CSS? (We set visible via JS)
+    // Quick View dialog
+    const dlg = $('#projectDialog');
+    const dlgClose = $('#dialogClose');
+    $$('.quick-view').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.card');
+        if(!card || !dlg) return;
+        $('#dialogTitle').textContent = card.dataset.title || 'Project';
+        $('#dialogImg').src = card.dataset.img || card.querySelector('img')?.src || '';
+        $('#dialogImg').alt = (card.dataset.title || 'Project') + ' preview';
+        $('#dialogDesc').textContent = card.dataset.desc || card.querySelector('p')?.textContent || '';
+        $('#dialogGithub').href = card.dataset.github || '#';
+        dlg.showModal();
+      });
+    });
+    dlgClose?.addEventListener('click', ()=> dlg?.close());
+    dlg?.addEventListener('click', (e)=> { if(e.target === dlg) dlg.close() });
+
+    // Fun counters (animate when in view)
+    const counters = $$('[data-counter]');
+    const ctrIO = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el = entry.target;
+          const target = Number(el.getAttribute('data-counter')) || 0;
+          const start = performance.now();
+          const dur = 900;
+          const step = (t) => {
+            const p = Math.min(1, (t - start)/dur);
+            el.textContent = Math.round(target * p);
+            if(p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+          ctrIO.unobserve(el);
+        }
+      })
+    }, {threshold:.6});
+    counters.forEach(c=> ctrIO.observe(c));
+
+    // Minimal 3D tilt on cards
+    projectCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
+        const rx = ((y/r.height)-0.5)*3, ry = ((x/r.width)-0.5)*-3;
+        card.style.transform = `translateY(-4px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = '' });
+    });
+
+    // Reveal on load for in-view sections (in case load at middle)
     window.addEventListener('load', () => {
-      // Reveal any sections already in view
       sections.forEach(s => {
         const rect = s.getBoundingClientRect();
         if(rect.top < window.innerHeight * 0.85) s.classList.add('visible');
