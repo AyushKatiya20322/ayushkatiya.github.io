@@ -1,5 +1,5 @@
-const CACHE = "ak-portfolio-v3";
-const CORE = ["./", "./index.html", "./404.html", "./assets/profile.jpg", "./assets/icon-192.png", "./assets/icon-512.png", "./resume.pdf", "./manifest.webmanifest"];
+const CACHE = "ak-portfolio-v4";
+const CORE = ["./", "./index.html", "./404.html", "./assets/profile.jpg", "./assets/icon-192.png", "./assets/icon-512.png", "./resume.pdf", "./manifest.webmanifest", "./arena.js"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE))); self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))); self.clients.claim(); });
 self.addEventListener("fetch", e => {
